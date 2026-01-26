@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joystick Hero v3.4 - Production Ready</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: #111;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+            color: white;
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 100%; max-width: 1024px;
+            aspect-ratio: 16/9;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border: 4px solid #222;
+            overflow: hidden;
+        }
+
+        canvas { 
+            display: block; width: 100%; height: 100%; 
+            image-rendering: pixelated;
+        }
+
+        .ui-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; padding: 20px;
+            display: flex; flex-direction: column; z-index: 20;
+        }
+
+        .hud { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; }
+        
+        .p-info { display: flex; flex-direction: column; margin-bottom: 5px; min-width: 350px; }
+        
+        .info-top { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 5px; }
+        .p-name { color: #5dade2; font-size: 16px; text-shadow: 2px 2px #000; letter-spacing: 2px;}
+        
+        .round-dots { display: flex; gap: 5px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #333; border: 2px solid #555; }
+        .dot.active { background: #f1c40f; border-color: #fff; box-shadow: 0 0 5px #f1c40f; }
+
+        .health-container {
+            position: relative; width: 100%; height: 25px;
+            background: #550000; border: 2px solid #fff;
+            box-shadow: 3px 3px 0 #000;
+        }
+
+        .health-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to bottom, #f1c40f 50%, #d35400 50%);
+            transition: width 0.1s linear;
+        }
+        .health-damage {
+            position: absolute; top:0; left:0; height:100%; width: 100%;
+            background: #c0392b; z-index: -1;
+            transition: width 0.3s ease-out 0.2s;
+        }
+
+        .timer-box {
+            position: absolute; left: 50%; transform: translateX(-50%); top: 15px;
+            color: #f1c40f; font-size: 40px; text-shadow: 3px 3px #c0392b;
+            z-index: 10;
+        }
+
+        #message-display {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            font-size: 6rem; color: #c0392b;
+            text-shadow: 4px 4px 0 #fff, -4px -4px 0 #fff;
+            display: none; text-align: center; 
+            font-style: italic; z-index: 30;
+        }
+        
+        .sub-text {
+            font-size: 1.5rem; color: #fff; text-shadow: 2px 2px 0 #000;
+            display: block; margin-top: 20px; font-style: normal;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        #gamepad-indicator {
+            position: absolute; bottom: 10px; right: 10px;
+            color: #666; font-size: 10px; text-align: right;
+        }
+        #gamepad-indicator.active { color: #00ff00; }
+
+        .move-list {
+            position: absolute; bottom: 10px; left: 10px;
+            background: rgba(0,0,0,0.7); padding: 10px;
+            border: 1px solid #555; border-radius: 5px;
+            font-size: 10px; color: #ccc; line-height: 1.5;
+            pointer-events: none;
+        }
+        .move-list b { color: #f1c40f; }
+        .key { display: inline-block; background: #333; padding: 2px 4px; border-radius: 3px; border: 1px solid #555; margin: 0 2px;}
+
+        .vs-mode-badge {
+            position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+            background: #c0392b; color: #fff; padding: 5px 10px;
+            font-size: 12px; border-radius: 4px; border: 1px solid #fff;
+            display: none; z-index: 15;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <canvas id="gameCanvas"></canvas>
+        <div class="ui-layer">
+            <div class="timer-box" id="timer">99</div>
+            <div class="vs-mode-badge" id="vs-badge">2 PLAYER MODE</div>
+            
+            <div class="hud">
+                <!-- P1 -->
+                <div class="p-info">
+                    <div class="info-top">
+                        <div class="p-name" style="color: #3498db;">BOSS (P1)</div>
+                        <div class="round-dots" id="p1-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="health-container">
+                        <div class="health-damage" id="p1Damage"></div>
+                        <div class="health-bar" id="p1Health"></div>
+                    </div>
+                </div>
+
+                <!-- P2 -->
+                <div class="p-info">
+                    <div class="info-top" style="flex-direction: row-reverse;">
+                        <div class="p-name" style="color: #2ecc71;">JENSEN (P2)</div>
+                        <div class="round-dots" id="p2-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="health-container" style="flex-direction: row-reverse;">
+                        <div class="health-damage" id="p2Damage"></div>
+                        <div class="health-bar" id="p2Health" style="float: right;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="message-display">
+                K.O.
+                <span class="sub-text">PRESS ANY KEY</span>
+            </div>
+            
+            <div id="gamepad-indicator">
+                <div id="gp1-status">P1: No Gamepad</div>
+                <div id="gp2-status">P2: No Gamepad</div>
+            </div>
+
+            <div class="move-list">
+                <div><b>波動拳:</b> ↓ ↘ → + <span class="key">P</span></div>
+                <div><b>昇龍拳:</b> → ↓ ↘ + <span class="key">P</span></div>
+                <div><b>旋風腿:</b> ↓ ↙ ← + <span class="key">K</span></div>
+                <div><b>投技:</b> 近身 <span class="key">P</span>+<span class="key">K</span> (地面限定)</div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const c = canvas.getContext('2d');
+    c.imageSmoothingEnabled = false; 
+
+    canvas.width = 1024;
+    canvas.height = 576;
+    const GRAVITY = 0.7;
+    const GROUND_Y = 480;
+
+    // --- 遊戲狀態 ---
+    let timer = 99;
+    let timerId;
+    let gameState = 'playing'; 
+    let p1Wins = 0;
+    let p2Wins = 0;
+    let isAIEnabled = true; 
+    
+    // --- Input Buffer ---
+    class InputBuffer {
+        constructor() {
+            this.buffer = [];
+            this.maxBufferSize = 20; 
+            this.lastDir = 'NEUTRAL';
+        }
+        update(direction) {
+            if (direction !== this.lastDir) {
+                this.buffer.push({ dir: direction, time: Date.now() });
+                if (this.buffer.length > this.maxBufferSize) this.buffer.shift();
+                this.lastDir = direction;
+            }
+        }
+        checkCommand(sequence, facingLeft) {
+            if (this.buffer.length < sequence.length) return false;
+            const targetSeq = sequence.map(d => {
+                if (facingLeft) {
+                    if (d === 'RIGHT') return 'LEFT';
+                    if (d === 'LEFT') return 'RIGHT';
+                }
+                return d;
+            });
+            let seqIndex = targetSeq.length - 1;
+            const now = Date.now();
+            for (let i = this.buffer.length - 1; i >= 0; i--) {
+                const entry = this.buffer[i];
+                if (now - entry.time > 500) break;
+                if (this.isDirectionMatch(entry.dir, targetSeq[seqIndex])) {
+                    seqIndex--;
+                    if (seqIndex < 0) return true; 
+                }
+            }
+            return false;
+        }
+        isDirectionMatch(input, target) {
+            if (input === target) return true;
+            // 處理複合輸入
+            if (target === 'DOWN' && input.includes('DOWN')) return true;
+            if (target === 'UP' && input.includes('UP')) return true;
+            if (target === 'RIGHT' && input.includes('RIGHT')) return true;
+            if (target === 'LEFT' && input.includes('LEFT')) return true;
+            return false;
+        }
+    }
+
+    // --- Particle ---
+    let particles = [];
+    class Particle {
+        constructor({x, y, color, velocity, life = 1}) {
+            this.x = x; this.y = y; this.color = color;
+            this.velocity = velocity;
+            this.alpha = life;
+            this.radius = Math.random() * 3 + 2;
+        }
+        draw() {
+            c.save();
+            c.globalAlpha = this.alpha;
+            c.fillStyle = this.color;
+            c.beginPath(); c.arc(this.x, this.y, this.radius, 0, Math.PI*2); c.fill();
+            c.restore();
+        }
+        update() {
+            this.draw();
+            this.x += this.velocity.x;
+            this.y += this.velocity.y;
+            this.alpha -= 0.05;
+        }
+    }
+
+    // --- Fighter ---
+    class Fighter {
+        constructor({ position, velocity, color, name, isP1 = true }) {
+            this.position = { ...position };
+            this.startPosition = { ...position };
+            this.velocity = velocity;
+            this.width = 60; 
+            this.height = 120;
+            this.color = color;
+            this.name = name;
+            this.isP1 = isP1;
+            this.health = 100;
+            
+            this.inputBuffer = new InputBuffer();
+            this.lastKey = '';
+
+            this.animState = 'idle'; 
+            this.isAttacking = false; 
+            this.isSpecialMove = false; 
+            this.isHit = false;
+            this.isHoldingBack = false; // 新增：追蹤是否按住後
+            this.isBeingThrown = false; 
+            this.facingLeft = !isP1;
+            
+            this.framesCurrent = 0;
+            this.framesElapsed = 0;
+            this.framesHold = 10;
+            
+            this.projectiles = [];
+        }
+        
+        reset() {
+            this.position = { ...this.startPosition };
+            this.velocity = { x: 0, y: 0 };
+            this.health = 100;
+            this.animState = 'idle';
+            this.isAttacking = false;
+            this.isSpecialMove = false;
+            this.isHit = false;
+            this.isHoldingBack = false;
+            this.isBeingThrown = false;
+            this.facingLeft = !this.isP1;
+            this.projectiles = [];
+            this.inputBuffer = new InputBuffer();
+        }
+
+        draw() {
+            c.fillStyle = "rgba(0,0,0,0.5)";
+            c.beginPath(); c.ellipse(this.position.x + this.width/2, GROUND_Y, 40, 10, 0, 0, Math.PI*2); c.fill();
+
+            c.save();
+            if (this.facingLeft) {
+                c.translate(this.position.x + this.width, this.position.y);
+                c.scale(-1, 1);
+            } else {
+                c.translate(this.position.x, this.position.y);
+            }
+            
+            // 只有普通受傷才震動，被防禦震退不亂飄
+            if (this.isHit && !this.isBeingThrown && this.animState !== 'block') c.translate((Math.random()-0.5)*10, (Math.random()-0.5)*10);
+            if (this.isHit && this.animState === 'block') c.translate((Math.random()-0.5)*5, 0);
+
+            this.drawPixelArt();
+            c.restore();
+            this.projectiles.forEach(p => p.draw());
+        }
+
+        drawPixelArt() {
+            const h = this.height;
+            const w = this.width;
+            let breath = Math.sin(Date.now() / 200) * 2;
+            if (this.animState !== 'idle') breath = 0;
+
+            const isBoss = this.name === 'BOSS';
+            const suitColor = isBoss ? '#2c3e50' : '#111'; 
+            const skinColor = '#ffcc88';
+            const shoesColor = isBoss ? '#4a230f' : '#222'; 
+
+            if (this.isBeingThrown) {
+                c.save();
+                c.translate(w/2, h/2); c.rotate(Date.now() / 50); c.translate(-w/2, -h/2);
+                c.fillStyle = suitColor; c.fillRect(5, h - 90, 50, 50); 
+                c.fillStyle = skinColor; c.fillRect(15, h - 115, 30, 28); 
+                c.fillStyle = suitColor; c.fillRect(10, h - 50, 45, 50); 
+                c.restore(); return;
+            }
+
+            if (this.animState === 'throw') {
+                c.fillStyle = suitColor; c.fillRect(10, h - 50, 45, 50); 
+                let bodyAngle = 0;
+                let armY = 0;
+                if (this.framesElapsed < 6) {
+                    c.fillRect(15, h - 90, 50, 50); 
+                    c.fillStyle = skinColor; c.fillRect(50, h - 85, 30, 15); 
+                } else {
+                    c.save();
+                    c.translate(0, h-50); 
+                    c.rotate(0.5); 
+                    c.translate(0, -(h-50));
+                    c.fillStyle = suitColor; c.fillRect(5, h - 90, 50, 50); 
+                    c.fillStyle = skinColor; c.fillRect(40, h - 110, 20, 40); 
+                    const headY = h - 115;
+                    c.fillStyle = skinColor; c.fillRect(15, headY, 30, 28);
+                    if (isBoss) { c.fillStyle = "#222"; c.fillRect(15, headY, 30, 8); } 
+                    else { c.fillStyle = "#bdc3c7"; c.fillRect(12, headY, 36, 15); }
+                    c.restore();
+                    return; 
+                }
+                const headY = h - 115;
+                c.fillStyle = skinColor; c.fillRect(20, headY, 30, 28);
+                if (isBoss) { c.fillStyle = "#222"; c.fillRect(20, headY, 30, 8); } 
+                else { c.fillStyle = "#bdc3c7"; c.fillRect(17, headY, 36, 15); }
+                return;
+            }
+
+            if (this.animState === 'block') {
+                c.fillStyle = suitColor; c.fillRect(10, h - 50, 20, 50); 
+                c.fillRect(35, h - 50, 20, 50);
+                c.fillRect(5, h - 90, 50, 50); 
+                const headY = h - 115;
+                c.fillStyle = skinColor; c.fillRect(15, headY, 30, 28);
+                if (isBoss) { c.fillStyle = "#222"; c.fillRect(15, headY, 30, 8); } 
+                else { c.fillStyle = "#bdc3c7"; c.fillRect(12, headY, 36, 15); }
+                if (isBoss) c.fillStyle = suitColor; else c.fillStyle = "#111";
+                c.fillRect(40, h - 100, 15, 30); 
+                c.fillRect(40, h - 110, 30, 15); 
+                c.fillStyle = skinColor; c.fillRect(65, h - 112, 12, 18); 
+                return;
+            }
+
+            if (this.animState === 'tatsumaki') {
+                c.save();
+                c.translate(w/2, h/2); c.rotate(Date.now() / 40); c.translate(-w/2, -h/2);
+                c.fillStyle = skinColor; c.fillRect(0, h/2 - 10, 90, 20); 
+                c.fillStyle = suitColor; c.fillRect(0, h/2 - 10, 20, 20); 
+                c.fillRect(10, 20, 40, 60); 
+                c.fillStyle = isBoss ? "#222" : "#bdc3c7"; c.fillRect(15, 0, 30, 20); 
+                c.restore(); return; 
+            }
+
+            if (this.animState === 'shoryuken') {
+                c.fillStyle = suitColor; c.fillRect(10, h - 100, 40, 70); 
+                c.fillStyle = skinColor; c.fillRect(40, h - 130, 20, 40); 
+                if (!isBoss) { c.fillStyle = '#1a1a1a'; c.fillRect(40, h - 110, 20, 20); } 
+                else { c.fillStyle = suitColor; c.fillRect(40, h - 110, 20, 20); }
+                c.fillStyle = isBoss ? "#222" : "#bdc3c7"; c.fillRect(15, h - 115, 30, 25); 
+                c.fillStyle = suitColor; c.fillRect(20, h - 40, 20, 30); 
+                return;
+            }
+
+            if (this.animState === 'hadouken') {
+                c.fillStyle = suitColor; c.fillRect(5, h - 90, 50, 50); 
+                c.fillRect(10, h - 50, 20, 50); c.fillRect(40, h - 50, 20, 50); 
+                c.fillStyle = skinColor; c.fillRect(40, h - 75, 40, 20); 
+                if (isBoss) { c.fillStyle = suitColor; c.fillRect(40, h - 75, 25, 20); } 
+                else { c.fillStyle = '#1a1a1a'; c.fillRect(40, h - 75, 25, 20); }
+                return;
+            }
+
+            if (this.animState === 'kick') {
+                c.fillStyle = suitColor; c.fillRect(10, h - 50, 20, 50); 
+                c.fillRect(-5, h - 90, 50, 50); 
+                c.fillStyle = suitColor; c.fillRect(40, h - 60, 30, 18); 
+                c.fillStyle = skinColor; c.fillRect(70, h - 60, 20, 18); 
+                c.fillStyle = shoesColor; c.fillRect(90, h - 60, 10, 18); 
+                
+                const headY = h - 115;
+                c.fillStyle = skinColor; c.fillRect(5, headY, 30, 28);
+                if (isBoss) { c.fillStyle = "#222"; c.fillRect(5, headY, 30, 8); } 
+                else { c.fillStyle = "#bdc3c7"; c.fillRect(2, headY, 36, 15); }
+                return;
+            }
+
+            c.fillStyle = suitColor;
+            if (!isBoss) c.fillStyle = "#222"; 
+
+            if (this.animState === 'jump') {
+                c.fillRect(10, h - 60, 20, 40); c.fillRect(30, h - 50, 20, 40);
+            } else {
+                c.fillRect(10, h - 50, 20, 50); c.fillRect(30, h - 50, 20, 50);
+            }
+            
+            c.fillStyle = suitColor; 
+            if (!isBoss) c.fillStyle = "#111"; 
+            c.fillRect(5, h - 90 + breath, 50, 50);
+            
+            if (isBoss) {
+                c.fillStyle = "#fff"; c.beginPath(); c.moveTo(25, h - 90 + breath); c.lineTo(35, h - 90 + breath); c.lineTo(30, h - 70 + breath); c.fill();
+                c.fillStyle = "#c0392b"; c.fillRect(28, h - 90 + breath, 4, 30);
+            } else {
+                c.fillStyle = "#333"; c.fillRect(10, h - 80 + breath, 10, 30); 
+            }
+
+            const headY = h - 115 + breath;
+            c.fillStyle = skinColor; 
+            c.fillRect(15, headY, 30, 28);
+            
+            if (isBoss) { c.fillStyle = "#222"; c.fillRect(15, headY, 30, 8); } 
+            else { c.fillStyle = "#bdc3c7"; c.fillRect(12, headY, 36, 15); }
+
+            c.fillStyle = skinColor;
+            if (this.animState === 'punch') {
+                if (isBoss) c.fillStyle = suitColor; else c.fillStyle = "#111";
+                c.fillRect(40, h - 80 + breath, 30, 15); 
+                c.fillStyle = skinColor; c.fillRect(70, h - 82 + breath, 15, 19); 
+            } else {
+                if (isBoss) c.fillStyle = suitColor; else c.fillStyle = "#111";
+                c.fillRect(40, h - 70 + breath, 15, 30); 
+            }
+        }
+
+        update() {
+            this.draw();
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+            
+            // 地板碰撞
+            if (this.position.y + this.height + this.velocity.y >= GROUND_Y) {
+                this.velocity.y = 0;
+                this.position.y = GROUND_Y - this.height;
+                if (this.animState === 'jump' || this.animState === 'shoryuken' || this.isBeingThrown) {
+                    if(this.isBeingThrown) {
+                        this.isBeingThrown = false;
+                        this.isHit = false; 
+                    }
+                    this.animState = 'idle';
+                    this.isSpecialMove = false;
+                    this.velocity.x = 0;
+                }
+            } else {
+                this.velocity.y += GRAVITY;
+            }
+            
+            if (this.animState === 'tatsumaki') {
+                if (this.position.y + this.height < GROUND_Y) {
+                     this.velocity.y = 12; 
+                } else {
+                     this.velocity.y = 0; 
+                     this.position.y = GROUND_Y - this.height;
+                }
+            }
+
+            if (this.position.x < 0) this.position.x = 0;
+            if (this.position.x + this.width > canvas.width) this.position.x = canvas.width - this.width;
+
+            if (this.isAttacking || this.isSpecialMove) {
+                this.framesElapsed++;
+                let limit = 20;
+                if (this.animState === 'punch' || this.animState === 'kick') limit = 10;
+                if (this.animState === 'shoryuken') limit = 40; 
+                if (this.animState === 'tatsumaki') limit = 40; 
+                if (this.animState === 'throw') limit = 15; 
+
+                if (this.framesElapsed > limit) {
+                    this.isAttacking = false;
+                    this.isSpecialMove = false;
+                    this.animState = 'idle';
+                    this.framesElapsed = 0;
+                    this.velocity.x = 0;
+                }
+            }
+            this.projectiles.forEach((p, i) => {
+                p.update();
+                if (p.x < -100 || p.x > canvas.width + 100) this.projectiles.splice(i, 1);
+            });
+        }
+
+        handleInput(direction, buttons, enemyRef) { 
+            if (gameState !== 'playing') return; 
+
+            this.inputBuffer.update(direction);
+            
+            if (this.isSpecialMove || this.isHit || this.isBeingThrown) return;
+
+            // 0. 更新防禦意圖 (拉後)
+            // === 修正：只標記是否拉後，不強制停止移動 ===
+            this.isHoldingBack = false;
+            if (!this.facingLeft && direction.includes('LEFT')) this.isHoldingBack = true;
+            if (this.facingLeft && direction.includes('RIGHT')) this.isHoldingBack = true;
+
+            // 1. 投技
+            if (buttons.punch && buttons.kick && this.position.y + this.height >= GROUND_Y) {
+                const dist = Math.abs(this.position.x - enemyRef.position.x);
+                if (dist < 80 && Math.abs(this.position.y - enemyRef.position.y) < 50) {
+                    this.performThrow(enemyRef);
+                    return;
+                }
+            }
+
+            // 2. 尻招
+            if (buttons.punch && this.inputBuffer.checkCommand(['RIGHT', 'DOWN', 'RIGHT'], this.facingLeft)) {
+                this.performShoryuken(); return;
+            }
+            if (buttons.kick && this.inputBuffer.checkCommand(['DOWN', 'LEFT'], this.facingLeft)) {
+                this.performTatsumaki(); return;
+            }
+            if (buttons.punch && this.inputBuffer.checkCommand(['DOWN', 'RIGHT'], this.facingLeft)) {
+                this.performHadouken(); return;
+            }
+            
+            // 3. 普通攻擊
+            if (buttons.punch) {
+                this.animState = 'punch'; this.isAttacking = true; this.framesElapsed = 0;
+            } else if (buttons.kick) {
+                this.animState = 'kick'; this.isAttacking = true; this.framesElapsed = 0;
+            }
+            
+            // 4. 移動 (支援斜向判定)
+            if (direction.includes('LEFT')) {
+                this.velocity.x = -5; this.animState = 'run';
+            } else if (direction.includes('RIGHT')) {
+                this.velocity.x = 5; this.animState = 'run';
+            } else {
+                this.velocity.x = 0; 
+                if (this.animState === 'run' || this.animState === 'block') this.animState = 'idle';
+            }
+            
+            // 5. 跳躍 (支援斜向判定)
+            if (direction.includes('UP') && this.position.y + this.height >= GROUND_Y) {
+                this.velocity.y = -20; this.animState = 'jump';
+            }
+        }
+
+        performThrow(target) {
+            console.log("THROW!");
+            this.animState = 'throw';
+            this.isSpecialMove = true;
+            this.framesElapsed = 0;
+            this.velocity.x = 0;
+            target.getThrown(this.facingLeft, this.position.x);
+        }
+
+        getThrown(throwerFacingLeft, throwerX) {
+            this.isBeingThrown = true;
+            this.isHit = true;
+            this.isHoldingBack = false; // 被摔無法防禦
+            this.health -= 12; 
+            this.velocity.y = -12; 
+            this.velocity.x = throwerFacingLeft ? -28 : 28; 
+            if (throwerFacingLeft) this.position.x = throwerX - 60;
+            else this.position.x = throwerX + 60;
+            updateHealthUI();
+            createParticles(this.position.x, this.position.y, '#e74c3c');
+        }
+
+        performHadouken() {
+            this.animState = 'hadouken'; this.isSpecialMove = true; this.framesElapsed = 0; this.velocity.x = 0;
+            setTimeout(() => {
+                const dir = this.facingLeft ? -1 : 1;
+                const color = this.name === 'BOSS' ? '#f1c40f' : '#76b900';
+                this.projectiles.push(new Hadouken({
+                    x: this.position.x + (this.facingLeft ? -20 : this.width),
+                    y: this.position.y + 40, velocity: { x: dir * 12, y: 0 }, color: color,
+                    isP1: this.isP1
+                }));
+            }, 200); 
+        }
+        performShoryuken() {
+            this.animState = 'shoryuken'; this.isSpecialMove = true; this.framesElapsed = 0;
+            this.velocity.y = -18; 
+            this.velocity.x = this.facingLeft ? -3 : 3;
+        }
+        performTatsumaki() {
+            this.animState = 'tatsumaki'; this.isSpecialMove = true; this.framesElapsed = 0;
+            this.velocity.x = this.facingLeft ? -8 : 8;
+        }
+        
+        takeDamage(amount, isSpecial = false) {
+            // === 修正：防禦判定 ===
+            // 條件：按住後 + 在地面 + 沒有攻擊
+            if (this.isHoldingBack && this.position.y + this.height >= GROUND_Y && !this.isAttacking) {
+                let actualDamage = 0;
+                if (isSpecial) actualDamage = Math.max(1, Math.floor(amount / 10)); // 必殺技還是會扣一點血
+                
+                this.health -= actualDamage;
+                this.velocity.x = this.facingLeft ? 10 : -10; // 防禦擊退
+                
+                // 觸發防禦動作
+                this.isHit = true; // 設置受擊狀態以暫停輸入(產生硬直)
+                this.animState = 'block'; 
+                setTimeout(() => { 
+                    this.isHit = false; 
+                    if(this.animState === 'block') this.animState = 'idle';
+                }, 200); // 200ms 防禦硬直
+                
+                return 'blocked'; 
+            } 
+            
+            // 普通受傷
+            this.health -= amount;
+            this.isHit = true; 
+            this.isSpecialMove = false; 
+            this.animState = 'hit';
+            this.velocity.y = -5; 
+            this.velocity.x = this.facingLeft ? 5 : -5;
+            setTimeout(() => { this.isHit = false; this.animState = 'idle'; }, 300);
+            return 'hit';
+        }
+    }
+
+    class Hadouken {
+        constructor({x, y, velocity, color, isP1}) {
+            this.x = x; this.y = y; this.velocity = velocity; this.color = color;
+            this.radius = 20; this.anim = 0; this.isP1 = isP1;
+        }
+        draw() {
+            c.save(); c.translate(this.x, this.y); this.anim += 0.5;
+            c.fillStyle = "#fff"; c.beginPath(); c.arc(0,0, 15, 0, Math.PI*2); c.fill();
+            c.fillStyle = this.color; c.globalAlpha = 0.6;
+            c.beginPath(); c.arc(Math.random()*5, Math.random()*5, 25, 0, Math.PI*2); c.fill();
+            c.restore();
+        }
+        update() {
+            this.draw(); this.x += this.velocity.x;
+            if (Math.random() < 0.5) {
+                particles.push(new Particle({
+                    x: this.x, y: this.y, color: this.color, 
+                    velocity: {x: -this.velocity.x * 0.2, y: (Math.random()-0.5)*2}
+                }));
+            }
+        }
+    }
+
+    // --- Init ---
+    const player = new Fighter({ position: {x: 100, y: 0}, velocity: {x: 0, y: 0}, color: '#2c3e50', name: 'BOSS', isP1: true });
+    const enemy = new Fighter({ position: {x: 800, y: 0}, velocity: {x: 0, y: 0}, color: '#111', name: 'JENSEN', isP1: false });
+
+    const keysP1 = { w: false, a: false, s: false, d: false, j: false, n: false };
+    const keysP2 = { arrowup: false, arrowdown: false, arrowleft: false, arrowright: false, '1': false, '2': false };
+
+    function handleAnyKeyInput() {
+        if (gameState === 'round_over') nextRound();
+        else if (gameState === 'match_over') resetMatch();
+    }
+
+    window.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        if (gameState !== 'playing') {
+             if (e.repeat) return;
+             handleAnyKeyInput();
+             return;
+        }
+        if (keysP1.hasOwnProperty(key)) keysP1[key] = true;
+        if (keysP2.hasOwnProperty(key)) {
+            keysP2[key] = true;
+            disableAI();
+        }
+    });
+    
+    window.addEventListener('keyup', (e) => {
+        const key = e.key.toLowerCase();
+        if (keysP1.hasOwnProperty(key)) keysP1[key] = false;
+        if (keysP2.hasOwnProperty(key)) keysP2[key] = false;
+    });
+
+    // === 修復：支援 8 方位輸入 (鍵盤) ===
+    function getDirectionP1() {
+        let dir = '';
+        if (keysP1.w) dir = 'UP';
+        else if (keysP1.s) dir = 'DOWN';
+        
+        if (keysP1.a) dir = dir ? dir + '_LEFT' : 'LEFT';
+        else if (keysP1.d) dir = dir ? dir + '_RIGHT' : 'RIGHT';
+        
+        return dir || 'NEUTRAL';
+    }
+
+    function getDirectionP2() {
+        let dir = '';
+        if (keysP2.arrowup) dir = 'UP';
+        else if (keysP2.arrowdown) dir = 'DOWN';
+        
+        if (keysP2.arrowleft) dir = dir ? dir + '_LEFT' : 'LEFT';
+        else if (keysP2.arrowright) dir = dir ? dir + '_RIGHT' : 'RIGHT';
+        
+        return dir || 'NEUTRAL';
+    }
+
+    // === 修復：支援 8 方位輸入 (搖桿) ===
+    function getDirectionFromGamepad(gp) {
+        const x = gp.axes[0]; 
+        const y = gp.axes[1]; 
+        const threshold = 0.4;
+        let dir = '';
+
+        // Y 軸 (搖桿或十字鍵)
+        if (y < -threshold || (gp.buttons[12] && gp.buttons[12].pressed)) {
+            dir = 'UP';
+        } else if (y > threshold || (gp.buttons[13] && gp.buttons[13].pressed)) {
+            dir = 'DOWN';
+        }
+
+        // X 軸 (可疊加)
+        if (x < -threshold || (gp.buttons[14] && gp.buttons[14].pressed)) {
+            dir = dir ? dir + '_LEFT' : 'LEFT';
+        } else if (x > threshold || (gp.buttons[15] && gp.buttons[15].pressed)) {
+            dir = dir ? dir + '_RIGHT' : 'RIGHT';
+        }
+
+        return dir || 'NEUTRAL';
+    }
+
+    function disableAI() {
+        if (isAIEnabled) {
+            isAIEnabled = false;
+            document.getElementById('vs-badge').style.display = 'block';
+        }
+    }
+
+    function drawBackground() {
+        const grad = c.createLinearGradient(0,0,0,canvas.height);
+        grad.addColorStop(0, "#2c3e50"); grad.addColorStop(0.5, "#d35400"); grad.addColorStop(1, "#f39c12");
+        c.fillStyle = grad; c.fillRect(0,0, canvas.width, canvas.height);
+        c.fillStyle = "rgba(255, 200, 0, 0.3)"; c.beginPath(); c.arc(canvas.width/2, canvas.height/2 + 50, 150, 0, Math.PI*2); c.fill();
+        c.fillStyle = "#5d4037"; c.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
+        c.strokeStyle = "#3e2723"; c.lineWidth = 4; c.beginPath();
+        for(let i=-200; i<canvas.width+200; i+=100) { c.moveTo(i, GROUND_Y); c.lineTo(i + (i-canvas.width/2)*2, canvas.height); }
+        c.stroke();
+    }
+
+    function getActiveGamepads() {
+        if (!navigator.getGamepads) return [];
+        const rawPads = navigator.getGamepads();
+        const activePads = [];
+        for (let i = 0; i < rawPads.length; i++) {
+            if (rawPads[i]) activePads.push(rawPads[i]);
+        }
+        return activePads;
+    }
+
+    function animate() {
+        window.requestAnimationFrame(animate);
+        drawBackground();
+        
+        let p1Dir = 'NEUTRAL'; let p1Buttons = { punch: false, kick: false };
+        let p2Dir = 'NEUTRAL'; let p2Buttons = { punch: false, kick: false };
+
+        const pads = getActiveGamepads(); 
+        const gp1 = pads[0]; const gp2 = pads[1]; 
+
+        if (gameState !== 'playing') {
+            if ((gp1 && gp1.buttons.some(b => b.pressed)) || (gp2 && gp2.buttons.some(b => b.pressed))) {
+                handleAnyKeyInput();
+            }
+        }
+
+        if (gameState === 'playing') {
+            if (!player.isBeingThrown && !enemy.isBeingThrown) { 
+                if (player.position.x + player.width/2 > enemy.position.x + enemy.width/2) {
+                    player.facingLeft = true; enemy.facingLeft = false;
+                } else {
+                    player.facingLeft = false; enemy.facingLeft = true;
+                }
+            }
+
+            p1Dir = getDirectionP1();
+            if (keysP1.j) p1Buttons.punch = true; if (keysP1.n) p1Buttons.kick = true;
+
+            if (gp1) {
+                document.getElementById('gp1-status').innerText = `P1: Connected (${gp1.id.substring(0,10)}...)`;
+                document.getElementById('gp1-status').style.color = '#00ff00';
+                const padDir = getDirectionFromGamepad(gp1);
+                if (padDir !== 'NEUTRAL') p1Dir = padDir;
+                if (gp1.buttons[2].pressed || gp1.buttons[3].pressed) p1Buttons.punch = true; 
+                if (gp1.buttons[0].pressed || gp1.buttons[1].pressed) p1Buttons.kick = true; 
+                if (gp1.buttons[5].pressed) player.performHadouken(); 
+            } else {
+                document.getElementById('gp1-status').innerText = `P1: Keyboard Mode`;
+                document.getElementById('gp1-status').style.color = '#888';
+            }
+
+            p2Dir = getDirectionP2();
+            if (keysP2['1']) p2Buttons.punch = true; if (keysP2['2']) p2Buttons.kick = true;
+
+            if (gp2) {
+                disableAI(); 
+                document.getElementById('gp2-status').innerText = `P2: Connected (${gp2.id.substring(0,10)}...)`;
+                document.getElementById('gp2-status').style.color = '#00ff00';
+                const padDir2 = getDirectionFromGamepad(gp2);
+                if (padDir2 !== 'NEUTRAL') p2Dir = padDir2;
+                if (gp2.buttons[2].pressed || gp2.buttons[3].pressed) p2Buttons.punch = true; 
+                if (gp2.buttons[0].pressed || gp2.buttons[1].pressed) p2Buttons.kick = true; 
+                if (gp2.buttons[5].pressed) enemy.performHadouken(); 
+            } else if (!isAIEnabled) {
+                document.getElementById('gp2-status').innerText = `P2: Keyboard Mode`;
+                document.getElementById('gp2-status').style.color = '#888';
+            } else {
+                document.getElementById('gp2-status').innerText = `P2: CPU (Press Key to Join)`;
+                document.getElementById('gp2-status').style.color = '#e74c3c';
+            }
+
+            player.handleInput(p1Dir, p1Buttons, enemy);
+            player.update();
+            
+            if (isAIEnabled) {
+                enemy.update();
+                if (enemy.health > 0 && !enemy.isBeingThrown && !enemy.isHit) {
+                    const dist = player.position.x - enemy.position.x;
+                    if (Math.abs(dist) < 60 && Math.random() < 0.02) {
+                        enemy.performThrow(player);
+                    } else if (Math.abs(dist) > 200) {
+                        enemy.velocity.x = dist > 0 ? 3 : -3;
+                        enemy.animState = 'run';
+                    } else {
+                        enemy.velocity.x = 0;
+                        if (Math.random() < 0.015) enemy.performHadouken(); 
+                        else if (Math.random() < 0.02 && Math.abs(dist) < 80) enemy.handleInput('NEUTRAL', {punch: true, kick: false}, player);
+                    }
+                }
+            } else {
+                enemy.handleInput(p2Dir, p2Buttons, player);
+                enemy.update();
+            }
+
+            checkCollisions();
+        } else {
+            player.draw();
+            enemy.draw();
+        }
+
+        particles.forEach((p, i) => {
+            if (p.alpha <= 0) particles.splice(i, 1);
+            else p.update();
+        });
+
+        if (gameState === 'playing' && (enemy.health <= 0 || player.health <= 0 || timer === 0)) {
+            determineRoundWinner();
+        }
+    }
+
+    function checkCollisions() {
+        const rectCol = (r1, r2) => (r1.position.x < r2.position.x + r2.width && r1.position.x + r1.width > r2.position.x && r1.position.y < r2.position.y + r2.height && r1.position.y + r1.height > r2.position.y);
+        
+        if (player.isAttacking && player.framesElapsed === 5 && rectCol(player, enemy)) {
+            let range = 80; if (player.animState === 'kick') range = 100;
+            if (Math.abs(player.position.x - enemy.position.x) < range) applyHit(enemy, 8, false);
+        }
+        if (player.animState === 'shoryuken' && rectCol(player, enemy) && !enemy.isHit) applyHit(enemy, 15, true);
+        if (player.animState === 'tatsumaki' && rectCol(player, enemy) && player.framesElapsed % 10 === 0) applyHit(enemy, 5, true);
+
+        for (let i = player.projectiles.length - 1; i >= 0; i--) {
+            let p1Proj = player.projectiles[i];
+            for (let j = enemy.projectiles.length - 1; j >= 0; j--) {
+                let p2Proj = enemy.projectiles[j];
+                const dx = p1Proj.x - p2Proj.x;
+                const dy = p1Proj.y - p2Proj.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < p1Proj.radius + p2Proj.radius) {
+                    createParticles((p1Proj.x + p2Proj.x)/2, (p1Proj.y + p2Proj.y)/2, '#fff');
+                    player.projectiles.splice(i, 1);
+                    enemy.projectiles.splice(j, 1);
+                    break; 
+                }
+            }
+        }
+
+        player.projectiles.forEach((p, i) => {
+            if (p.x > enemy.position.x && p.x < enemy.position.x + enemy.width && Math.abs(p.y - (enemy.position.y + 40)) < 60) {
+                applyHit(enemy, 10, true, p.x, p.y);
+                player.projectiles.splice(i, 1);
+            }
+        });
+        
+        if (enemy.isAttacking && enemy.framesElapsed === 5 && rectCol(enemy, player)) {
+            let range = 80; if (enemy.animState === 'kick') range = 100;
+            if (Math.abs(enemy.position.x - player.position.x) < range) applyHit(player, 8, false);
+        }
+        if (enemy.animState === 'shoryuken' && rectCol(enemy, player) && !player.isHit) applyHit(player, 15, true);
+        if (enemy.animState === 'tatsumaki' && rectCol(enemy, player) && enemy.framesElapsed % 10 === 0) applyHit(player, 5, true);
+
+        enemy.projectiles.forEach((p, i) => {
+             if (p.x > player.position.x && p.x < player.position.x + player.width && Math.abs(p.y - (player.position.y + 40)) < 60) {
+                applyHit(player, 10, true, p.x, p.y);
+                enemy.projectiles.splice(i, 1);
+            }
+        });
+    }
+
+    function applyHit(target, dmg, isSpecial = false, x = 0, y = 0) {
+        if (target.isBeingThrown) return;
+
+        const status = target.takeDamage(dmg, isSpecial);
+        updateHealthUI();
+        
+        let fxColor = '#e74c3c'; 
+        if (status === 'blocked') fxColor = '#3498db'; 
+        else if (isSpecial) fxColor = '#f1c40f'; 
+
+        if (x === 0) { x = target.position.x; y = target.position.y; }
+        
+        createParticles(x + 30, y + 30, fxColor);
+    }
+
+    function createParticles(x, y, color) {
+        for(let i=0; i<8; i++) { particles.push(new Particle({ x: x, y: y, color: color, velocity: { x: (Math.random()-0.5)*15, y: (Math.random()-0.5)*15 } })); }
+    }
+
+    function updateHealthUI() {
+        document.querySelector('#p1Health').style.width = Math.max(0, player.health) + '%';
+        document.querySelector('#p1Damage').style.width = Math.max(0, player.health) + '%';
+        document.querySelector('#p2Health').style.width = Math.max(0, enemy.health) + '%';
+        document.querySelector('#p2Damage').style.width = Math.max(0, enemy.health) + '%';
+    }
+
+    function determineRoundWinner() {
+        clearTimeout(timerId);
+        let msg = document.getElementById('message-display');
+        let subText = msg.querySelector('.sub-text');
+        
+        if (player.health === enemy.health) {
+            msg.firstChild.textContent = "DRAW";
+        } else if (player.health > enemy.health) {
+            p1Wins++;
+            updateDots('p1', p1Wins);
+            msg.firstChild.textContent = "K.O.";
+        } else {
+            p2Wins++;
+            updateDots('p2', p2Wins);
+            msg.firstChild.textContent = "K.O.";
+        }
+        
+        msg.style.display = 'block';
+        
+        if (p1Wins >= 2 || p2Wins >= 2) {
+            gameState = 'match_over';
+            subText.textContent = p1Wins >= 2 ? "BOSS WINS MATCH - PRESS KEY" : "JENSEN WINS MATCH - PRESS KEY";
+        } else {
+            gameState = 'round_over';
+            subText.textContent = "PRESS ANY KEY FOR NEXT ROUND";
+        }
+    }
+
+    function nextRound() {
+        player.reset();
+        enemy.reset();
+        updateHealthUI();
+        particles = [];
+        
+        timer = 99;
+        gameState = 'playing';
+        document.getElementById('message-display').style.display = 'none';
+        decreaseTimer();
+    }
+
+    function resetMatch() {
+        p1Wins = 0;
+        p2Wins = 0;
+        isAIEnabled = true; 
+        document.getElementById('vs-badge').style.display = 'none';
+        document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+        nextRound();
+    }
+
+    function updateDots(playerId, wins) {
+        const dots = document.getElementById(`${playerId}-dots`).children;
+        for (let i = 0; i < wins; i++) {
+            if (dots[i]) dots[i].classList.add('active');
+        }
+    }
+
+    function decreaseTimer() {
+        if (timer > 0 && gameState === 'playing') {
+            timerId = setTimeout(decreaseTimer, 1000);
+            timer--;
+            document.getElementById('timer').innerText = timer;
+        } else if (timer === 0) determineRoundWinner();
+    }
+
+    decreaseTimer();
+    animate();
+
+</script>
+</body>
+</html>
