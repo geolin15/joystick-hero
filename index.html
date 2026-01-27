@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joystick Hero v3.4 - Production Ready</title>
+    <title>Joystick Hero v3.5 - P1 Gamepad</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -96,8 +96,9 @@
         #gamepad-indicator {
             position: absolute; bottom: 10px; right: 10px;
             color: #666; font-size: 10px; text-align: right;
+            line-height: 1.5;
         }
-        #gamepad-indicator.active { color: #00ff00; }
+        #gamepad-indicator .active { color: #00ff00; }
 
         .move-list {
             position: absolute; bottom: 10px; left: 10px;
@@ -164,8 +165,8 @@
             </div>
             
             <div id="gamepad-indicator">
-                <div id="gp1-status">P1: No Gamepad</div>
-                <div id="gp2-status">P2: No Gamepad</div>
+                <div id="gp1-status">P1: Keyboard / Pad 1</div>
+                <div id="gp2-status">P2: AI / Pad 2</div>
             </div>
 
             <div class="move-list">
@@ -232,7 +233,6 @@
         }
         isDirectionMatch(input, target) {
             if (input === target) return true;
-            // 處理複合輸入
             if (target === 'DOWN' && input.includes('DOWN')) return true;
             if (target === 'UP' && input.includes('UP')) return true;
             if (target === 'RIGHT' && input.includes('RIGHT')) return true;
@@ -285,7 +285,7 @@
             this.isAttacking = false; 
             this.isSpecialMove = false; 
             this.isHit = false;
-            this.isHoldingBack = false; // 新增：追蹤是否按住後
+            this.isHoldingBack = false;
             this.isBeingThrown = false; 
             this.facingLeft = !isP1;
             
@@ -323,7 +323,6 @@
                 c.translate(this.position.x, this.position.y);
             }
             
-            // 只有普通受傷才震動，被防禦震退不亂飄
             if (this.isHit && !this.isBeingThrown && this.animState !== 'block') c.translate((Math.random()-0.5)*10, (Math.random()-0.5)*10);
             if (this.isHit && this.animState === 'block') c.translate((Math.random()-0.5)*5, 0);
 
@@ -540,7 +539,6 @@
             if (this.isSpecialMove || this.isHit || this.isBeingThrown) return;
 
             // 0. 更新防禦意圖 (拉後)
-            // === 修正：只標記是否拉後，不強制停止移動 ===
             this.isHoldingBack = false;
             if (!this.facingLeft && direction.includes('LEFT')) this.isHoldingBack = true;
             if (this.facingLeft && direction.includes('RIGHT')) this.isHoldingBack = true;
@@ -572,7 +570,7 @@
                 this.animState = 'kick'; this.isAttacking = true; this.framesElapsed = 0;
             }
             
-            // 4. 移動 (支援斜向判定)
+            // 4. 移動
             if (direction.includes('LEFT')) {
                 this.velocity.x = -5; this.animState = 'run';
             } else if (direction.includes('RIGHT')) {
@@ -582,7 +580,7 @@
                 if (this.animState === 'run' || this.animState === 'block') this.animState = 'idle';
             }
             
-            // 5. 跳躍 (支援斜向判定)
+            // 5. 跳躍
             if (direction.includes('UP') && this.position.y + this.height >= GROUND_Y) {
                 this.velocity.y = -20; this.animState = 'jump';
             }
@@ -600,7 +598,7 @@
         getThrown(throwerFacingLeft, throwerX) {
             this.isBeingThrown = true;
             this.isHit = true;
-            this.isHoldingBack = false; // 被摔無法防禦
+            this.isHoldingBack = false; 
             this.health -= 12; 
             this.velocity.y = -12; 
             this.velocity.x = throwerFacingLeft ? -28 : 28; 
@@ -633,27 +631,23 @@
         }
         
         takeDamage(amount, isSpecial = false) {
-            // === 修正：防禦判定 ===
-            // 條件：按住後 + 在地面 + 沒有攻擊
             if (this.isHoldingBack && this.position.y + this.height >= GROUND_Y && !this.isAttacking) {
                 let actualDamage = 0;
-                if (isSpecial) actualDamage = Math.max(1, Math.floor(amount / 10)); // 必殺技還是會扣一點血
+                if (isSpecial) actualDamage = Math.max(1, Math.floor(amount / 10)); 
                 
                 this.health -= actualDamage;
-                this.velocity.x = this.facingLeft ? 10 : -10; // 防禦擊退
+                this.velocity.x = this.facingLeft ? 10 : -10; 
                 
-                // 觸發防禦動作
-                this.isHit = true; // 設置受擊狀態以暫停輸入(產生硬直)
+                this.isHit = true; 
                 this.animState = 'block'; 
                 setTimeout(() => { 
                     this.isHit = false; 
                     if(this.animState === 'block') this.animState = 'idle';
-                }, 200); // 200ms 防禦硬直
+                }, 200); 
                 
                 return 'blocked'; 
             } 
             
-            // 普通受傷
             this.health -= amount;
             this.isHit = true; 
             this.isSpecialMove = false; 
@@ -720,15 +714,12 @@
         if (keysP2.hasOwnProperty(key)) keysP2[key] = false;
     });
 
-    // === 修復：支援 8 方位輸入 (鍵盤) ===
     function getDirectionP1() {
         let dir = '';
         if (keysP1.w) dir = 'UP';
         else if (keysP1.s) dir = 'DOWN';
-        
         if (keysP1.a) dir = dir ? dir + '_LEFT' : 'LEFT';
         else if (keysP1.d) dir = dir ? dir + '_RIGHT' : 'RIGHT';
-        
         return dir || 'NEUTRAL';
     }
 
@@ -736,33 +727,22 @@
         let dir = '';
         if (keysP2.arrowup) dir = 'UP';
         else if (keysP2.arrowdown) dir = 'DOWN';
-        
         if (keysP2.arrowleft) dir = dir ? dir + '_LEFT' : 'LEFT';
         else if (keysP2.arrowright) dir = dir ? dir + '_RIGHT' : 'RIGHT';
-        
         return dir || 'NEUTRAL';
     }
 
-    // === 修復：支援 8 方位輸入 (搖桿) ===
     function getDirectionFromGamepad(gp) {
         const x = gp.axes[0]; 
         const y = gp.axes[1]; 
         const threshold = 0.4;
         let dir = '';
 
-        // Y 軸 (搖桿或十字鍵)
-        if (y < -threshold || (gp.buttons[12] && gp.buttons[12].pressed)) {
-            dir = 'UP';
-        } else if (y > threshold || (gp.buttons[13] && gp.buttons[13].pressed)) {
-            dir = 'DOWN';
-        }
+        if (y < -threshold || (gp.buttons[12] && gp.buttons[12].pressed)) dir = 'UP';
+        else if (y > threshold || (gp.buttons[13] && gp.buttons[13].pressed)) dir = 'DOWN';
 
-        // X 軸 (可疊加)
-        if (x < -threshold || (gp.buttons[14] && gp.buttons[14].pressed)) {
-            dir = dir ? dir + '_LEFT' : 'LEFT';
-        } else if (x > threshold || (gp.buttons[15] && gp.buttons[15].pressed)) {
-            dir = dir ? dir + '_RIGHT' : 'RIGHT';
-        }
+        if (x < -threshold || (gp.buttons[14] && gp.buttons[14].pressed)) dir = dir ? dir + '_LEFT' : 'LEFT';
+        else if (x > threshold || (gp.buttons[15] && gp.buttons[15].pressed)) dir = dir ? dir + '_RIGHT' : 'RIGHT';
 
         return dir || 'NEUTRAL';
     }
@@ -802,8 +782,10 @@
         let p1Dir = 'NEUTRAL'; let p1Buttons = { punch: false, kick: false };
         let p2Dir = 'NEUTRAL'; let p2Buttons = { punch: false, kick: false };
 
+        // === 關鍵修改：重新分配搖桿控制權 ===
         const pads = getActiveGamepads(); 
-        const gp1 = pads[0]; const gp2 = pads[1]; 
+        const gp1 = pads[0]; // 第一支搖桿 -> 永遠給 P1
+        const gp2 = pads[1]; // 第二支搖桿 -> 才會給 P2
 
         if (gameState !== 'playing') {
             if ((gp1 && gp1.buttons.some(b => b.pressed)) || (gp2 && gp2.buttons.some(b => b.pressed))) {
@@ -820,12 +802,12 @@
                 }
             }
 
+            // --- P1 輸入 (鍵盤 + 第一支搖桿) ---
             p1Dir = getDirectionP1();
             if (keysP1.j) p1Buttons.punch = true; if (keysP1.n) p1Buttons.kick = true;
 
             if (gp1) {
-                document.getElementById('gp1-status').innerText = `P1: Connected (${gp1.id.substring(0,10)}...)`;
-                document.getElementById('gp1-status').style.color = '#00ff00';
+                document.getElementById('gp1-status').innerHTML = `P1: Connected <span class="active">●</span>`;
                 const padDir = getDirectionFromGamepad(gp1);
                 if (padDir !== 'NEUTRAL') p1Dir = padDir;
                 if (gp1.buttons[2].pressed || gp1.buttons[3].pressed) p1Buttons.punch = true; 
@@ -833,16 +815,15 @@
                 if (gp1.buttons[5].pressed) player.performHadouken(); 
             } else {
                 document.getElementById('gp1-status').innerText = `P1: Keyboard Mode`;
-                document.getElementById('gp1-status').style.color = '#888';
             }
 
+            // --- P2 輸入 (鍵盤 + 第二支搖桿) ---
             p2Dir = getDirectionP2();
             if (keysP2['1']) p2Buttons.punch = true; if (keysP2['2']) p2Buttons.kick = true;
 
             if (gp2) {
                 disableAI(); 
-                document.getElementById('gp2-status').innerText = `P2: Connected (${gp2.id.substring(0,10)}...)`;
-                document.getElementById('gp2-status').style.color = '#00ff00';
+                document.getElementById('gp2-status').innerHTML = `P2: Connected <span class="active">●</span>`;
                 const padDir2 = getDirectionFromGamepad(gp2);
                 if (padDir2 !== 'NEUTRAL') p2Dir = padDir2;
                 if (gp2.buttons[2].pressed || gp2.buttons[3].pressed) p2Buttons.punch = true; 
@@ -850,15 +831,14 @@
                 if (gp2.buttons[5].pressed) enemy.performHadouken(); 
             } else if (!isAIEnabled) {
                 document.getElementById('gp2-status').innerText = `P2: Keyboard Mode`;
-                document.getElementById('gp2-status').style.color = '#888';
             } else {
-                document.getElementById('gp2-status').innerText = `P2: CPU (Press Key to Join)`;
-                document.getElementById('gp2-status').style.color = '#e74c3c';
+                document.getElementById('gp2-status').innerText = `P2: AI (Press Key to Join)`;
             }
 
             player.handleInput(p1Dir, p1Buttons, enemy);
             player.update();
             
+            // --- AI 邏輯 (只有在沒被 P2 操控時啟用) ---
             if (isAIEnabled) {
                 enemy.update();
                 if (enemy.health > 0 && !enemy.isBeingThrown && !enemy.isHit) {
