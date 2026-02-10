@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joystick Hero v5.0 - Supreme Leader</title>
+    <title>CHAOS FIGHTING</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -40,6 +40,24 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; padding: 20px;
             display: flex; flex-direction: column; z-index: 20;
+        }
+
+        /* 開頭畫面 */
+        #title-screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #000 0%, #2c3e50 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 60;
+        }
+        .main-title {
+            font-size: 4rem; color: #f1c40f; text-align: center;
+            text-shadow: 5px 5px 0 #c0392b, -3px -3px 0 #fff;
+            margin-bottom: 20px; letter-spacing: 5px;
+            line-height: 1.5;
+        }
+        .press-start {
+            font-size: 1.5rem; color: #fff; margin-top: 50px;
+            animation: blink 0.8s infinite;
         }
 
         .hud { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; display: none; }
@@ -88,25 +106,27 @@
             animation: blink 1s infinite;
         }
 
+        /* 選角畫面 */
         #char-select-screen {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.9);
+            display: none; flex-direction: column; align-items: center; justify-content: center;
             z-index: 50;
         }
         .select-title { font-size: 2rem; color: #3498db; margin-bottom: 30px; text-shadow: 3px 3px #000; text-align: center; }
-        .char-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 800px; }
+        .char-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
         .char-card {
             width: 120px; height: 160px; border: 4px solid #444;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
             padding-bottom: 10px; background: #222; cursor: pointer;
-            transition: transform 0.1s;
+            transition: transform 0.1s; position: relative;
         }
         .char-card.selected { border-color: #f1c40f; background: #333; transform: scale(1.1); box-shadow: 0 0 20px #f1c40f; }
+        .char-card.locked { opacity: 0.5; border-color: #333; cursor: default; }
         .char-preview { width: 50px; height: 80px; background: #555; margin-bottom: 15px; position: relative; }
-        .char-name { color: #fff; font-size: 10px; text-align: center; line-height: 1.2; }
+        .char-name { color: #fff; font-size: 10px; text-align: center; line-height: 1.2; width: 100%;}
         .p1-cursor { position: absolute; top: -30px; color: #3498db; font-size: 12px; font-weight: bold; animation: bounce 0.5s infinite alternate; width: 100%; text-align: center;}
-
+        
         /* 暫停選單 */
         #pause-menu {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -144,12 +164,20 @@
         <canvas id="gameCanvas"></canvas>
         
         <div class="ui-layer">
+            <!-- 標題畫面 -->
+            <div id="title-screen">
+                <div class="main-title">CHAOS<br>FIGHTING</div>
+                <div class="press-start">PRESS ANY KEY</div>
+            </div>
+
+            <!-- 選角畫面 -->
             <div id="char-select-screen">
                 <div class="select-title">SELECT FIGHTER</div>
                 <div class="char-grid" id="char-grid"></div>
                 <div class="sub-text" style="margin-top: 40px; font-size: 0.8rem;">P1: WASD / PAD | P2: ARROWS / PAD</div>
             </div>
 
+            <!-- 暫停選單 -->
             <div id="pause-menu">
                 <div class="pause-title">PAUSED</div>
                 <div class="pause-option active" id="opt-resume">RESUME GAME</div>
@@ -161,7 +189,7 @@
             <div class="hud" id="hud">
                 <div class="p-info">
                     <div class="info-top">
-                        <div class="p-name" id="p1Name">RYU</div>
+                        <div class="p-name" id="p1Name">JOWUAMAN</div>
                         <div class="round-dots" id="p1-dots"><div class="dot"></div><div class="dot"></div></div>
                     </div>
                     <div class="health-container">
@@ -171,7 +199,7 @@
                 </div>
                 <div class="p-info">
                     <div class="info-top" style="flex-direction: row-reverse;">
-                        <div class="p-name" id="p2Name">KEN</div>
+                        <div class="p-name" id="p2Name">DONALD</div>
                         <div class="round-dots" id="p2-dots"><div class="dot"></div><div class="dot"></div></div>
                     </div>
                     <div class="health-container" style="flex-direction: row-reverse;">
@@ -210,32 +238,32 @@
     // --- 角色定義 ---
     const CHARACTERS = [
         {
-            id: 'RYU', name: 'RYU (隆)', color: '#ecf0f1', skin: '#ffcc88', headband: '#c0392b',
+            id: 'JOWUAMAN', name: 'JOWUAMAN', color: '#ecf0f1', skin: '#ffcc88', headband: '#111', 
             stats: { speed: 5, jump: -20, health: 100 },
             moves: { type: 'shoto' },
             desc: 'Balanced | Hadouken: ↓↘→ P | Shoryu: →↓↘ P'
         },
         {
-            id: 'TRUMP', name: 'TRUMP (川普)', color: '#2980b9', skin: '#eebb99', headband: '#f1c40f', 
+            id: 'DONALD', name: 'DONALD', color: '#2980b9', skin: '#eebb99', headband: '#f1c40f', 
             stats: { speed: 5, jump: -18, health: 100 },
             moves: { type: 'charge' },
             desc: 'Money Boom: ← → P | Wall Kick: ↓ ↑ K'
         },
         {
-            id: 'KIM', name: 'KIM (金)', color: '#2c3e50', skin: '#ffcc88', headband: '#111', 
+            id: 'KIM', name: 'KIM', color: '#2c3e50', skin: '#ffcc88', headband: '#111', 
             stats: { speed: 4, jump: -16, health: 120 },
             moves: { type: 'sumo' },
             desc: 'Nuke Headbutt: ← → P | Slap: ↓ ↘ → P'
         },
         {
-            id: 'JENSEN', name: 'JENSEN (老黃)', color: '#111', skin: '#ffcc88', headband: '#bdc3c7', 
+            id: 'HUANG', name: 'HUANG', color: '#111', skin: '#ffcc88', headband: '#bdc3c7', 
             stats: { speed: 7, jump: -22, health: 95 },
             moves: { type: 'shoto' },
             desc: 'GPU: ↓↘→ P | Shoryu: →↓↘ P | Tatsu: ↓↙← K' 
         }
     ];
 
-    // 場景設定 (ID 對應角色)
+    // 場景設定
     const STAGES = [
         { id: 'DOJO', skyTop: '#2c3e50', skyBot: '#d35400', floor: '#5d4037' },
         { id: 'SILICON', skyTop: '#87CEEB', skyBot: '#E0F7FA', floor: '#BDC3C7' }, 
@@ -244,7 +272,7 @@
     ];
 
     let timer = 99, timerId;
-    let gameState = 'select'; 
+    let gameState = 'title'; 
     let p1Wins = 0, p2Wins = 0;
     let isAIEnabled = true; 
     let currentStage = STAGES[0];
@@ -253,7 +281,7 @@
     let p2SelectedChar = CHARACTERS[1];
     let roundEndTimestamp = 0;
     let isPaused = false;
-    let pauseMenuIndex = 0; // 0: Resume, 1: Quit
+    let pauseMenuIndex = 0; 
     let lastPauseInputTime = 0; 
     let lastPauseNavTime = 0;
 
@@ -370,7 +398,6 @@
             if (this.animState === 'headbutt' || this.animState === 'sonicBoomCast') {
                 c.save(); 
                 if (this.animState === 'headbutt') { 
-                    // Kim 的核彈 (顯眼版)
                     c.fillStyle = '#ecf0f1'; c.fillRect(0, h-85, 70, 50); 
                     c.fillStyle = '#c0392b'; c.beginPath(); c.moveTo(70, h-85); c.lineTo(100, h-60); c.lineTo(70, h-35); c.fill(); 
                     c.fillStyle = '#2c3e50'; c.fillRect(-15, h-80, 15, 10); c.fillRect(-15, h-50, 15, 10); 
@@ -404,7 +431,7 @@
                 c.fillStyle = acc; c.fillRect(15, h - 120, 30, 8); 
                 c.fillStyle = color; c.fillRect(20, h - 40, 20, 30); 
                 
-                if (this.charData.id === 'JENSEN') {
+                if (this.charData.id === 'HUANG') {
                     c.fillStyle = '#333'; c.fillRect(25, h-95, 10, 45); 
                     c.fillStyle = '#2ecc71'; c.globalAlpha = 0.3; c.fillRect(5, h-90, 50, 60); c.globalAlpha = 1;
                 }
@@ -418,7 +445,7 @@
                 c.fillRect(10, 20, 40, 60); 
                 c.fillStyle = acc; c.fillRect(15, 0, 30, 20); 
                 
-                if (this.charData.id === 'JENSEN') {
+                if (this.charData.id === 'HUANG') {
                     c.strokeStyle = '#2ecc71'; c.lineWidth = 3; c.beginPath(); c.arc(w/2, h/2, 50, 0, Math.PI*2); c.stroke();
                 }
                 c.restore(); return;
@@ -430,24 +457,24 @@
             
             c.fillRect(5, h-90+breath, 50, 50);
             
-            if (this.charData.id === 'TRUMP') { 
+            if (this.charData.id === 'DONALD') { 
                 c.fillStyle = '#fff'; c.beginPath(); c.moveTo(25, h-90+breath); c.lineTo(35, h-90+breath); c.lineTo(30, h-70+breath); c.fill(); 
                 c.fillStyle = '#e74c3c'; c.fillRect(28, h-90+breath, 4, 35); 
-            } else if (this.charData.id === 'JENSEN') {
+            } else if (this.charData.id === 'HUANG') {
                 c.fillStyle = '#333'; c.fillRect(25, h-90+breath, 10, 50); 
             }
 
             const headY = h - 115 + breath;
             c.fillStyle = skin; c.fillRect(15, headY, 30, 28);
             
-            if (this.charData.id === 'RYU') {
+            if (this.charData.id === 'JOWUAMAN') {
                 c.fillStyle = acc; c.fillRect(15, headY, 30, 8); 
                 c.beginPath(); c.moveTo(15, headY+4); c.lineTo(-10, headY+4+Math.sin(Date.now()/100)*5); c.stroke();
-            } else if (this.charData.id === 'TRUMP') {
+            } else if (this.charData.id === 'DONALD') {
                 c.fillStyle = acc; c.fillRect(12, headY-10, 36, 15); c.fillRect(35, headY-5, 15, 20); 
             } else if (this.charData.id === 'KIM') {
                 c.fillStyle = acc; c.fillRect(13, headY-5, 34, 10); c.fillRect(13, headY-10, 34, 5); 
-            } else if (this.charData.id === 'JENSEN') {
+            } else if (this.charData.id === 'HUANG') {
                 c.fillStyle = acc; c.fillRect(15, headY-5, 30, 10); 
             }
 
@@ -512,7 +539,7 @@
 
             const id = this.charData.id;
             
-            if (id === 'TRUMP') {
+            if (id === 'DONALD') {
                 if (buttons.kick && this.inputBuffer.checkCommand(['DOWN', 'UP'], this.facingLeft)) { this.performFlashKick(); return; }
                 if (buttons.punch && this.inputBuffer.checkCommand(['LEFT', 'RIGHT'], this.facingLeft)) { this.performSonicBoom(); return; }
             }
@@ -520,7 +547,7 @@
                 if (buttons.punch && this.inputBuffer.checkCommand(['DOWN', 'RIGHT'], this.facingLeft)) { this.performHundredHand(); return; }
                 if (buttons.punch && this.inputBuffer.checkCommand(['LEFT', 'RIGHT'], this.facingLeft)) { this.performHeadbutt(); return; }
             }
-            else if (id === 'JENSEN' || id === 'RYU') {
+            else if (id === 'HUANG' || id === 'JOWUAMAN') {
                 if (buttons.punch && this.inputBuffer.checkCommand(['RIGHT', 'DOWN', 'RIGHT'], this.facingLeft)) { this.performShoryuken(); return; }
                 if (buttons.kick && this.inputBuffer.checkCommand(['DOWN', 'LEFT'], this.facingLeft)) { this.performTatsumaki(); return; }
                 if (buttons.punch && this.inputBuffer.checkCommand(['DOWN', 'RIGHT'], this.facingLeft)) { this.performHadouken(); return; }
@@ -556,8 +583,16 @@
             this.animState = 'hadouken'; this.isSpecialMove = true; this.framesElapsed = 0; this.velocity.x = 0;
             setTimeout(() => {
                 const dir = this.facingLeft ? -1 : 1;
-                const pType = this.charData.id === 'JENSEN' ? 'gpu' : 'hadouken';
-                const pColor = this.charData.id === 'JENSEN' ? '#2ecc71' : '#3498db';
+                // Determine projectile type
+                let pType = 'hadouken';
+                let pColor = '#3498db';
+                
+                if (this.charData.id === 'HUANG') {
+                    pType = 'gpu'; pColor = '#2ecc71';
+                } else if (this.charData.id === 'JOWUAMAN') {
+                    pType = 'j_logo'; pColor = '#fff';
+                }
+
                 this.projectiles.push(new Projectile({
                     x: this.position.x + (this.facingLeft ? -20 : this.width), y: this.position.y + 40, 
                     velocity: { x: dir * 12, y: 0 }, color: pColor, type: pType, isP1: this.isP1
@@ -638,6 +673,15 @@
                 c.fillStyle = '#27ae60'; c.fillRect(-20, -10, 40, 20); 
                 c.fillStyle = '#f1c40f'; c.fillRect(10, -8, 5, 16); 
                 c.fillStyle = '#333'; c.beginPath(); c.arc(-5, 0, 8, 0, Math.PI*2); c.fill(); 
+            } else if (this.type === 'j_logo') {
+                // JOWUAMAN's J Projectile
+                c.fillStyle = '#fff'; 
+                c.shadowBlur = 10; c.shadowColor = '#3498db'; // Glowing effect
+                c.font = "bold 40px Arial"; 
+                c.textAlign = "center";
+                c.textBaseline = "middle";
+                c.fillText("J", 0, 0);
+                c.shadowBlur = 0;
             } else {
                 c.fillStyle = "#fff"; c.beginPath(); c.arc(0,0, 15, 0, Math.PI*2); c.fill();
                 c.fillStyle = this.color; c.globalAlpha = 0.6; c.beginPath(); c.arc(0,0, 25, 0, Math.PI*2); c.fill();
@@ -651,6 +695,13 @@
     const keysP1 = { w: false, a: false, s: false, d: false, j: false, n: false };
     const keysP2 = { arrowup: false, arrowdown: false, arrowleft: false, arrowright: false, '1': false, '2': false };
 
+    function initTitleScreen() {
+        document.getElementById('title-screen').style.display = 'flex';
+        document.getElementById('char-select-screen').style.display = 'none';
+        document.getElementById('hud').style.display = 'none';
+        gameState = 'title';
+    }
+
     function initSelectScreen() {
         const grid = document.getElementById('char-grid'); grid.innerHTML = '';
         CHARACTERS.forEach((char, index) => {
@@ -663,14 +714,22 @@
             `;
             grid.appendChild(card);
         });
+        
+        const tbcCard = document.createElement('div');
+        tbcCard.className = 'char-card locked';
+        tbcCard.innerHTML = `<div class="char-preview" style="background:#333; display:flex; justify-content:center; align-items:center; color:#555; font-size:30px;">?</div><div class="char-name">TO BE<br>CONTINUED</div>`;
+        grid.appendChild(tbcCard);
+
+        document.getElementById('title-screen').style.display = 'none';
         document.getElementById('char-select-screen').style.display = 'flex';
         document.getElementById('hud').style.display = 'none';
         document.getElementById('message-display').style.display = 'none'; 
         document.getElementById('move-hint').innerText = CHARACTERS[p1CharIndex].desc;
+        gameState = 'select';
     }
 
     function updateSelectCursor() {
-        document.querySelectorAll('.char-card').forEach((el, idx) => {
+        document.querySelectorAll('.char-card:not(.locked)').forEach((el, idx) => {
             if (idx === p1CharIndex) {
                 el.classList.add('selected');
                 if(!el.querySelector('.p1-cursor')) el.insertAdjacentHTML('afterbegin', '<div class="p1-cursor">P1</div>');
@@ -683,8 +742,8 @@
     }
 
     function startGame() {
-        if (p1SelectedChar.id === 'TRUMP' || p2SelectedChar.id === 'TRUMP') currentStage = STAGES[2]; 
-        else if (p1SelectedChar.id === 'JENSEN' || p2SelectedChar.id === 'JENSEN') currentStage = STAGES[1]; 
+        if (p1SelectedChar.id === 'DONALD' || p2SelectedChar.id === 'DONALD') currentStage = STAGES[2]; 
+        else if (p1SelectedChar.id === 'HUANG' || p2SelectedChar.id === 'HUANG') currentStage = STAGES[1]; 
         else if (p1SelectedChar.id === 'KIM' || p2SelectedChar.id === 'KIM') currentStage = STAGES[3];
         else currentStage = STAGES[0];
 
@@ -716,7 +775,6 @@
         if (confirm) { p1SelectedChar = CHARACTERS[p1CharIndex]; startGame(); }
     }
 
-    // --- 暫停功能邏輯 ---
     function togglePause() {
         if (gameState !== 'playing' && gameState !== 'paused') return;
         isPaused = !isPaused;
@@ -725,7 +783,7 @@
         if (isPaused) {
             gameState = 'paused';
             menu.style.display = 'flex';
-            pauseMenuIndex = 0; // 重置游標到第一個選項
+            pauseMenuIndex = 0; 
             updatePauseMenuUI();
         } else {
             gameState = 'playing';
@@ -745,6 +803,10 @@
     window.addEventListener('keydown', (e) => {
         const k = e.key.toLowerCase();
         
+        if (gameState === 'title') {
+            initSelectScreen(); return;
+        }
+
         if (k === 'escape' && (gameState === 'playing' || gameState === 'paused')) {
             togglePause(); return;
         }
@@ -814,79 +876,42 @@
     function getPads() { return navigator.getGamepads ? Array.from(navigator.getGamepads()).filter(g=>g) : []; }
 
     function drawBackground() {
+        if (gameState === 'title') {
+            c.fillStyle = '#111'; c.fillRect(0,0,canvas.width,canvas.height);
+            return;
+        }
+
         const s = currentStage;
         const grad = c.createLinearGradient(0,0,0,canvas.height); grad.addColorStop(0, s.skyTop); grad.addColorStop(1, s.skyBot);
         c.fillStyle = grad; c.fillRect(0,0, canvas.width, canvas.height);
         
         if (s.id === 'RUSHMORE') {
             c.fillStyle = "#7f8c8d"; 
-            // 總統山剪影
-            c.beginPath(); 
-            c.moveTo(50, GROUND_Y); c.lineTo(50, GROUND_Y-250);
-            // 隨意畫幾個頭
-            c.arc(150, GROUND_Y-250, 40, Math.PI, 0); 
-            c.arc(250, GROUND_Y-260, 40, Math.PI, 0); 
-            c.arc(350, GROUND_Y-250, 40, Math.PI, 0); 
-            c.arc(450, GROUND_Y-260, 40, Math.PI, 0); 
-            c.lineTo(500, GROUND_Y-250); 
-            // 川普頭
-            c.lineTo(550, GROUND_Y-250); 
-            c.arc(600, GROUND_Y-250, 45, Math.PI, 0); 
-            c.lineTo(650, GROUND_Y-250);
-            c.lineTo(700, GROUND_Y); 
-            c.fill();
-            // 川普金髮
-            c.fillStyle = "#f1c40f"; c.fillRect(560, GROUND_Y-300, 80, 20);
+            c.beginPath(); c.moveTo(50, GROUND_Y); c.lineTo(50, GROUND_Y-250);
+            c.arc(150, GROUND_Y-250, 40, Math.PI, 0); c.arc(250, GROUND_Y-260, 40, Math.PI, 0); 
+            c.arc(350, GROUND_Y-250, 40, Math.PI, 0); c.arc(450, GROUND_Y-260, 40, Math.PI, 0); 
+            c.lineTo(500, GROUND_Y-250); c.lineTo(550, GROUND_Y-250); 
+            c.arc(600, GROUND_Y-250, 45, Math.PI, 0); // Donald Head
+            c.lineTo(650, GROUND_Y-250); c.lineTo(700, GROUND_Y); c.fill();
+            c.fillStyle = "#f1c40f"; c.fillRect(560, GROUND_Y-300, 80, 20); // Donald Hair
         } else if (s.id === 'SILICON') {
-            // Apple Park Ring
-            c.fillStyle = "#95a5a6"; 
-            c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 400, 100, 0, Math.PI, 0); c.fill();
-            c.fillStyle = "#ecf0f1"; 
-            c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 350, 80, 0, Math.PI, 0); c.fill();
-            // 浮動 Icon
-            c.fillStyle = "rgba(255,255,255,0.3)";
-            c.beginPath(); c.arc(200, 150, 30, 0, Math.PI*2); c.fill(); // Cloud
-            c.fillRect(600, 100, 40, 40); // Chip
+            c.fillStyle = "#95a5a6"; c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 400, 100, 0, Math.PI, 0); c.fill();
+            c.fillStyle = "#ecf0f1"; c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 350, 80, 0, Math.PI, 0); c.fill();
+            c.fillStyle = "rgba(255,255,255,0.3)"; c.beginPath(); c.arc(200, 150, 30, 0, Math.PI*2); c.fill(); 
+            c.fillRect(600, 100, 40, 40); 
         } else if (s.id === 'PYONGYANG') {
-            // 廣場地面 (冷灰色)
             c.fillStyle = "#7f8c8d"; c.fillRect(0, GROUND_Y, canvas.width, canvas.height-GROUND_Y);
-            
-            // 遠景建築 (極權主義風格)
-            c.fillStyle = "#2c3e50"; // 深藍灰
-            c.fillRect(100, GROUND_Y-250, 150, 250); // 左側建築
-            c.fillRect(750, GROUND_Y-250, 150, 250); // 右側建築
-            // 窗戶
-            c.fillStyle = "#f1c40f"; 
-            for(let i=0; i<3; i++) { c.fillRect(120+i*40, GROUND_Y-200, 20, 20); c.fillRect(770+i*40, GROUND_Y-200, 20, 20); }
-
-            // 中央巨大銅像
+            c.fillStyle = "#2c3e50"; c.fillRect(100, GROUND_Y-250, 150, 250); c.fillRect(750, GROUND_Y-250, 150, 250); 
+            c.fillStyle = "#f1c40f"; for(let i=0; i<3; i++) { c.fillRect(120+i*40, GROUND_Y-200, 20, 20); c.fillRect(770+i*40, GROUND_Y-200, 20, 20); }
             const centerX = canvas.width / 2;
-            c.fillStyle = "#8d6e63"; // 基座
-            c.fillRect(centerX - 60, GROUND_Y - 100, 120, 100);
-            c.fillStyle = "#cd7f32"; // 銅像本體 (金色/銅色)
-            c.fillRect(centerX - 30, GROUND_Y - 250, 60, 150); // 身體
-            c.beginPath(); c.arc(centerX, GROUND_Y - 250, 25, 0, Math.PI*2); c.fill(); // 頭
-            // 手臂揮舞
+            c.fillStyle = "#8d6e63"; c.fillRect(centerX - 60, GROUND_Y - 100, 120, 100);
+            c.fillStyle = "#cd7f32"; c.fillRect(centerX - 30, GROUND_Y - 250, 60, 150); c.beginPath(); c.arc(centerX, GROUND_Y - 250, 25, 0, Math.PI*2); c.fill(); 
             c.fillRect(centerX + 30, GROUND_Y - 220, 40, 15); 
-
-            // 兩側坦克列隊
-            c.fillStyle = "#27ae60"; // 軍綠
-            for(let i=0; i<3; i++) {
-                // 左側坦克群
-                c.fillRect(20 + i*100, GROUND_Y-50, 80, 40);
-                c.fillStyle = "#1e272e"; c.fillRect(60 + i*100, GROUND_Y-45, 60, 5); // 砲管向右
-                c.fillStyle = "#27ae60";
-                
-                // 右側坦克群
-                c.fillRect(700 + i*100, GROUND_Y-50, 80, 40);
-                c.fillStyle = "#1e272e"; c.fillRect(680 + i*100, GROUND_Y-45, 60, 5); // 砲管向左
-                c.fillStyle = "#27ae60";
+            c.fillStyle = "#27ae60"; for(let i=0; i<3; i++) {
+                c.fillRect(20 + i*100, GROUND_Y-50, 80, 40); c.fillStyle = "#1e272e"; c.fillRect(60 + i*100, GROUND_Y-45, 60, 5); c.fillStyle = "#27ae60";
+                c.fillRect(700 + i*100, GROUND_Y-50, 80, 40); c.fillStyle = "#1e272e"; c.fillRect(680 + i*100, GROUND_Y-45, 60, 5); c.fillStyle = "#27ae60";
             }
-
-            // 紅旗飄揚
-            c.fillStyle = "#c0392b";
-            c.beginPath(); c.moveTo(centerX-150, GROUND_Y-350); c.lineTo(centerX-100, GROUND_Y-320); c.lineTo(centerX-150, GROUND_Y-290); c.fill();
-            c.fillRect(centerX-155, GROUND_Y-350, 5, 350); // 旗桿
+            c.fillStyle = "#c0392b"; c.beginPath(); c.moveTo(centerX-150, GROUND_Y-350); c.lineTo(centerX-100, GROUND_Y-320); c.lineTo(centerX-150, GROUND_Y-290); c.fill(); c.fillRect(centerX-155, GROUND_Y-350, 5, 350); 
         }
 
         c.fillStyle = s.floor; c.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
@@ -899,32 +924,28 @@
         window.requestAnimationFrame(animate);
         const pads = getPads(); const gp1 = pads[0]; const gp2 = pads[1];
 
-        // 搖桿暫停 (Start Button 9)
+        if (gameState === 'title') {
+            if (gp1 && (gp1.buttons.some(b=>b.pressed))) initSelectScreen();
+            if (keysP1.j || keysP1.n || keysP1.w || keysP1.s || keysP1.a || keysP1.d) initSelectScreen(); 
+            return;
+        }
+
         if (Date.now() - lastPauseInputTime > 300) {
             if (gp1 && gp1.buttons[9].pressed) { togglePause(); lastPauseInputTime = Date.now(); }
         }
 
-        // 暫停選單邏輯
         if (gameState === 'paused') {
-            // 導航 (搖桿)
             if (gp1 && Date.now() - lastPauseNavTime > 200) {
                 const y = gp1.axes[1];
-                if (y < -0.5 || (gp1.buttons[12] && gp1.buttons[12].pressed)) { // Up
-                    pauseMenuIndex = (pauseMenuIndex - 1 + 2) % 2;
-                    updatePauseMenuUI();
-                    lastPauseNavTime = Date.now();
-                } else if (y > 0.5 || (gp1.buttons[13] && gp1.buttons[13].pressed)) { // Down
-                    pauseMenuIndex = (pauseMenuIndex + 1) % 2;
-                    updatePauseMenuUI();
-                    lastPauseNavTime = Date.now();
+                if (y < -0.5 || (gp1.buttons[12] && gp1.buttons[12].pressed)) { 
+                    pauseMenuIndex = (pauseMenuIndex - 1 + 2) % 2; updatePauseMenuUI(); lastPauseNavTime = Date.now();
+                } else if (y > 0.5 || (gp1.buttons[13] && gp1.buttons[13].pressed)) { 
+                    pauseMenuIndex = (pauseMenuIndex + 1) % 2; updatePauseMenuUI(); lastPauseNavTime = Date.now();
                 }
             }
-            
-            // 確認 (搖桿 Button 0/A 或 Button 9/Start)
             if (gp1 && Date.now() - lastPauseInputTime > 300) {
-                 if (gp1.buttons[0].pressed) {
-                     if (pauseMenuIndex === 0) togglePause();
-                     else { togglePause(); resetMatch(); }
+                 if (gp1.buttons[0].pressed || gp1.buttons[9].pressed) {
+                     if (pauseMenuIndex === 0) togglePause(); else { togglePause(); resetMatch(); }
                      lastPauseInputTime = Date.now();
                  }
             }
@@ -970,14 +991,13 @@
 
             if (isAIEnabled) {
                 enemy.update();
-                // 修正：AI 如果正在出招或受傷，禁止移動
                 if (enemy.health > 0 && !enemy.isBeingThrown && !enemy.isHit && !enemy.isSpecialMove && !enemy.isAttacking) {
                     const dist = Math.abs(player.position.x - enemy.position.x);
                     if (enemy.charData.id === 'KIM') { 
                         if (dist > 100) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
                         if (dist < 120 && Math.random()<0.05) enemy.performHundredHand();
                         else if (dist > 200 && Math.random()<0.03) enemy.performHeadbutt();
-                    } else if (enemy.charData.id === 'TRUMP') { 
+                    } else if (enemy.charData.id === 'DONALD') { 
                         if (dist < 200) enemy.velocity.x = enemy.facingLeft ? enemy.speed : -enemy.speed; 
                         if (Math.random()<0.03) enemy.performSonicBoom();
                         if (dist < 80 && Math.random()<0.05) enemy.performFlashKick();
@@ -1013,7 +1033,12 @@
         if (player.animState==='flashKick' && hit(getAttackRect(player),enemy) && !enemy.isHit) applyHit(enemy, 15, true);
         if (player.animState==='headbutt' && hit(player,enemy) && !enemy.isHit) applyHit(enemy, 12, true);
         if ((player.animState==='tatsumaki'||player.animState==='hundredHand') && hit(player,enemy) && player.framesElapsed%10===0) applyHit(enemy, 5, true);
-        if (player.animState==='hundredHand' && hit(getAttackRect(player),enemy) && player.framesElapsed%10===0) applyHit(enemy, 5, true);
+        // FIX: Add extra pushback for Hundred Hand Slap
+        if (player.animState==='hundredHand' && hit(getAttackRect(player),enemy) && player.framesElapsed%10===0) {
+             applyHit(enemy, 5, true);
+             // Extra horizontal push to prevent infinite juggle in air
+             enemy.velocity.x = player.facingLeft ? -20 : 20; 
+        }
         
         // P2 Attacks
         if (enemy.isAttacking && enemy.framesElapsed===5 && hit(enemy,player)) applyHit(player, 8);
@@ -1021,7 +1046,11 @@
         if (enemy.animState==='flashKick' && hit(getAttackRect(enemy),player) && !player.isHit) applyHit(player, 15, true);
         if (enemy.animState==='headbutt' && hit(enemy,player) && !player.isHit) applyHit(player, 12, true);
         if ((enemy.animState==='tatsumaki'||enemy.animState==='hundredHand') && hit(enemy,player) && enemy.framesElapsed%10===0) applyHit(player, 5, true);
-        if (enemy.animState==='hundredHand' && hit(getAttackRect(enemy),player) && enemy.framesElapsed%10===0) applyHit(player, 5, true);
+        // FIX: Add extra pushback for Hundred Hand Slap
+        if (enemy.animState==='hundredHand' && hit(getAttackRect(enemy),player) && enemy.framesElapsed%10===0) {
+             applyHit(player, 5, true);
+             player.velocity.x = enemy.facingLeft ? -20 : 20;
+        }
 
         // Projectile Collision (抵銷系統)
         for (let i = player.projectiles.length - 1; i >= 0; i--) {
@@ -1055,6 +1084,8 @@
     function updateHealthUI() {
         document.querySelector('#p1Health').style.width = Math.max(0, (player.health/player.maxHealth)*100) + '%';
         document.querySelector('#p2Health').style.width = Math.max(0, (enemy.health/enemy.maxHealth)*100) + '%';
+        document.querySelector('#p1Damage').style.width = Math.max(0, (player.health/player.maxHealth)*100) + '%';
+        document.querySelector('#p2Damage').style.width = Math.max(0, (enemy.health/enemy.maxHealth)*100) + '%';
     }
     function determineRoundWinner() {
         clearTimeout(timerId);
@@ -1079,12 +1110,14 @@
         document.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
         document.getElementById('message-display').style.display='none'; 
         document.getElementById('pause-menu').style.display='none';
-        gameState='select'; initSelectScreen();
+        document.getElementById('char-select-screen').style.display='none';
+        
+        initTitleScreen(); // Reset to Title
     }
     function updateDots(id, w) { for(let i=0;i<w;i++) document.getElementById(id+'-dots').children[i]?.classList.add('active'); }
     function decreaseTimer() { if(timer>0 && gameState==='playing') { timerId=setTimeout(decreaseTimer,1000); timer--; document.getElementById('timer').innerText=timer; } else if(timer===0) determineRoundWinner(); }
 
-    initSelectScreen(); animate();
+    initTitleScreen(); animate();
 </script>
 </body>
 </html>
