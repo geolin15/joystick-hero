@@ -529,9 +529,11 @@
         handleInput(direction, buttons, enemyRef) { 
             if (gameState !== 'playing') return; 
             this.inputBuffer.update(direction);
-            if (this.isSpecialMove || this.isHit || this.isBeingThrown) return;
-
+            
+            // === 防禦機制修正 ===
             this.isHoldingBack = (!this.facingLeft && direction.includes('LEFT')) || (this.facingLeft && direction.includes('RIGHT'));
+
+            if (this.isSpecialMove || this.isHit || this.isBeingThrown) return;
 
             if (buttons.punch && buttons.kick && this.position.y + this.height >= GROUND_Y) {
                 if (Math.abs(this.position.x - enemyRef.position.x) < 80) { this.performThrow(enemyRef); return; }
@@ -991,19 +993,31 @@
 
             if (isAIEnabled) {
                 enemy.update();
+                
+                // === AI Logic with Blocking ===
                 if (enemy.health > 0 && !enemy.isBeingThrown && !enemy.isHit && !enemy.isSpecialMove && !enemy.isAttacking) {
                     const dist = Math.abs(player.position.x - enemy.position.x);
-                    if (enemy.charData.id === 'KIM') { 
-                        if (dist > 100) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
-                        if (dist < 120 && Math.random()<0.05) enemy.performHundredHand();
-                        else if (dist > 200 && Math.random()<0.03) enemy.performHeadbutt();
-                    } else if (enemy.charData.id === 'DONALD') { 
-                        if (dist < 200) enemy.velocity.x = enemy.facingLeft ? enemy.speed : -enemy.speed; 
-                        if (Math.random()<0.03) enemy.performSonicBoom();
-                        if (dist < 80 && Math.random()<0.05) enemy.performFlashKick();
-                    } else { 
-                        if (dist > 200) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
-                        if (Math.random()<0.02) enemy.performHadouken();
+                    
+                    // Simple AI Blocking Logic: Random chance to block when player attacks
+                    if (player.isAttacking && Math.random() < 0.4) { // 40% chance to block
+                        enemy.isHoldingBack = true;
+                        enemy.velocity.x = 0; // Stop moving to block
+                    } else {
+                        enemy.isHoldingBack = false;
+                        
+                        // Attack Logic
+                        if (enemy.charData.id === 'KIM') { 
+                            if (dist > 100) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
+                            if (dist < 120 && Math.random()<0.05) enemy.performHundredHand();
+                            else if (dist > 200 && Math.random()<0.03) enemy.performHeadbutt();
+                        } else if (enemy.charData.id === 'DONALD') { 
+                            if (dist < 200) enemy.velocity.x = enemy.facingLeft ? enemy.speed : -enemy.speed; 
+                            if (Math.random()<0.03) enemy.performSonicBoom();
+                            if (dist < 80 && Math.random()<0.05) enemy.performFlashKick();
+                        } else { 
+                            if (dist > 200) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
+                            if (Math.random()<0.02) enemy.performHadouken();
+                        }
                     }
                 }
             } else {
@@ -1033,11 +1047,10 @@
         if (player.animState==='flashKick' && hit(getAttackRect(player),enemy) && !enemy.isHit) applyHit(enemy, 15, true);
         if (player.animState==='headbutt' && hit(player,enemy) && !enemy.isHit) applyHit(enemy, 12, true);
         if ((player.animState==='tatsumaki'||player.animState==='hundredHand') && hit(player,enemy) && player.framesElapsed%10===0) applyHit(enemy, 5, true);
-        // FIX: Add extra pushback for Hundred Hand Slap
+        
         if (player.animState==='hundredHand' && hit(getAttackRect(player),enemy) && player.framesElapsed%10===0) {
              applyHit(enemy, 5, true);
-             // Extra horizontal push to prevent infinite juggle in air
-             enemy.velocity.x = player.facingLeft ? -20 : 20; 
+             enemy.velocity.x = player.facingLeft ? -20 : 20; // Pushback fix
         }
         
         // P2 Attacks
@@ -1046,10 +1059,10 @@
         if (enemy.animState==='flashKick' && hit(getAttackRect(enemy),player) && !player.isHit) applyHit(player, 15, true);
         if (enemy.animState==='headbutt' && hit(enemy,player) && !player.isHit) applyHit(player, 12, true);
         if ((enemy.animState==='tatsumaki'||enemy.animState==='hundredHand') && hit(enemy,player) && enemy.framesElapsed%10===0) applyHit(player, 5, true);
-        // FIX: Add extra pushback for Hundred Hand Slap
+        
         if (enemy.animState==='hundredHand' && hit(getAttackRect(enemy),player) && enemy.framesElapsed%10===0) {
              applyHit(player, 5, true);
-             player.velocity.x = enemy.facingLeft ? -20 : 20;
+             player.velocity.x = enemy.facingLeft ? -20 : 20; // Pushback fix
         }
 
         // Projectile Collision (抵銷系統)
