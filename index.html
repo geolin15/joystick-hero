@@ -5,176 +5,230 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHAOS FIGHTING</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        /* Press Start 2P（SIL Open Font License 1.1，作者 CodeMan38）：直接內嵌，不向 Google 發出請求 */
+        @font-face { font-family: 'Press Start 2P'; font-style: normal; font-weight: 400; font-display: swap; src: url(data:font/woff2;base64,d09GMgABAAAAABJgAA0AAAAASFgAABILAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYcgzwGYACEbBEICvB00n4Lg0QAATYCJAOGdAQgBYRKB4ReG7k2IxE1HRM1iOA/JWg2xvD6obMqmE5SN4m6JErQGe1cnR7tTm21roiCRXGDph2W57zlE2hWfkyCDRZhurA4QpJZeJ7fH3Xufd9jvYGwAJrkBDcnoU4JS7aJ6zQ4wEsveVcau6YSMNkW5dRZkKLO7kl2gJ99Pu1cgBXilsXzxNXe312wJuAISuQ69LpAmygPOJGMosbv9O8fKPBxUDdsnCIs31VPLCJq8pmJK+q+O4R4UVF6lcpGGsmA+ctVGunAV3/7FmaFSTNZmPJ92eQtKF2y1Rr6/y1N6Yx01bXAVlgCUKk8KMZpgFl/5u/37Gi0sVYrvVtZ7nK74tp2Vme/ldxrAoNKh86llIYaDKq0FUKDyIWF4gAe22ycgtZjjJuJs/Vp39+v74B3YB+yQ62hxBJjrLUTa+Sy99Pd99cEAbEAQLyFMgwBkam6oK3xU+ciNfPcvhE6mZDmqLkWqDD0n1OuQAhC9KYOn4NBoU/niabLNmzGoo/+xw1ug9G9ztasWoJO56Zl61ETp6VJm7R+cvD8ZkwUIyroOEAERD5UKipJnfOhLrSmENhSWc6QqDOfQyh0tj+jiuXZ/8PnSYaaAyFm4rtroNK5XussnBuyoeJ5zoC6dKczmSccloW4oypBxUAoF5sxFQLcirAInR1MZjcgX4k1EysGSJ2M5k6neut6/27mwJd9UgEBelYHgCn+hjJAKlssT6Nb+z7hmPbscWyAorp5AYB5SJwFuA5AnyFHrMaflApHNJ7x+9UCg5cKiFNPUZr/iKRY64ru6S29YxCbarNtvi2yZbbLjsVGDlfh+VP9sQ79ByCOJUFJRyTFKnpWsDWbaXOvr/N7If+vgBkAhrjBYK4NDee34PsV+L4WIZYBuvuPvincl783AAKgATDVFSAXRr6c3JrN/3HGVa0aLTpwRps+/SqsqTWkSYca7bZt2tLsNLxYcRIkYXPIYUecwAHDhRsvUeIkSJIiTYEiJcpU9ajU66pOd6nRo8+QMQuWrFhz5MSZKzceAgQJFiJMuBix4sRL0uWybrvmNJi3bMGKK86547xUI/YMu+CeS3YUKXbTvrOq3FIozagypcq1IHN5Ir5QjHhpmDBjwe6oY45jwEMQH37CBKwTIk+GLDkqxITSok6DDk3adBkwZ8KUGQe27Ngz4s6HJy9+vG3wFS1CpCgJAiUS4W/QgElTJiDk/98A4AcAuQPyAZJ2ACkvAB6oAIABACppDAYfuDIBBwdtvWyhIRj9eiPiRtE2zhO4kUR6xplwhByIGdHEfl2lnhqraTbpW3ibCwPlFbCkAFDqFEs+ouId4rDYFIx3Rgp1JviWVtp0gLoZoOHhudAa3lXMO58l1rNuCTB3bALXXGnb/nuVbib5zIAjGHU0I+vqIX3dp0pfZIhBAJldd9NXY27Td77KTu2odNh1bNd/MmxWU60SgwDYrbYVsG5SAHPc3OnXRDqZZx5AN4/b+QP23IQU1ololz89jHe+3vpcMkt0lwM/573pXzp9PbXfizZscl0ELXO3a1UbZW84hcdS+ygg252g2kqvjynC9Zz5uT51374IQGxoIViy+r1aO2cyM1kuabuu5YAzwR0QDOVNMNfejiJ58vbRAC0ACLPuM673tXdTiQJqCKUJCSkIhFMSVoRCcGriaPVLaSFOCpqoMooEDSlcYkRUz4XwkApimZR+FhfXwZA7MYXyScHaPDaFYc9ss7gM5ZYs1QwfQMYZkEJYRVaGwLrE3ZDOqopH0WKhrKYyn5jgFnBKR8aVHwy1EDwOxPWwMKq6LAwr4eYDjbhnmEePgsSAzHtLsGN2LkSLRIgzniTDyUNzR6G8Ek9CE6wMyORehlJUVkKLRUvDhjbMGHMpCvC6v2xgNRXAwggUCRJ7PYSgTV5RpEvG1kdpwglup8CaTjp0/tZdr1688A6jRiAAYkX2jYaGI2yEUED4agQ4JpDdlCU2KgqlAuYHCKlez0mlj0QvcpGO1NK3dCvyfsXpVCbst9GllNVsQ/m0ecUNbEvtYUVwoaaijNyRgJRbfvMoDLqOhDUhD6bAXNSUZNyJX5IekmQF0UTzLC7AZFlcCQmxLmpK1rQZ1SDkaC+d0IVasLlKGNSTvKgXcxoCTsoYtZLGBXO0cUdZAhJxAg+O4C9r2GC83qogpN6xJx2xIGwwFrEk9VR+tHKBggk6U1LmwfkF1dp8yUJX3ga9eH9YtsMWX5wQqUZ21yGWFNq9ajBoEVsoSz36d5cSzFLbAJZ5HBsmU2S1hKJbU3Wc79U6Nu0xgKAelp0Z4jqLRPumclG2eKPlL+r190iKNpW7y5sA7cqgGMvWIEl+SE0N0tmH8mlGSxpVQE9Urd3YqVrA4oAp+2BKXB2A9K0eTRqj3WAoGXskoL132wA2/MvgLLOL0yqYLSBZEKCPLV8PkjVdB1SZ2IaBQd0U2Dakfm5sFl48kBeNEFPjhuqccG1xKdLMwtZahGBvKKj6sjd4NlQ2UZAigsnBtsxkmBAUrlaQNUGBWoRSctWWPDeHg9iWFt953iW8s41nKaqZgHL5RcUdtBmY0DFS28bLdxTjSGv0Ny4ptkZdtFbyxfXlBPJDC4Ka2InUcWZ417DMcPZAbTE6gjA8DIy0MWAeNVYPa4tlrhwoNDFkIcAYzAytW7JuIRhZsd7KzTSi50qCGnCvLdArficHWmmiCSHD/ERsIt1qdKQoYJHWYU6i20IBgh6JxJBmjvp7VLIwpFuZVnPEYIUCAskhO76ejxt9JGFxxlGRPKmMLhhBMW5gFMreRedqpVDNopuVpA5k2WxxghipqIfCBeIQRbeLoJs/OepnCw3rhRJpLwo3B29Qq6EQM9waX0tDbZe40xbbQ8/Qa5GCtQc+yGI3ByXFWSYyj81HTC3W1zqV4c3rHdDDtnUb32qt2mopLZvM3ZEnvGTljav/AAf3pR20pETliLUD5zAcEqZRuQ9zKv2DmWBzQez4zdVKH+VrRaAdiE1/2ETrXlpfGErt8QoFgzpPFunNUSa4VWFHgoo0idkyGesoICEQZhHswBR91la3rV3gEjWmUsVVpknJ6pmHX/KmF43M4y/mWPbQU4884NT8oSZ5LwGogx9eW6Gg7lmG/eALtL62Cp9ZUfqamgDfQ7nZ8bGexsAjpAPQHi/0A1pEaFHLboEV7d7dlF4Wbk7rt4KwRSduRJ4z0D893esysc4j7AYVAWuIKyXUddVmqQXZGi4jTAKLOSCwevool+taG4JeINVM5C9/6RKRoAwBZkHGFI/KetWPFCwGXCty3kllWldUY5t/MES0hG3Ha/tc6iFbK775b3PmP/6oxozEvPtWJK7CZJoPNvFwsXLq6RSsjK/OMOpSWGfdXTUUFhBOgAJILasEIC5mwLtlTPxoSoULOiJOa+8v6Dv5BrFchoD8fhVln2F87NH/B/mdN+WJ4DnP9UwOEZPJK3/7wNukPDMoq25+jO5DwuuANDPcW1YujJBA9wCSgw/8hen1aZwisQxxavv9nRFeeQ92LxUGPVGqmTPyNfIsbV5bpsOY5Zn7Cg7jmCvvKM055v3uQzHXQLfeJrTPa109NFJ030JNeFlVetcMGlNOVKhvhUzlCtCsKDcCRJFpo5FhHNpN3SVrrjbYoI4HLifJ0rYu4Qb3LM/gr95bjW2mvJxLSMwkrwkCVPbopYjpdwP9xOkFMwa5FkCOe25XVib8XSGvVIU5K1FfIlZ6K1l9nWjBqt8PSMTirPC+1WzipXQWgAeIBGev81ZJnSRzIe9URfVr8idW4VjoLi+ZiXaEr/9mAzAS/Epx1d5AgoU39Q0OqJTKc64NLg31Kbw++PLxlBz11UYvg93MTzlOTfCrms73QWn0HAWZlactcaDAjplYhAX1YEZdo8rBS/IHZ4oHSETVB+rHBwqhStc6AMQk5XmS6yhCfQXDgrAKDHX7EMzXxdeuOGcWDvl+QyTWUV8wt7se4jmo3csmwcjmsUUkxaa+ZH57WZEEC3kbDqgAReeRoFq6CoesJJ6pB6YvQVcBI0VeS3R9p8NLwpdzcbpV3PvfOwhKDol+mGS4O9MwFVeFDXm0AYvD7dgFnYOG3jRV9XiF4FecuOnM8CRU2vpkopbhKx7KfarCpzaTBFlfv/kfJxMN61HC6Xr3REx7WKz1hnFoxwCTW0XLpk0fPXYC1ErjyY/nY9l+Uvt5rkq6dNytY3UsitNePuss4/wnPo8xLKo75akhjLhUPAjjblOpnjfObJI5bvxrdCKY6sI/XycSypfTlSJWcI2PPdg3Xn7OwgjEJh4Y1AejzXCCNtAGaV4nk8eI9z9dXXZARXv7WVklkuvtdphJvRTe0U/xAawWvJyG+RLhGZ0ZFQvz4wgiRfMWkEFuhqeQSccJ5XPBW6YYaQv3qURhivQHhS7J91v2gf+6vPLp79wn47pD1rAckkBiNknOOtbOcYZNonH8SE14tzCdXq2skwcM4mu+UmA+hdubYq/yYFyppJZRX+l5LYV9teDdwZwji+o8AlhWkZsGcQ4YCKMIcGUs6tn8b3Vqj7pi7T67hgd/hShh7hbiYPL0FbuZrb3NaOSleDv2iNecJ0otEvBme7gEwrPYXLSXB37EQEt6DzeEeMkZzjZDR/roZl7PmFX4Hq4fu+9foRncGLo0G1y/iKBLOV/JVrvYj7o1K4r7I4mcsGHwlcXdB0BecrCv2L0r70MMFtGq82yPHwR3CGswxYG/cFaU3rrO4wfB8PP/weaL4HI+jpG83mzQTuLUxB9R14tT8IYJdK/XpC9//2S8K8KHqVj0ESnA+bUYGqY6X3E26L0SM9pa7svsLqooBnhBXsNCjeUndRMo6jx4+7VE0+hjASzwqLDJtGNnUQ4fMWQdebCuCD1XNWMCOuVaNxUhM+4zhH7IfZyPv0hisvibkEXok2mXsfeoI7UvSpznoaMuFDb06f8mAKK2w6lIRDx+F2Gcqyno9hWf5vWbX0x4JiajeI+I/7O6FU68x7ya9w7jfpykm+RvKierpLT/0+5NErUBjlaKu4vcpfux/sh5u+RCfDvt6mtKBeg497nU+xiWEy5rM8Pc99z+Oz7DlPj1MF8j3UgBCcwwsdV3p6jz34Vzb4NQN0uU0xWnpZabXKxZU0dAgauXK2RlmbNGfke9MM7qZ/jC2LKtrTNm6XcnkalivUfIprI24lDRtCxMz0vEURAh4IJlZM7rf4weA+qG0a0cn/xAGWxegACD3pvs54un8q/L9AHwuoH993c8rOp/+yvqRXiCTxEKYPDmtAJAZ43UB2QlyP7rXi+xmH7AtffY69Cf+A8Ul8e/Ac4U/SEfNxVPdx9g09ixNkUj8M3RGN/e1Y5rjgNArt1er3NCr+F9oyeSUJB4dwZSwUCXe63ZRo78IlVqTKX+RRDwgwIaJUi1qQV+rcBKOFKFwMdQQVNErndTVLzvU4zhuqY4asRNcWVzmeKpIKPibRWwWgxNiKBEfN1o3qIEqorR4WKiVUhU4aXy761rTo8Ji1T54pNEsxbDU5QYUiyIsuLLX6yQnbITHUXVV7gwGGliJJzIPom1GuuvB4tG/9Yo0+bIii5lKTbYe/4NtYWLkJiHir+AsHxToANjUzDfXhMhasNwQXx57zs0xUIH5BEi+xbgLZyPRBqSssN9lYID0FcMQSIw8QKjZUZ0dDZVnHb6wOjtgKPTjKdQaQfO1Ruu9aCDodm85ujr8QNIgTJKnLTPyyhvYyrw4uOD30sCfB045TRBQoSJOOOsc84TJUY8uIwpP3/tCy7yd1mlcROkvX0/4bnkKbjiqgDX3rrYUcVrqnQEvk+hgrwzVAfdVDfU94qBiPy9k0iGjBgzcV2MOPFi32komwf/hoZK8C8nUbIUSTqlmmTtHRu27BSy5yBNhkzp73G8PxdvLHG1YVOrNsxYsL4rIt+z+O8NQTzx6fWFr3yD1gjb8rGjdw/ebURJuHQhiORjosWNBzUaqMV6ZgpDyNwxZM26XTNmzZm3EwrHrSIl4oS6UBPvJwswnDhU89QTGoLESTzFKE7LU6xIiWzuXtAMvSQKI6XuuaGMtlvuuln9r0HXdUyWb9ruhCy7+LEb1zRIjFb0m6WapAeP0slL4P+AdTi6pEmqsbXJbM/BtTy3bt20a8fmEN5Rqw//PeH1K/5x23Oq8rId2wcRFUqN1gYA) format('woff2'); }
 
         * { box-sizing: border-box; }
 
         body {
             margin: 0; padding: 0;
             background-color: #111;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             height: 100vh;
-            font-family: 'Press Start 2P', cursive;
-            overflow: hidden;
-            color: white;
-            user-select: none;
+            font-family: 'Press Start 2P', monospace;
+            overflow: hidden; color: white; user-select: none;
         }
 
+        /* 所有 UI 尺寸用 cqw，跟著遊戲畫面一起縮放 */
         #game-wrapper {
-            position: relative;
-            width: 100%; max-width: 1024px;
-            aspect-ratio: 16/9;
-            background: #000;
-            box-shadow: 0 0 50px rgba(0,0,0,0.9);
-            border: 4px solid #222;
-            overflow: hidden;
+            position: relative; container-type: inline-size;
+            width: 100%; max-width: 1024px; aspect-ratio: 16/9;
+            background: #000; box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border: 4px solid #222; overflow: hidden;
         }
 
-        canvas { 
-            display: block; width: 100%; height: 100%; 
-            image-rendering: pixelated;
+        /* 畫布本身只有 256x144，靠 CSS 放大成像素風 */
+        canvas#gameCanvas {
+            display: block; width: 100%; height: 100%;
+            image-rendering: pixelated; image-rendering: crisp-edges;
         }
 
         .ui-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; padding: 20px;
+            position: absolute; inset: 0;
+            pointer-events: none; padding: 2cqw;
             display: flex; flex-direction: column; z-index: 20;
         }
 
         /* 開頭畫面 */
         #title-screen {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #000 0%, #2c3e50 100%);
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(44,62,80,0.85) 100%);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 60;
         }
         .main-title {
-            font-size: 4rem; color: #f1c40f; text-align: center;
-            text-shadow: 5px 5px 0 #c0392b, -3px -3px 0 #fff;
-            margin-bottom: 20px; letter-spacing: 5px;
-            line-height: 1.5;
+            font-size: 6.2cqw; color: #f1c40f; text-align: center;
+            text-shadow: 0.5cqw 0.5cqw 0 #c0392b, -0.3cqw -0.3cqw 0 #fff;
+            letter-spacing: 0.5cqw; line-height: 1.5;
         }
-        .press-start {
-            font-size: 1.5rem; color: #fff; margin-top: 50px;
-            animation: blink 0.8s infinite;
+        #title-screen { pointer-events: auto; }
+        .mode-menu { margin-top: 3cqw; display: flex; flex-direction: column; align-items: center; }
+        .mode-option {
+            font-size: 2cqw; color: #777; margin: 0.8cqw 0; cursor: pointer;
+            border-left: 0.5cqw solid transparent; padding-left: 1cqw;
         }
+        .mode-option.active { color: #fff; border-left-color: #f1c40f; animation: blink 0.8s infinite; }
 
-        .hud { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; display: none; }
-        .p-info { display: flex; flex-direction: column; margin-bottom: 5px; min-width: 350px; }
-        .info-top { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 5px; }
-        .p-name { color: #fff; font-size: 16px; text-shadow: 2px 2px #000; letter-spacing: 2px;}
-        
-        .round-dots { display: flex; gap: 5px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; background: #333; border: 2px solid #555; }
-        .dot.active { background: #f1c40f; border-color: #fff; box-shadow: 0 0 5px #f1c40f; }
+        /* 練習模式資訊面板 */
+        #training-panel {
+            position: absolute; top: 9cqw; left: 50%; transform: translateX(-50%);
+            display: none; padding: 0.6cqw 1.2cqw; background: rgba(0,0,0,0.6);
+            border: 0.2cqw solid #f1c40f; z-index: 22;
+            font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: bold;
+            font-size: 1.15cqw; line-height: 1.7; text-align: center; white-space: nowrap;
+        }
+        #training-panel .k { color: #f1c40f; }
+        #training-panel .dim { color: #aaa; }
+        #training-panel .good { color: #2ecc71; } #training-panel .bad { color: #ff6b6b; }
 
+        /* 連段數 */
+        .combo-text {
+            position: absolute; top: 22%; font-size: 4cqw; color: #f1c40f; display: none;
+            text-shadow: 0.3cqw 0.3cqw 0 #c0392b, -0.15cqw -0.15cqw 0 #fff; z-index: 25;
+        }
+        .combo-text span { display: block; font-size: 1.4cqw; color: #fff; margin-top: 0.5cqw; }
+        #combo-p1 { left: 3cqw; } #combo-p2 { right: 3cqw; text-align: right; }
+        .combo-text.pop { animation: pop 0.15s ease-out; }
+        @keyframes pop { from { transform: scale(1.5); } to { transform: scale(1); } }
+        .controls-hint { font-size: 1cqw; color: #aaa; margin-top: 3cqw; line-height: 2.2; text-align: center; }
+
+        .hud { display: none; justify-content: space-between; align-items: flex-start; margin-top: 1cqw; }
+        .p-info { width: 38cqw; display: flex; flex-direction: column; }
+        .info-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5cqw; }
+        .p2 .info-top { flex-direction: row-reverse; }
+        .p-name { font-size: 1.5cqw; text-shadow: 0.2cqw 0.2cqw #000; letter-spacing: 0.2cqw; }
+
+        .round-dots { display: flex; gap: 0.5cqw; }
+        .dot { width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #333; border: 0.2cqw solid #555; }
+        .dot.active { background: #f1c40f; border-color: #fff; box-shadow: 0 0 0.5cqw #f1c40f; }
+
+        /* isolation 讓紅色殘影不會被容器背景蓋住 */
         .health-container {
-            position: relative; width: 100%; height: 25px;
-            background: #550000; border: 2px solid #fff;
-            box-shadow: 3px 3px 0 #000;
+            position: relative; height: 2.4cqw;
+            background: #3a0000; border: 0.25cqw solid #fff;
+            box-shadow: 0.3cqw 0.3cqw 0 #000;
+            isolation: isolate; overflow: hidden;
         }
+        .health-bar, .health-damage { position: absolute; top: 0; bottom: 0; width: 100%; }
+        .health-damage { background: #e74c3c; z-index: 0; transition: width 0.4s ease-out 0.25s; }
         .health-bar {
-            height: 100%; width: 100%;
-            background: linear-gradient(to bottom, #f1c40f 50%, #d35400 50%);
-            transition: width 0.1s linear;
+            background: linear-gradient(to bottom, #f9e79f 0 25%, #f1c40f 25% 60%, #d35400 60%);
+            z-index: 1; transition: width 0.08s linear;
         }
-        .health-damage {
-            position: absolute; top:0; left:0; height:100%; width: 100%;
-            background: #c0392b; z-index: -1;
-            transition: width 0.3s ease-out 0.2s;
-        }
+        .p1 .health-bar, .p1 .health-damage { left: 0; }
+        .p2 .health-bar, .p2 .health-damage { right: 0; }
+        .health-bar.low { animation: lowhp 0.4s infinite alternate; }
 
         .timer-box {
-            position: absolute; left: 50%; transform: translateX(-50%); top: 15px;
-            color: #f1c40f; font-size: 40px; text-shadow: 3px 3px #c0392b;
+            position: absolute; left: 50%; transform: translateX(-50%); top: 1.5cqw;
+            color: #f1c40f; font-size: 4cqw; text-shadow: 0.3cqw 0.3cqw #c0392b;
             z-index: 10; display: none;
         }
+        .timer-box.low { color: #ff6b6b; animation: blink 0.5s infinite; }
 
         #message-display {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%; text-align: center;
+            position: absolute; top: 50%; left: 0; width: 100%;
+            transform: translateY(-50%); text-align: center;
             display: none; z-index: 30;
         }
         .main-msg {
-            font-size: 5rem; color: #f1c40f;
-            text-shadow: 4px 4px 0 #c0392b, -2px -2px 0 #fff; margin-bottom: 20px;
+            font-size: 7cqw; color: #f1c40f;
+            text-shadow: 0.4cqw 0.4cqw 0 #c0392b, -0.2cqw -0.2cqw 0 #fff; margin-bottom: 2cqw;
         }
-        .sub-text {
-            font-size: 1.2rem; color: #fff; text-shadow: 2px 2px 0 #000;
-            animation: blink 1s infinite;
-        }
+        .sub-text { font-size: 1.6cqw; color: #fff; text-shadow: 0.2cqw 0.2cqw 0 #000; animation: blink 1s infinite; }
 
         /* 選角畫面 */
         #char-select-screen {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            position: absolute; inset: 0; background: rgba(0,0,0,0.82);
             display: none; flex-direction: column; align-items: center; justify-content: center;
             z-index: 50;
         }
-        .select-title { font-size: 2rem; color: #3498db; margin-bottom: 30px; text-shadow: 3px 3px #000; text-align: center; }
-        .char-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
+        .select-title { font-size: 3cqw; color: #3498db; margin-bottom: 4cqw; text-shadow: 0.3cqw 0.3cqw #000; }
+        .char-grid { display: flex; gap: 2cqw; justify-content: center; }
         .char-card {
-            width: 120px; height: 160px; border: 4px solid #444;
+            width: 12cqw; height: 17cqw; border: 0.4cqw solid #444; background: #222;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-            padding-bottom: 10px; background: #222; cursor: pointer;
-            transition: transform 0.1s; position: relative;
+            padding-bottom: 1cqw; position: relative; transition: transform 0.1s;
         }
-        .char-card.selected { border-color: #f1c40f; background: #333; transform: scale(1.1); box-shadow: 0 0 20px #f1c40f; }
-        .char-card.locked { opacity: 0.5; border-color: #333; cursor: default; }
-        .char-preview { width: 50px; height: 80px; background: #555; margin-bottom: 15px; position: relative; }
-        .char-name { color: #fff; font-size: 10px; text-align: center; line-height: 1.2; width: 100%;}
-        .p1-cursor { position: absolute; top: -30px; color: #3498db; font-size: 12px; font-weight: bold; animation: bounce 0.5s infinite alternate; width: 100%; text-align: center;}
-        
+        .char-card canvas { width: 9.6cqw; aspect-ratio: 40/41; image-rendering: pixelated; }
+        .char-card.p1sel { border-color: #3498db; box-shadow: 0 0 2cqw #3498db; transform: scale(1.08); }
+        .char-card.p2sel { border-color: #e74c3c; box-shadow: 0 0 2cqw #e74c3c; transform: scale(1.08); }
+        .char-card.p1sel.p2sel { border-color: #f1c40f; box-shadow: -1cqw 0 2cqw #3498db, 1cqw 0 2cqw #e74c3c; }
+        .char-card.locked { opacity: 0.5; border-color: #333; }
+        .tbc { width: 9.6cqw; aspect-ratio: 40/41; display: flex; align-items: center; justify-content: center; color: #555; font-size: 3cqw; }
+        .char-name { color: #fff; font-size: 1cqw; text-align: center; line-height: 1.3; margin-top: 0.5cqw; }
+        .cursor-row { position: absolute; top: -2.8cqw; width: 100%; display: flex; justify-content: center; gap: 1cqw; font-size: 1.1cqw; }
+        .cursor-row span { display: none; animation: bounce 0.5s infinite alternate; }
+        .m1 { color: #3498db; } .m2 { color: #e74c3c; }
+        .p1sel .m1, .p2sel .m2 { display: inline; }
+        .select-status { margin-top: 4cqw; font-size: 1cqw; line-height: 2.2; text-align: center; color: #ddd; }
+
+        /* VS 畫面 */
+        #vs-screen {
+            position: absolute; inset: 0; display: none;
+            align-items: center; justify-content: space-around;
+            background: linear-gradient(100deg, rgba(41,128,185,0.9) 0 50%, rgba(192,57,43,0.9) 50%);
+            z-index: 55;
+        }
+        .vs-side { display: flex; flex-direction: column; align-items: center; }
+        .vs-side canvas { width: 24cqw; aspect-ratio: 40/41; image-rendering: pixelated; }
+        .vs-name { font-size: 2.4cqw; margin-top: 1cqw; text-shadow: 0.3cqw 0.3cqw 0 #000; }
+        .vs-mid { font-size: 8cqw; color: #f1c40f; text-shadow: 0.5cqw 0.5cqw 0 #000; animation: pulse 0.4s infinite alternate; }
+
         /* 暫停選單 */
         #pause-menu {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            position: absolute; inset: 0; background: rgba(0,0,0,0.85);
             display: none; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 100;
+            z-index: 100; pointer-events: auto;
         }
-        .pause-title { font-size: 3rem; color: #fff; margin-bottom: 40px; text-shadow: 4px 4px 0 #000; }
+        .pause-title { font-size: 4.5cqw; color: #fff; margin-bottom: 4cqw; text-shadow: 0.4cqw 0.4cqw 0 #000; }
         .pause-option {
-            font-size: 1.5rem; color: #777; margin: 15px 0; cursor: pointer;
-            transition: all 0.2s; border-left: 5px solid transparent; padding-left: 10px;
+            font-size: 2cqw; color: #777; margin: 1.5cqw 0; cursor: pointer;
+            transition: all 0.2s; border-left: 0.5cqw solid transparent; padding-left: 1cqw;
         }
-        .pause-option.active { color: #f1c40f; text-shadow: 2px 2px 0 #000; transform: scale(1.1); border-left: 5px solid #f1c40f; }
-        .pause-hint { margin-top: 30px; font-size: 0.8rem; color: #666; font-family: monospace; }
+        .pause-option.active { color: #f1c40f; text-shadow: 0.2cqw 0.2cqw 0 #000; transform: scale(1.1); border-left-color: #f1c40f; }
+        .pause-hint { margin-top: 3cqw; font-size: 0.9cqw; color: #666; }
 
-        @keyframes bounce { from { top: -25px; } to { top: -35px; } }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-0.6cqw); } }
         @keyframes blink { 50% { opacity: 0; } }
+        @keyframes pulse { to { transform: scale(1.12); } }
+        @keyframes lowhp { to { filter: brightness(1.6) saturate(0.5); } }
 
-        #gamepad-indicator {
-            position: absolute; bottom: 10px; right: 10px;
-            color: #666; font-size: 10px; text-align: right; line-height: 1.5;
-        }
-        #gamepad-indicator .active { color: #00ff00; }
-
+        #gamepad-indicator { position: absolute; bottom: 1cqw; right: 1cqw; color: #888; font-size: 0.9cqw; text-align: right; line-height: 1.6; }
         .move-list-overlay {
-            position: absolute; bottom: 10px; left: 10px;
-            font-size: 10px; color: #aaa; background: rgba(0,0,0,0.5); padding: 5px;
+            position: absolute; bottom: 1cqw; left: 1cqw;
+            font-size: 0.9cqw; color: #ccc; background: rgba(0,0,0,0.5); padding: 0.5cqw;
         }
-
+        /* 像素字型沒有箭頭符號，指令表改用系統等寬字型 */
+        .move-list-overlay, .select-status { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: bold; }
+        .move-list-overlay { font-size: 1.3cqw; }
+        .select-status { font-size: 1.4cqw; }
     </style>
 </head>
 <body>
 
     <div id="game-wrapper">
         <canvas id="gameCanvas"></canvas>
-        
+
         <div class="ui-layer">
             <!-- 標題畫面 -->
             <div id="title-screen">
                 <div class="main-title">CHAOS<br>FIGHTING</div>
-                <div class="press-start">PRESS ANY KEY</div>
+                <div class="mode-menu">
+                    <div class="mode-option active" id="mode-1p">1P VS CPU</div>
+                    <div class="mode-option" id="mode-2p">2P VERSUS</div>
+                    <div class="mode-option" id="mode-train">TRAINING</div>
+                </div>
+                <div class="controls-hint">
+                    1P MODE: WASD OR ARROWS / J OR 1 PUNCH / N, K OR 2 KICK<br>
+                    2P MODE: P1 WASD + J/N &nbsp; P2 ARROWS + 1/2<br>
+                    ↓ CROUCH &nbsp; ↓K SWEEP (BLOCK LOW WITH ↙) &nbsp; P+K THROW<br>
+                    →→ DASH &nbsp; ←← BACK HOP &nbsp; COMBO: P → P → K → SPECIAL &nbsp; ESC = PAUSE
+                </div>
             </div>
 
             <!-- 選角畫面 -->
             <div id="char-select-screen">
                 <div class="select-title">SELECT FIGHTER</div>
                 <div class="char-grid" id="char-grid"></div>
-                <div class="sub-text" style="margin-top: 40px; font-size: 0.8rem;">P1: WASD / PAD | P2: ARROWS / PAD</div>
+                <div class="select-status" id="select-status"></div>
+            </div>
+
+            <!-- VS 畫面 -->
+            <div id="vs-screen">
+                <div class="vs-side"><canvas id="vs-c1" width="40" height="41"></canvas><div class="vs-name" id="vs-n1"></div></div>
+                <div class="vs-mid">VS</div>
+                <div class="vs-side"><canvas id="vs-c2" width="40" height="41"></canvas><div class="vs-name" id="vs-n2"></div></div>
             </div>
 
             <!-- 暫停選單 -->
@@ -182,12 +236,12 @@
                 <div class="pause-title">PAUSED</div>
                 <div class="pause-option active" id="opt-resume">RESUME GAME</div>
                 <div class="pause-option" id="opt-quit">QUIT TO MENU</div>
-                <div class="pause-hint">UP/DOWN to Select, J/A to Confirm</div>
+                <div class="pause-hint">UP/DOWN TO SELECT, J / ENTER / A TO CONFIRM</div>
             </div>
 
             <div class="timer-box" id="timer">99</div>
             <div class="hud" id="hud">
-                <div class="p-info">
+                <div class="p-info p1">
                     <div class="info-top">
                         <div class="p-name" id="p1Name">JOWUAMAN</div>
                         <div class="round-dots" id="p1-dots"><div class="dot"></div><div class="dot"></div></div>
@@ -197,940 +251,2098 @@
                         <div class="health-bar" id="p1Health"></div>
                     </div>
                 </div>
-                <div class="p-info">
-                    <div class="info-top" style="flex-direction: row-reverse;">
-                        <div class="p-name" id="p2Name">DONALD</div>
+                <div class="p-info p2">
+                    <div class="info-top">
+                        <div class="p-name" id="p2Name">BIGBUX</div>
                         <div class="round-dots" id="p2-dots"><div class="dot"></div><div class="dot"></div></div>
                     </div>
-                    <div class="health-container" style="flex-direction: row-reverse;">
+                    <div class="health-container">
                         <div class="health-damage" id="p2Damage"></div>
-                        <div class="health-bar" id="p2Health" style="float: right;"></div>
+                        <div class="health-bar" id="p2Health"></div>
                     </div>
                 </div>
             </div>
+
+            <div id="training-panel"></div>
+            <div class="combo-text" id="combo-p1"></div>
+            <div class="combo-text" id="combo-p2"></div>
 
             <div id="message-display">
                 <div class="main-msg">K.O.</div>
                 <div class="sub-text">PRESS ANY KEY</div>
             </div>
-            
+
             <div id="gamepad-indicator">
-                <div id="gp1-status">P1: Key</div>
+                <div id="gp1-status">P1: KEY</div>
                 <div id="gp2-status">P2: AI</div>
+                <div id="sound-status">SOUND: ON [M]</div>
             </div>
-            
-            <div class="move-list-overlay" id="move-hint">
-                Moves: Special (↓↘→ P), Ultra (Charge/Motion)
-            </div>
+
+            <div class="move-list-overlay" id="move-hint"></div>
         </div>
     </div>
-    
+
 <script>
     const canvas = document.getElementById('gameCanvas');
     const c = canvas.getContext('2d');
-    c.imageSmoothingEnabled = false; 
 
-    canvas.width = 1024;
-    canvas.height = 576;
+    // 低解析度畫布：世界座標維持 1024x576，畫面 1 像素 = 世界 4 單位
+    const VW = 256, VH = 144, PX = 4;
+    canvas.width = VW; canvas.height = VH;
+    c.imageSmoothingEnabled = false; // 一定要在設定 width 之後，否則會被重設
+
+    const WORLD_W = 1024;
     const GRAVITY = 0.7;
     const GROUND_Y = 480;
+    const STEP = 1000 / 60;        // 固定 60Hz 邏輯，120Hz 螢幕也不會變快
+    const CHARGE = 30;             // 集氣招式需要按住 0.5 秒
+    const BUF = 10;                // 拳腳按鍵緩衝幀數（越大越好接連段）
+    const SW = 40, SH = 41;        // 角色精靈圖大小（像素）
+    const OUTLINE = '#0a0a12';
+
+    const $ = id => document.getElementById(id);
+    const px = v => Math.round(v / PX);
+    const rnd = n => (Math.random() * 2 - 1) * n;
+
+    // --- 像素繪圖工具 ---
+    function rect(g, x, y, w, h, col) { g.fillStyle = col; g.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); }
+    function disc(g, cx, cy, r, col) {
+        if (r < 0) return;
+        cx = Math.round(cx); cy = Math.round(cy); g.fillStyle = col;
+        for (let y = -r; y <= r; y++) { const hw = Math.floor(Math.sqrt(r * r - y * y) + 0.5); g.fillRect(cx - hw, cy + y, hw * 2 + 1, 1); }
+    }
+    function ellipse(g, cx, cy, rx, ry, col) {
+        g.fillStyle = col;
+        for (let y = -ry; y <= ry; y++) { const hw = Math.round(rx * Math.sqrt(1 - (y * y) / (ry * ry + 0.01))); g.fillRect(cx - hw, cy + y, hw * 2 + 1, 1); }
+    }
+    function glyph(g, rows, x, y, col) {
+        rows.forEach((r, j) => { for (let i = 0; i < r.length; i++) if (r[i] === '#') rect(g, x + i, y + j, 1, 1, col); });
+    }
+    function makeCanvas(w, h) {
+        const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+        const g = cv.getContext('2d'); g.imageSmoothingEnabled = false; return [cv, g];
+    }
+    function lerpHex(a, b, t) {
+        const pa = parseInt(a.slice(1), 16), pb = parseInt(b.slice(1), 16);
+        const ch = s => Math.round(((pa >> s) & 255) * (1 - t) + ((pb >> s) & 255) * t);
+        return `rgb(${ch(16)},${ch(8)},${ch(0)})`;
+    }
+    // ================= 音效（Web Audio 即時合成，不需要音檔） =================
+    const Sound = (() => {
+        let ctx = null, master = null, sfxBus = null, musicBus = null, noiseBuf = null;
+        let muted = false;
+        try { muted = localStorage.getItem('cf-muted') === '1'; } catch (e) {}
+
+        // 瀏覽器規定要在使用者按鍵/點擊後才能出聲
+        function unlock() {
+            if (!ctx) {
+                const AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return;
+                ctx = new AC();
+                master = ctx.createGain(); master.gain.value = muted ? 0 : 0.7; master.connect(ctx.destination);
+                sfxBus = ctx.createGain(); sfxBus.gain.value = 0.9; sfxBus.connect(master);
+                musicBus = ctx.createGain(); musicBus.gain.value = MUSIC_VOL; musicBus.connect(master);
+                noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+                const d = noiseBuf.getChannelData(0);
+                for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+            }
+            if (ctx.state === 'suspended') ctx.resume();
+            if (pendingSong) { const s = pendingSong; pendingSong = null; playSong(s); }
+        }
+
+        // o: { type, to(滑音), vol, delay, at(絕對時間), attack, bus }
+        function tone(freq, dur, o = {}) {
+            if (!ctx) return;
+            const t = o.at ?? ctx.currentTime + (o.delay || 0);
+            const osc = ctx.createOscillator(), g = ctx.createGain();
+            osc.type = o.type || 'square';
+            osc.frequency.setValueAtTime(freq, t);
+            if (o.to) osc.frequency.exponentialRampToValueAtTime(Math.max(20, o.to), t + dur);
+            g.gain.setValueAtTime(0.0001, t);
+            g.gain.exponentialRampToValueAtTime(o.vol ?? 0.3, t + (o.attack || 0.005));
+            g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+            osc.connect(g); g.connect(o.bus || sfxBus);
+            osc.start(t); osc.stop(t + dur + 0.02);
+        }
+        // o: { filter, freq, to, q, vol, delay, at, bus }
+        function noise(dur, o = {}) {
+            if (!ctx) return;
+            const t = o.at ?? ctx.currentTime + (o.delay || 0);
+            const src = ctx.createBufferSource(); src.buffer = noiseBuf;
+            const f = ctx.createBiquadFilter();
+            f.type = o.filter || 'lowpass'; f.Q.value = o.q || 1;
+            f.frequency.setValueAtTime(o.freq || 2000, t);
+            if (o.to) f.frequency.exponentialRampToValueAtTime(o.to, t + dur);
+            const g = ctx.createGain();
+            g.gain.setValueAtTime(o.vol ?? 0.3, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+            src.connect(f); f.connect(g); g.connect(o.bus || sfxBus);
+            src.start(t, Math.random() * 0.5); src.stop(t + dur + 0.02);
+        }
+
+        const SFX = {
+            whiff:    () => noise(0.07, { filter: 'bandpass', freq: 3000, to: 1200, q: 2, vol: 0.12 }),
+            hit:      () => { noise(0.09, { freq: 2500, to: 500, vol: 0.35 }); tone(200, 0.08, { to: 70, vol: 0.25 }); },
+            heavy:    () => { noise(0.16, { freq: 1800, to: 200, vol: 0.45 }); tone(140, 0.16, { to: 45, vol: 0.35 }); tone(70, 0.2, { type: 'sine', to: 35, vol: 0.4 }); },
+            block:    () => { tone(1100, 0.05, { type: 'triangle', vol: 0.2 }); noise(0.04, { filter: 'highpass', freq: 3000, vol: 0.15 }); },
+            jump:     () => tone(260, 0.09, { to: 520, vol: 0.08 }),
+            land:     () => noise(0.05, { freq: 400, vol: 0.12 }),
+            thud:     () => { tone(90, 0.25, { type: 'sine', to: 35, vol: 0.5 }); noise(0.2, { freq: 600, to: 100, vol: 0.3 }); },
+            throw:    () => noise(0.22, { filter: 'bandpass', freq: 600, to: 2500, q: 1.5, vol: 0.22 }),
+            ko:       () => { tone(500, 0.9, { type: 'sawtooth', to: 50, vol: 0.3 }); noise(0.6, { freq: 3000, to: 100, vol: 0.4 }); tone(60, 0.6, { type: 'sine', to: 30, vol: 0.5 }); },
+            fireball: () => { tone(180, 0.25, { type: 'sawtooth', to: 700, vol: 0.18 }); noise(0.3, { filter: 'bandpass', freq: 800, to: 3000, vol: 0.2 }); },
+            gpu:      () => { tone(900, 0.3, { to: 1800, vol: 0.1 }); noise(0.3, { filter: 'bandpass', freq: 4000, q: 4, vol: 0.15 }); },
+            money:    () => { tone(1318, 0.08, { type: 'triangle', vol: 0.2 }); tone(1760, 0.25, { type: 'triangle', vol: 0.2, delay: 0.07 }); noise(0.15, { filter: 'highpass', freq: 5000, vol: 0.12, delay: 0.02 }); },
+            rising:   () => tone(220, 0.3, { type: 'sawtooth', to: 1100, vol: 0.18 }),
+            bigfire:  () => { tone(120, 0.4, { type: 'sawtooth', to: 500, vol: 0.22 }); noise(0.45, { freq: 1500, to: 300, vol: 0.35 }); },
+            dash:     () => noise(0.12, { filter: 'bandpass', freq: 1200, to: 3000, q: 1.2, vol: 0.18 }),
+            roll:     () => { noise(0.5, { freq: 700, to: 250, vol: 0.3 }); tone(90, 0.45, { type: 'sawtooth', to: 60, vol: 0.12 }); },
+            // 飛翔腳：俯衝的風聲加上連續踢擊
+            kicks:    () => { noise(0.35, { filter: 'bandpass', freq: 2500, to: 900, q: 1, vol: 0.15 }); for (let i = 0; i < 4; i++) noise(0.05, { filter: 'bandpass', freq: 2800, q: 2, vol: 0.14, delay: i * 0.07 }); },
+            // 濕濕的甩泥「啪嘰」聲
+            mud:      () => { for (let i = 0; i < 6; i++) { noise(0.09, { freq: 900, to: 250, q: 2, vol: 0.28, delay: i * 0.08 }); tone(160, 0.07, { type: 'sine', to: 60, vol: 0.18, delay: i * 0.08 }); } },
+            growl:    () => { tone(70, 0.9, { type: 'sawtooth', to: 140, vol: 0.2, attack: 0.3 }); noise(0.9, { freq: 400, to: 900, vol: 0.15 }); },
+            roar:     () => { tone(320, 0.7, { type: 'sawtooth', to: 90, vol: 0.28 }); noise(0.7, { freq: 2500, to: 300, vol: 0.4 }); noise(0.3, { filter: 'highpass', freq: 3000, vol: 0.25 }); },
+            spin:     () => { for (let i = 0; i < 4; i++) noise(0.09, { filter: 'bandpass', freq: 1500, to: 600, q: 2, vol: 0.18, delay: i * 0.1 }); },
+            flip:     () => tone(150, 0.35, { type: 'sawtooth', to: 1200, vol: 0.18 }),
+            rocket:   () => { noise(0.55, { freq: 900, to: 300, vol: 0.35 }); tone(70, 0.5, { type: 'sawtooth', to: 110, vol: 0.15 }); },
+            slap:     () => { for (let i = 0; i < 5; i++) noise(0.04, { filter: 'highpass', freq: 2000, vol: 0.12, delay: i * 0.07 }); },
+            clash:    () => { noise(0.25, { freq: 4000, to: 300, vol: 0.4 }); tone(800, 0.2, { to: 200, vol: 0.15 }); },
+            cursor:   () => tone(660, 0.04, { vol: 0.1 }),
+            confirm:  () => { tone(880, 0.06, { vol: 0.12 }); tone(1320, 0.12, { vol: 0.12, delay: 0.06 }); },
+            pause:    () => { tone(523, 0.08, { vol: 0.12 }); tone(392, 0.12, { vol: 0.12, delay: 0.08 }); },
+            tick:     () => tone(1000, 0.05, { vol: 0.08 }),
+            round:    () => [392, 523, 659].forEach((f, i) => tone(f, 0.12, { vol: 0.14, delay: i * 0.09 })),
+            fight:    () => { tone(784, 0.08, { vol: 0.16 }); tone(1046, 0.3, { type: 'sawtooth', vol: 0.16, delay: 0.08 }); noise(0.3, { filter: 'highpass', freq: 3000, vol: 0.15, delay: 0.08 }); },
+            win:      () => [523, 659, 784, 1046].forEach((f, i) => tone(f, i === 3 ? 0.5 : 0.12, { type: 'triangle', vol: 0.15, delay: i * 0.12 })),
+            lose:     () => [392, 330, 262].forEach((f, i) => tone(f, 0.25, { type: 'triangle', vol: 0.13, delay: i * 0.2 })),
+        };
+        function play(name) { if (ctx && !muted && SFX[name]) SFX[name](); }
+
+        // --- 背景音樂：16 分音符步進的 chiptune，每關換調、速度和音色 ---
+        // lead：每小節 16 格，數字是相對主音的半音，「.」休止；bass：r 主音 / o 高八度 / f 五度
+        const MELODY = {
+            fight: {
+                lead: ['0 . 3 . 7 . 10 7 . 5 3 . 5 . 7 .', '0 . 3 . 7 . 12 10 . 7 . 5 3 . 2 .',
+                       '-4 . 0 . 3 . 8 7 . 5 3 . 5 . 3 .', '-2 . 2 . 5 . 10 9 . 7 5 . 2 . -2 .'],
+                roots: [0, 0, -4, -2], bass: 'r . r o . r . r r . r o . r f .',
+                kick: 'x.......x.x.....', snare: '....x.......x...', hat: 'x.x.x.x.x.x.x.x.',
+            },
+            title: {
+                lead: ['0 . . 4 7 . . 4 9 . . 7 4 . . .', '5 . . 9 12 . . 9 7 . . 4 2 . . .',
+                       '0 . . 4 7 . . 12 11 . . 7 9 . . .', '5 . 4 . 2 . 4 . 0 . . . . . . .'],
+                roots: [0, 5, 0, 7], bass: 'r . . . r . . . r . . . r . o .',
+                kick: 'x.......x.......', snare: '........x.......', hat: '..x...x...x...x.',
+            },
+        };
+        const SONG_CFG = {
+            title:     { m: 'title', root: 60, bpm: 104, wave: 'triangle' },
+            DOJO:      { m: 'fight', root: 57, bpm: 150, wave: 'square' },
+            SILICON:   { m: 'fight', root: 60, bpm: 160, wave: 'sawtooth' },
+            GOLDMOUNT:  { m: 'fight', root: 55, bpm: 138, wave: 'triangle' },
+            PARADE: { m: 'fight', root: 62, bpm: 128, wave: 'square' },
+            CYBERSPACE: { m: 'fight', root: 59, bpm: 156, wave: 'sawtooth' },
+        };
+        const MUSIC_VOL = 0.22;
+        let song = null, songName = null, stepIdx = 0, nextTime = 0, timer = null, pendingSong = null;
+        const midi = n => 440 * Math.pow(2, (n - 69) / 12);
+
+        function buildSong(name) {
+            const cfg = SONG_CFG[name], m = MELODY[cfg.m];
+            const lead = m.lead.join(' ').split(/\s+/).map(t => t === '.' ? null : +t);
+            const leadLen = lead.map((n, i) => { if (n === null) return 0; let l = 1; while (l < 4 && lead[(i + l) % 64] === null) l++; return l; });
+            const bass = m.bass.split(/\s+/).map(t => t === '.' ? null : t === 'r' ? 0 : t === 'o' ? 12 : 7);
+            const flags = s => s.split('').map(ch => ch === 'x');
+            return { ...cfg, lead, leadLen, roots: m.roots, bass, kick: flags(m.kick), snare: flags(m.snare), hat: flags(m.hat) };
+        }
+        function playStep(i, t, spb) {
+            const s = song, bar = i >> 4, k = i & 15, B = musicBus;
+            if (s.lead[i] !== null) tone(midi(s.root + 12 + s.lead[i]), spb * s.leadLen[i] * 0.95, { at: t, type: s.wave, vol: 0.16, bus: B });
+            if (s.bass[k] !== null) tone(midi(s.root - 12 + s.roots[bar] + s.bass[k]), spb * 1.8, { at: t, type: 'triangle', vol: 0.35, bus: B });
+            if (s.kick[k]) tone(150, 0.12, { at: t, type: 'sine', to: 45, vol: 0.6, bus: B });
+            if (s.snare[k]) noise(0.12, { at: t, filter: 'bandpass', freq: 1800, q: 0.8, vol: 0.35, bus: B });
+            if (s.hat[k]) noise(0.03, { at: t, filter: 'highpass', freq: 7000, vol: 0.12, bus: B });
+        }
+        // 每 25ms 預排接下來 0.12 秒的音符，節奏不會受畫面卡頓影響
+        function schedule() {
+            const spb = 60 / song.bpm / 4;
+            while (nextTime < ctx.currentTime + 0.12) {
+                playStep(stepIdx, nextTime, spb);
+                nextTime += spb; stepIdx = (stepIdx + 1) % 64;
+            }
+        }
+        function playSong(name) {
+            if (songName === name && (song || pendingSong)) return;
+            stopSong();
+            songName = name;
+            if (!ctx) { pendingSong = name; return; }
+            song = buildSong(name); stepIdx = 0; nextTime = ctx.currentTime + 0.05;
+            timer = setInterval(schedule, 25);
+        }
+        function stopSong() { clearInterval(timer); timer = null; song = null; songName = null; pendingSong = null; }
+        function duck(on) { if (musicBus) musicBus.gain.setTargetAtTime(on ? MUSIC_VOL * 0.3 : MUSIC_VOL, ctx.currentTime, 0.05); }
+
+        function toggleMute() {
+            muted = !muted;
+            try { localStorage.setItem('cf-muted', muted ? '1' : '0'); } catch (e) {}
+            if (master) master.gain.setTargetAtTime(muted ? 0 : 0.7, ctx.currentTime, 0.02);
+            if (muted && window.speechSynthesis) speechSynthesis.cancel();
+        }
+
+        // 播報員：用瀏覽器內建語音（沒有就安靜略過）
+        function say(text) {
+            if (muted || !ctx || !window.speechSynthesis) return;
+            try {
+                speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'en-US'; u.rate = 0.95; u.pitch = 0.5; u.volume = 0.9;
+                const v = speechSynthesis.getVoices().find(v => v.lang.startsWith('en'));
+                if (v) u.voice = v;
+                speechSynthesis.speak(u);
+            } catch (e) {}
+        }
+
+        return { unlock, play, music: playSong, stopMusic: stopSong, duck, toggleMute, say, get muted() { return muted; } };
+    })();
+
+    const GLYPH_J = ['..###', '...#.', '...#.', '#..#.', '.##..'];
+    const GLYPH_S = ['.##', '#..', '.#.', '..#', '##.'];
 
     // --- 角色定義 ---
     const CHARACTERS = [
         {
-            id: 'JOWUAMAN', name: 'JOWUAMAN', color: '#ecf0f1', skin: '#ffcc88', headband: '#111', 
-            stats: { speed: 5, jump: -20, health: 100 },
-            moves: { type: 'shoto' },
-            desc: 'Balanced | Hadouken: ↓↘→ P | Shoryu: →↓↘ P'
+            id: 'JOWUAMAN', name: 'JOWUAMAN', stage: 'DOJO', type: 'allround', proj: 'jball', aura: '#85c1e9',
+            stats: { speed: 5, jump: -20, health: 105 },
+            // 龍型：氣功出收快、昇龍單發重且無敵久、旋風腿單發擊倒並能穿過飛行道具
+            style: 'zoner', redBall: true, overhead: true, chainMax: 2, dmgMult: 1.1,
+            moves: {
+                fireball:  { dur: 26, spawn: 8 },
+                uppercut: { dmg: 16, inv: 12, hs: 32, vx: 2 },
+                spinkick: { dur: 40, act: [4, 30], hits: 1, dmg: 12, launch: true, hs: 30, projInv: true },
+            },
+            pal: { main: '#f2f4f6', mainD: '#b3bcc6', pants: '#e4e8ec', pantsD: '#a9b2bc', skin: '#ffcb94', skinD: '#d89a63', hair: '#3b2416', acc: '#141414', shoe: '#ffcb94', shoeD: '#d89a63' },
+            alt: { main: '#e05555', mainD: '#9c3434', pants: '#e05555', pantsD: '#9c3434', acc: '#f5f5f5' },
+            desc: 'J-BALL ↓↘→P | RED J-BALL ←↙↓↘→P | J-UPPER →↓↘P | J-CYCLONE ↓↙←K | →P OVERHEAD',
+            combos: ['P, P, K > ↓↘→P', 'P, K > →↓↘P', 'JUMP K, P, K > ←↙↓↘→P']
         },
         {
-            id: 'DONALD', name: 'DONALD', color: '#2980b9', skin: '#eebb99', headband: '#f1c40f', 
+            // 賭場大亨：紫色西裝、金領帶、金鍊子、往後梳的銀髮、墨鏡、白皮鞋
+            id: 'BIGBUX', name: 'BIGBUX', stage: 'GOLDMOUNT', type: 'charge', proj: 'money', aura: '#f7dc6f',
             stats: { speed: 5, jump: -18, health: 100 },
-            moves: { type: 'charge' },
-            desc: 'Money Boom: ← → P | Wall Kick: ↓ ↑ K'
+            pal: { main: '#6c2c91', mainD: '#4a1d63', pants: '#6c2c91', pantsD: '#4a1d63', skin: '#e9b48c', skinD: '#c08860', hair: '#c8c8c8', hairD: '#8e8e8e', acc: '#f1c40f', shoe: '#f5f5f5', shoeD: '#bdbdbd' },
+            alt: { main: '#1e8449', mainD: '#145a32', pants: '#1e8449', pantsD: '#145a32', acc: '#e74c3c' },
+            desc: 'MONEY BOOM [←]→P | WALL KICK [↓]↑K  ([ ]=HOLD)',
+            combos: ['HOLD ↓: ↓P, ↓P > ↑K', 'HOLD ↙: ↓P, ↓P, ↓K > →P', 'JUMP K (HOLD ↙), ↓P, ↓P > →P']
         },
         {
-            id: 'KIM', name: 'KIM', color: '#2c3e50', skin: '#ffcc88', headband: '#111', 
-            stats: { speed: 4, jump: -16, health: 120 },
-            moves: { type: 'sumo' },
-            desc: 'Nuke Headbutt: ← → P | Slap: ↓ ↘ → P'
+            // 軍隊將軍：橄欖綠軍服、大盤帽、勳章、八字鬍、壯碩身材
+            id: 'KABOOM', name: 'KABOOM', stage: 'PARADE', type: 'sumo', proj: null, aura: '#f39c12',
+            stats: { speed: 4, jump: -16, health: 120 }, dashSpeed: 7,
+            pal: { main: '#556b2f', mainD: '#3b4a20', pants: '#556b2f', pantsD: '#3b4a20', skin: '#e8b892', skinD: '#c08a62', hair: '#2b2b2b', acc: '#f1c40f', shoe: '#1a1a1a', shoeD: '#000000' },
+            alt: { main: '#2c3e70', mainD: '#1c2850', pants: '#2c3e70', pantsD: '#1c2850' },
+            desc: 'ROCKET HEADBUTT [←]→P | MEGA SLAP ↓↘→P  ([ ]=HOLD)',
+            combos: ['P, P, K > ↓↘→P', 'HOLD ↙: ↓P, ↓P > →P', 'JUMP K, P, P > ↓↘→P']
         },
         {
-            id: 'HUANG', name: 'HUANG', color: '#111', skin: '#ffcc88', headband: '#bdc3c7', 
+            id: 'TURBO', name: 'TURBO', stage: 'SILICON', type: 'allround', proj: 'gpu', aura: '#58d68d',
             stats: { speed: 7, jump: -22, health: 95 },
-            moves: { type: 'shoto' },
-            desc: 'GPU: ↓↘→ P | Shoryu: →↓↘ P | Tatsu: ↓↙← K' 
+            // 肯型：氣功收招慢、火焰昇龍 3 段飛得遠但無敵短、旋風腿 5 段可空中出、→→ 衝刺、普通技可連 3 次
+            style: 'rusher', diveKick: true, dashSpeed: 11, chainMax: 3,
+            moves: {
+                fireball:  { dur: 38, spawn: 12 },
+                uppercut: { act: [1, 24], dmg: 7, hits: 3, every: 6, box: [-20, -12, 52, 95], inv: 4, vy: -19, vx: 5 },
+                spinkick: { dur: 60, act: [4, 56], hits: 5, dmg: 4, speed: 7 },
+            },
+            // 科技 CEO：灰白往後梳短髮、招牌黑色皮夾克（亮面反光）、黑 T 恤、黑褲黑鞋
+            pal: { main: '#1e1e20', mainD: '#0b0b0c', pants: '#26262b', pantsD: '#151518', skin: '#f3c597', skinD: '#c9945f', hair: '#5a5a5a', hairD: '#a8a8a8', acc: '#2e2e33', shoe: '#141414', shoeD: '#000000' },
+            alt: { main: '#5b3a24', mainD: '#3a2414' },
+            desc: 'GPU ↓↘→P | OVERHEAT UPPER →↓↘P | FAN SPIN ↓↙←K | DIVE KICK (AIR) ↓↙←K',
+            combos: ['P, P, P, K > →↓↘P', '→→ DASH, P, P, K > ↓↙←K', 'JUMP ↓↙←K (DIVE), P, P, P, K > →↓↘P']
+        },
+        {
+            // 野獸型（參考布蘭卡）：開場是人類，變身成蜥蜴人才開打
+            id: 'LIZARDO', name: 'LIZARDO', stage: 'CYBERSPACE', type: 'beast', proj: null, aura: '#7dcea0',
+            stats: { speed: 6, jump: -19, health: 100 },
+            transforms: true, style: 'rusher', dashSpeed: 10,
+            // 蜥蜴人：破西裝外套、短褲、赤腳；cloth 是撕破的短褲
+            pal: { main: '#5d6d7e', mainD: '#3e4a56', pants: '#6ab04c', pantsD: '#3d7a2a', skin: '#6ab04c', skinD: '#3d7a2a', hair: '#2f6b22', acc: '#f4d03f', shoe: '#4e9a3a', shoeD: '#2f6b22', cloth: '#5d6d7e' },
+            // 人類：灰色西裝、紅領帶、油頭旁分、眼鏡、棕色皮鞋
+            humanPal: { main: '#5d6d7e', mainD: '#3e4a56', pants: '#5d6d7e', pantsD: '#3e4a56', skin: '#f1c8a8', skinD: '#d1a07c', hair: '#1b1b1b', shoe: '#5a3418', shoeD: '#3b220f' },
+            alt: { skin: '#d35400', skinD: '#a04000', pants: '#d35400', pantsD: '#a04000', shoe: '#c0504d', shoeD: '#8e3b38', hair: '#7b241c' },
+            desc: 'LIZARD ROLL [←]→P | UP ROLL [↓]↑K | MUD SPIN K,K,K (MASH)  ([ ]=HOLD)',
+            combos: ['HOLD ↙: ↓P, ↓P > →P', 'K, K, K (MASH) = MUD SPIN', 'HOLD ↓: ↓P > ↑K']
         }
     ];
 
-    // 場景設定
-    const STAGES = [
-        { id: 'DOJO', skyTop: '#2c3e50', skyBot: '#d35400', floor: '#5d4037' },
-        { id: 'SILICON', skyTop: '#87CEEB', skyBot: '#E0F7FA', floor: '#BDC3C7' }, 
-        { id: 'RUSHMORE', skyTop: '#3498db', skyBot: '#ecf0f1', floor: '#7f8c8d' }, 
-        { id: 'PYONGYANG', skyTop: '#2c3e50', skyBot: '#c0392b', floor: '#34495e' } 
+    // --- 招式資料 ---
+    // box: [從身體前緣往前的 x, 從頭頂往下的 y, 寬, 高]；act: 有判定的幀；every/hits: 多段攻擊
+    // cancel: 命中（或被擋）後，這段幀數內可以接必殺技；chain: 可以直接接的普通技
+    // hs（硬直）比出招剩餘時間長 → 打中後有幀數優勢，可以 link 下一招
+    const MOVES = {
+        punch:       { dur: 18, act: [4, 8],   dmg: 6,  box: [0, 38, 40, 24],    hs: 20, kb: 3, cancel: [4, 17], chain: ['punch', 'kick'], airBox: [0, 40, 44, 40] },
+        kick:        { dur: 24, act: [6, 12],  dmg: 9,  box: [0, 72, 50, 28],    hs: 24, kb: 5, cancel: [6, 22], airBox: [-14, 92, 58, 50] },
+        // 蹲下攻擊：蹲拳很快可以連打；掃腳是下段（要蹲著擋）並且會擊倒
+        cpunch:      { dur: 15, act: [3, 6],   dmg: 5,  box: [0, 60, 38, 22],    hs: 18, kb: 3, cancel: [3, 14], chain: ['punch', 'kick'] },
+        sweep:       { dur: 30, act: [7, 11],  dmg: 8,  box: [0, 112, 66, 18],   hs: 20, kb: 4, cancel: [7, 16], low: true, trip: true },
+        // 上段拳（→P）：出招慢，但一定要站著擋
+        overhead:    { dur: 34, act: [18, 22], dmg: 9,  box: [0, 20, 42, 44],    hs: 22, kb: 4, overhead: true },
+        uppercut:   {          act: [1, 16],  dmg: 14, box: [-20, -12, 46, 90], hs: 30, kb: 4, launch: true, sp: true, inv: 8, vy: -17, vx: 3 },
+        wallKick:   {          act: [1, 18],  dmg: 15, box: [-50, -24, 100, 110], hs: 30, kb: 6, launch: true, sp: true, inv: 6 },
+        spinkick:   { dur: 44, act: [4, 40],  dmg: 5,  box: [-86, 20, 116, 46], hs: 16, kb: 5, sp: true, every: 10, hits: 3, speed: 6 },
+        headbutt:    { dur: 36, act: [5, 26],  dmg: 13, box: [-10, 20, 44, 56],  hs: 22, kb: 9, sp: true },
+        // 百裂手：起手較慢、最後一下擊倒；被擋住時收招很長，對手可以反擊
+        hundredHand: { dur: 60, act: [10, 40], dmg: 3,  box: [0, 24, 60, 50],    hs: 12, kb: 2, sp: true, every: 8, hits: 4, bs: 8, finisher: true },
+        // LIZARDO：滾動撞擊（打到會彈回）、往上滾（對空）、全身放電（前後都打）
+        roll:        { dur: 40, act: [6, 34],  dmg: 12, box: [-30, 64, 76, 60],  hs: 24, kb: 6, sp: true, bounce: true },
+        vroll:       {          act: [3, 28],  dmg: 12, box: [-30, -10, 70, 90], hs: 30, kb: 4, launch: true, sp: true, inv: 6, vy: -16, vx: 2 },
+        // 飛翔腳：斜向下俯衝連踢，落地才結束；算上段（要站著擋）
+        divekick:    {          act: [3, 90],  dmg: 4,  box: [-10, 80, 60, 60],  hs: 16, kb: 1, sp: true, every: 7, hits: 4, overhead: true },
+        mudspin:     { dur: 50, act: [8, 44],  dmg: 3,  box: [-112, 10, 168, 110], hs: 14, kb: 2, sp: true, every: 6, hits: 6, bs: 10, finisher: true },
+        fireball:    { dur: 32, spawn: 10 },
+        fireball2:   { dur: 44, spawn: 14 },
+        moneyBoom:   { dur: 26, spawn: 7 },
+        dash:        { dur: 16 },
+        // 後跳：往後小跳一段，起跳前 8 幀無敵（用來躲攻擊），落地有短暫硬直
+        backdash:    { inv: 8 },
+        throw:       { dur: 30 },
+        land:        { dur: 8 },
+    };
+    const FRICTION_STATES = new Set(['hit', 'block', 'down', 'ko', 'land', 'throw', 'win']);
+    // 出招時的音效（飛行道具在真正發射時才出聲）
+    const NORMALS = new Set(['punch', 'kick', 'cpunch', 'sweep', 'overhead']);
+    const SPECIAL_SFX = { uppercut: 'rising', spinkick: 'spin', wallKick: 'flip', headbutt: 'rocket', hundredHand: 'slap', throw: 'throw', dash: 'dash', backdash: 'dash', roll: 'roll', vroll: 'roll', mudspin: 'mud', divekick: 'kicks' };
+    const MUD = ['#6e4b2a', '#8b5e34', '#4a3218', '#a47148'];
+    const PROJ_SFX = { fireball: 'fireball', jball: 'fireball', jball2: 'bigfire', gpu: 'gpu', money: 'money' };
+    // 飛行道具：速度、每段傷害、段數、最後一段是否擊倒
+    const PROJ_DATA = {
+        jball:  { speed: 9,  dmg: 12, hits: 1 },
+        jball2: { speed: 8,  dmg: 7,  hits: 2, knockdown: true },
+        gpu:    { speed: 10, dmg: 9,  hits: 1 },
+        money:  { speed: 11, dmg: 9,  hits: 1 },
+    };
+
+    let gameState = 'title';
+    let frameCount = 0, animFrame = 0, stateTimer = 0;
+    let p1Wins = 0, p2Wins = 0, roundNum = 0;
+    let isAIEnabled = true;
+    let player = null, enemy = null;
+    let projectiles = [], particles = [], sparks = [];
+    let timeFrames = 0, roundEnding = false, endTimer = 0;
+    let hitstop = 0, slowmo = 0, shake = 0;
+    let pauseIndex = 0, pausedFrom = 'playing';
+    let stage = null;
+    let sel = { p1: 0, p2: 1, p2Joined: false, p1Ready: false, p2Ready: false };
+    let gameMode = '1p', modeIndex = 0;
+    const MODES = ['1p', '2p', 'training'];
+    // 練習模式狀態
+    const DUMMY_MODES = ['STAND', 'BLOCK', 'JUMP', 'CPU'];
+    let dummyMode = 0, showBoxes = false, advTrack = null;
+    const trainStat = { last: '-', best: 0, adv: '-' };
+    const comboTimer = { p1: 0, p2: 0 };
+
+    // ================= 輸入 =================
+    // 用 e.code（實體按鍵），注音輸入法開著也能玩
+    const keys = {}, justPressed = {};
+    window.addEventListener('keydown', e => {
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) e.preventDefault();
+        if (!e.repeat) justPressed[e.code] = true;
+        keys[e.code] = true;
+        Sound.unlock();
+        if (e.code === 'KeyM' && !e.repeat) { Sound.toggleMute(); updateSoundUI(); }
+    });
+    window.addEventListener('pointerdown', () => Sound.unlock());
+    window.addEventListener('keyup', e => { keys[e.code] = false; });
+    window.addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
+
+    const KEYMAP = [
+        { up: ['KeyW'], down: ['KeyS'], left: ['KeyA'], right: ['KeyD'], punch: ['KeyJ'], kick: ['KeyN', 'KeyK'], confirm: ['KeyJ', 'Space', 'Enter'] },
+        { up: ['ArrowUp'], down: ['ArrowDown'], left: ['ArrowLeft'], right: ['ArrowRight'], punch: ['Digit1', 'Numpad1'], kick: ['Digit2', 'Numpad2'], confirm: ['Digit1', 'Numpad1'] },
     ];
+    let pads = [null, null], padNow = [[], []], padPrev = [[], []];
+    const prevDir = ['NEUTRAL', 'NEUTRAL'];
 
-    let timer = 99, timerId;
-    let gameState = 'title'; 
-    let p1Wins = 0, p2Wins = 0;
-    let isAIEnabled = true; 
-    let currentStage = STAGES[0];
-    let p1CharIndex = 0;
-    let p1SelectedChar = CHARACTERS[0];
-    let p2SelectedChar = CHARACTERS[1];
-    let roundEndTimestamp = 0;
-    let isPaused = false;
-    let pauseMenuIndex = 0; 
-    let lastPauseInputTime = 0; 
-    let lastPauseNavTime = 0;
+    function pollPads() {
+        const list = navigator.getGamepads ? Array.from(navigator.getGamepads()).filter(Boolean) : [];
+        pads = [list[0] || null, list[1] || null];
+        padNow = pads.map(gp => gp ? gp.buttons.map(b => b.pressed) : []);
+    }
+    const padDown = (i, b) => !!padNow[i][b];
+    const padHit = (i, b) => !!padNow[i][b] && !padPrev[i][b];
 
-    // --- Input Buffer ---
+    function dirFrom(u, d, l, r) {
+        const v = u ? 'UP' : d ? 'DOWN' : '';
+        const h = l ? 'LEFT' : r ? 'RIGHT' : '';
+        return v && h ? `${v}_${h}` : (v || h || 'NEUTRAL');
+    }
+
+    // 每個 tick 每位玩家只能呼叫一次（會更新 prevDir）
+    // maps / padIdx：這位玩家讀哪幾組鍵位與手把；1P 模式時兩組都給 P1
+    function readPlayer(slot, maps, padIdx) {
+        const ks = f => maps.flatMap(i => KEYMAP[i][f]);
+        const down = f => ks(f).some(k => keys[k]);
+        const hit = f => ks(f).some(k => justPressed[k]);
+        const pd = (...b) => padIdx.some(i => b.some(x => padDown(i, x)));
+        const ph = (...b) => padIdx.some(i => b.some(x => padHit(i, x)));
+        const axis = (a, s) => padIdx.some(i => pads[i] && (pads[i].axes[a] || 0) * s > 0.4);
+        let u = down('up') || axis(1, -1) || pd(12), d = down('down') || axis(1, 1) || pd(13);
+        let l = down('left') || axis(0, -1) || pd(14), r = down('right') || axis(0, 1) || pd(15);
+        if (u && d) d = false;
+        if (l && r) l = r = false;
+        const dir = dirFrom(u, d, l, r);
+        const dirPressed = dir !== prevDir[slot] && dir !== 'NEUTRAL' ? dir : null;
+        prevDir[slot] = dir;
+        return {
+            dir, dirPressed,
+            punch: hit('punch') || ph(2, 3),
+            kick: hit('kick') || ph(0, 1),
+            punchHeld: down('punch') || pd(2, 3),
+            kickHeld: down('kick') || pd(0, 1),
+            confirm: hit('confirm') || ph(0),
+            start: ph(9),
+        };
+    }
+    function anyPressed() {
+        return Object.keys(justPressed).length > 0 || padNow.some((btns, i) => btns.some((b, k) => b && !padPrev[i][k]));
+    }
+    function endInputFrame() {
+        for (const k in justPressed) delete justPressed[k];
+        padPrev = padNow;
+    }
+
+    // --- 指令緩衝（以幀計時） ---
     class InputBuffer {
-        constructor() { this.buffer = []; this.maxBufferSize = 30; this.lastDir = 'NEUTRAL'; }
-        update(direction) {
-            if (direction !== this.lastDir) {
-                this.buffer.push({ dir: direction, time: Date.now() });
-                if (this.buffer.length > this.maxBufferSize) this.buffer.shift();
-                this.lastDir = direction;
-            }
+        constructor() { this.buf = []; }
+        push(dir, frame) {
+            const last = this.buf[this.buf.length - 1];
+            if (!last || last.dir !== dir) { this.buf.push({ dir, frame }); if (this.buf.length > 32) this.buf.shift(); }
         }
-        checkCommand(sequence, facingLeft) {
-            if (this.buffer.length < sequence.length) return false;
-            const targetSeq = sequence.map(d => {
-                if (facingLeft) { if (d === 'RIGHT') return 'LEFT'; if (d === 'LEFT') return 'RIGHT'; }
-                return d;
-            });
-            let seqIndex = targetSeq.length - 1;
-            const now = Date.now();
-            for (let i = this.buffer.length - 1; i >= 0; i--) {
-                const entry = this.buffer[i];
-                if (now - entry.time > 800) break;
-                if (this.isDirectionMatch(entry.dir, targetSeq[seqIndex])) {
-                    seqIndex--; if (seqIndex < 0) return true; 
-                }
+        clear() { this.buf = []; }
+        match(seq, facingLeft, frame, window = 30) {
+            const target = seq.map(d => d === 'FWD' ? (facingLeft ? 'LEFT' : 'RIGHT') : d === 'BACK' ? (facingLeft ? 'RIGHT' : 'LEFT') : d);
+            let i = target.length - 1;
+            for (let k = this.buf.length - 1; k >= 0 && i >= 0; k--) {
+                const e = this.buf[k];
+                if (frame - e.frame > window) break;
+                if (e.dir.split('_').includes(target[i])) i--;
             }
-            return false;
-        }
-        isDirectionMatch(input, target) {
-            if (input === target) return true;
-            if (target === 'DOWN' && input.includes('DOWN')) return true;
-            if (target === 'UP' && input.includes('UP')) return true;
-            if (target === 'RIGHT' && input.includes('RIGHT')) return true;
-            if (target === 'LEFT' && input.includes('LEFT')) return true;
-            return false;
+            return i < 0;
         }
     }
 
-    let particles = [];
+    // ================= 角色精靈圖 =================
+    // 姿勢參數 p: { legs, front, back, lean, bob, headX, face, frame }
+    function drawLegs(g, P, mode) {
+        const leg = (x, top, len, dark) => {
+            rect(g, x, top, 4, len, dark ? P.pantsD : P.pants);
+            rect(g, x, top + len, 5, 2, dark ? P.shoeD : P.shoe);
+        };
+        if (mode.startsWith('walk')) {
+            const W = [[10, 18, 0, 0], [13, 15, 1, 0], [17, 11, 0, 0], [14, 14, 0, 1]][+mode[4]];
+            leg(W[0], 30, 8 - W[2] * 2, true); leg(W[1], 30, 8 - W[3] * 2, false);
+            return;
+        }
+        switch (mode) {
+            case 'wide': leg(8, 30, 8, true); leg(20, 30, 8, false); break;
+            case 'tuck':
+                leg(11, 30, 5, true);
+                rect(g, 16, 30, 7, 3, P.pants); rect(g, 20, 33, 3, 3, P.pants); rect(g, 20, 36, 4, 2, P.shoe);
+                break;
+            case 'kick':
+                leg(11, 30, 8, true);
+                rect(g, 18, 28, 12, 4, P.pants); rect(g, 30, 27, 4, 5, P.shoe);
+                break;
+            case 'crouch':
+                leg(9, 34, 4, true);
+                rect(g, 15, 31, 8, 3, P.pants);
+                leg(19, 34, 4, false);
+                break;
+            case 'sweep':
+                leg(10, 34, 4, true);
+                rect(g, 16, 35, 16, 3, P.pants); rect(g, 31, 34, 3, 5, P.shoe);
+                break;
+            case 'dangle':
+                rect(g, 9, 30, 4, 6, P.pantsD); rect(g, 8, 36, 4, 2, P.shoeD);
+                leg(17, 30, 7, false);
+                break;
+            default: leg(11, 30, 8, true); leg(17, 30, 8, false);
+        }
+    }
+
+    function drawTorso(g, ch, P, tx, ty, tw, form) {
+        rect(g, tx, ty, tw, 12, P.main);
+        rect(g, tx, ty, 2, 12, P.mainD);
+        const fx = tx + tw;
+        if (ch.id === 'JOWUAMAN') {
+            rect(g, fx - 6, ty, 3, 3, P.skin); rect(g, fx - 5, ty + 3, 1, 1, P.skin);
+            rect(g, fx - 7, ty, 1, 7, P.mainD);
+            rect(g, tx, ty + 8, tw, 2, P.acc); rect(g, fx - 5, ty + 10, 2, 2, P.acc);
+        } else if (ch.id === 'BIGBUX') {
+            // 白襯衫、金領帶、金鍊子、口袋巾
+            rect(g, fx - 6, ty, 4, 5, '#ffffff');
+            rect(g, fx - 5, ty + 1, 2, 7, P.acc);
+            rect(g, fx - 7, ty + 4, 6, 1, '#f4d03f');
+            rect(g, fx - 7, ty, 1, 7, P.mainD); rect(g, fx - 2, ty, 1, 6, P.mainD);
+            rect(g, tx + 3, ty + 2, 2, 1, '#f4d03f');
+        } else if (ch.id === 'KABOOM') {
+            // 肩章、勳章、金鈕扣、皮帶
+            rect(g, tx, ty, 3, 1, P.acc); rect(g, fx - 3, ty, 3, 1, P.acc);
+            rect(g, tx + 3, ty + 2, 2, 2, '#e74c3c'); rect(g, tx + 5, ty + 2, 2, 2, '#3498db'); rect(g, tx + 3, ty + 4, 4, 1, P.acc);
+            for (let i = 0; i < 3; i++) rect(g, fx - 5, ty + 2 + i * 3, 1, 1, P.acc);
+            rect(g, tx, ty + 9, tw, 1, '#2b1d12'); rect(g, fx - 6, ty + 9, 2, 1, P.acc);
+        } else if (ch.id === 'LIZARDO') {
+            if (form === 'human') {
+                rect(g, fx - 6, ty, 4, 6, '#ffffff'); rect(g, fx - 5, ty + 1, 2, 8, '#c0392b');
+                rect(g, fx - 7, ty, 1, 7, P.mainD); rect(g, fx - 2, ty, 1, 6, P.mainD);
+            } else {
+                // 西裝被撐破：胸口露出綠色鱗片、衣襬破成鋸齒
+                rect(g, fx - 7, ty, 5, 10, P.skin);
+                for (let i = 0; i < 3; i++) rect(g, fx - 6 + (i % 2), ty + 2 + i * 3, 2, 1, P.skinD);
+                rect(g, tx + 1, ty + 10, 2, 2, P.skin); rect(g, tx + 5, ty + 11, 2, 1, P.skin); rect(g, fx - 3, ty + 10, 2, 2, P.skin);
+                rect(g, tx + 2, ty, 2, 1, P.skin);
+            }
+        } else if (ch.id === 'TURBO') {
+            // 皮夾克：敞開露出黑 T 恤、翻領、銀色拉鍊、肩膀和胸口的皮革反光
+            rect(g, fx - 6, ty, 4, 12, P.acc);
+            rect(g, fx - 7, ty, 2, 4, P.mainD); rect(g, fx - 3, ty, 2, 4, P.mainD);
+            rect(g, fx - 2, ty + 1, 1, 10, '#9a9a9a');
+            rect(g, tx + 2, ty + 1, 3, 1, '#5c5c63'); rect(g, tx + 3, ty + 3, 1, 4, '#3d3d43');
+            rect(g, fx - 1, ty + 2, 1, 3, '#4a4a50');
+            rect(g, tx, ty + 10, tw, 1, P.mainD);
+        }
+    }
+
+    function drawHead(g, ch, P, hx, hy, face, frame, form) {
+        rect(g, hx, hy, 10, 10, P.skin);
+        rect(g, hx, hy + 9, 10, 1, P.skinD); rect(g, hx, hy, 1, 10, P.skinD);
+        rect(g, hx + 2, hy + 4, 2, 3, P.skinD);
+        // 頭髮 / 招牌特徵
+        if (ch.id === 'JOWUAMAN') {
+            rect(g, hx, hy - 2, 10, 3, P.hair);
+            rect(g, hx + 1, hy - 3, 2, 1, P.hair); rect(g, hx + 5, hy - 3, 2, 1, P.hair); rect(g, hx + 8, hy - 3, 1, 1, P.hair);
+            rect(g, hx, hy + 3, 2, 2, P.hair);
+            rect(g, hx, hy + 1, 10, 2, P.acc);
+            rect(g, hx - 3, hy + 1, 3, 1, P.acc); rect(g, hx - 6, hy + 2 + frame, 3, 1, P.acc); rect(g, hx - 8, hy + 1 + frame * 2, 2, 1, P.acc);
+        } else if (ch.id === 'BIGBUX') {
+            // 往後梳的銀色油頭、後腦小馬尾
+            rect(g, hx, hy - 2, 10, 3, P.hair); rect(g, hx + 2, hy - 2, 6, 1, '#e5e5e5');
+            rect(g, hx, hy + 1, 3, 3, P.hair); rect(g, hx - 2, hy + 1, 2, 2, P.hairD);
+        } else if (ch.id === 'KABOOM') {
+            // 大盤帽：帽頂、黑帽帶、帽簷、金色帽徽
+            rect(g, hx - 1, hy - 3, 12, 3, P.mainD); rect(g, hx - 1, hy, 12, 1, '#2b2b2b');
+            rect(g, hx + 5, hy + 1, 7, 1, '#111'); rect(g, hx + 4, hy - 2, 2, 2, P.acc);
+            rect(g, hx, hy + 1, 2, 3, P.hair);
+            rect(g, hx + 10, hy + 3, 1, 6, P.skin);
+        } else if (ch.id === 'TURBO') {
+            // 灰白短髮往後梳，額前一點點蓬起
+            rect(g, hx, hy - 2, 10, 3, P.hair); rect(g, hx + 6, hy - 3, 4, 1, P.hair);
+            rect(g, hx + 2, hy - 2, 2, 1, P.hairD); rect(g, hx + 6, hy - 3, 2, 1, P.hairD); rect(g, hx + 8, hy - 1, 2, 1, P.hairD);
+            rect(g, hx, hy + 1, 3, 3, P.hair); rect(g, hx + 1, hy + 2, 1, 1, P.hairD);
+        }
+        if (ch.id === 'LIZARDO') {
+            if (form === 'human') {
+                // 油頭旁分
+                rect(g, hx, hy - 2, 10, 3, P.hair); rect(g, hx + 3, hy - 2, 1, 1, P.skinD);
+                rect(g, hx + 4, hy + 1, 6, 1, P.hair);
+                rect(g, hx, hy + 1, 2, 3, P.hair);
+            } else {
+                // 蜥蜴頭：頭頂一排棘刺、往前凸的吻部、黃色豎瞳、大嘴
+                for (let i = 0; i < 4; i++) rect(g, hx + 1 + i * 2, hy - 2 - (i % 2), 2, 2, P.hair);
+                rect(g, hx + 10, hy + 5, 2, 4, P.skin); rect(g, hx + 11, hy + 5, 1, 1, P.skinD);
+                rect(g, hx + 6, hy + 3, 3, 2, P.acc); rect(g, hx + 7, hy + 3, 1, 2, '#111');
+                if (face === 'shout' || face === 'hurt') {
+                    rect(g, hx + 5, hy + 7, 7, 2, '#1e4d14'); rect(g, hx + 6, hy + 7, 1, 1, '#fff'); rect(g, hx + 9, hy + 7, 1, 1, '#fff');
+                } else rect(g, hx + 5, hy + 8, 7, 1, '#1e4d14');
+                return;
+            }
+        }
+        // 表情
+        if (face === 'hurt') {
+            rect(g, hx + 6, hy + 5, 1, 1, '#111'); rect(g, hx + 8, hy + 5, 1, 1, '#111');
+            rect(g, hx + 7, hy + 7, 2, 2, '#5a1a1a');
+        } else {
+            rect(g, hx + 6, hy + 4, 1, 2, '#111'); rect(g, hx + 8, hy + 4, 1, 2, '#111');
+            if (face === 'shout') rect(g, hx + 7, hy + 7, 3, 2, '#5a1a1a');
+            else if (ch.id === 'BIGBUX') { rect(g, hx + 6, hy + 7, 4, 1, '#ffffff'); rect(g, hx + 8, hy + 7, 1, 1, '#f1c40f'); } // 露出金牙的笑
+            else rect(g, hx + 7, hy + 7, 2, 1, P.skinD);
+        }
+        // 戴在臉上的東西畫在眼睛上面
+        if (ch.id === 'BIGBUX') { rect(g, hx + 5, hy + 3, 6, 2, '#111'); rect(g, hx + 9, hy + 3, 1, 1, '#ffffff'); }       // 墨鏡
+        if (ch.id === 'KABOOM') rect(g, hx + 6, hy + 6, 5, 1, '#2b1d12');                                                // 八字鬍
+        if (ch.id === 'LIZARDO' && form === 'human') { rect(g, hx + 5, hy + 3, 5, 1, '#111'); rect(g, hx + 7, hy + 4, 1, 1, '#111'); } // 眼鏡
+    }
+
+    function drawFrontArm(g, P, mode, fx, sy) {
+        const S = P.main, K = P.skin;
+        switch (mode) {
+            case 'guard':   rect(g, fx, sy + 1, 3, 3, S); rect(g, fx + 2, sy - 2, 3, 5, S); rect(g, fx + 2, sy - 5, 3, 3, K); break;
+            case 'punch':   rect(g, fx, sy, 9, 3, S); rect(g, fx + 9, sy - 1, 3, 5, K); break;
+            case 'punchHi': rect(g, fx, sy - 3, 9, 3, S); rect(g, fx + 9, sy - 4, 3, 5, K); break;
+            case 'punchLo': rect(g, fx, sy + 3, 9, 3, S); rect(g, fx + 9, sy + 2, 3, 5, K); break;
+            case 'palm':    rect(g, fx, sy + 1, 7, 3, S); rect(g, fx + 7, sy - 1, 3, 6, K); break;
+            case 'up':      rect(g, fx - 1, sy - 12, 3, 13, S); rect(g, fx - 2, sy - 16, 4, 4, K); break;
+            case 'out':     rect(g, fx, sy, 8, 3, S); rect(g, fx + 8, sy, 2, 3, K); break;
+            case 'block':   rect(g, fx, sy + 1, 3, 3, S); rect(g, fx + 1, sy - 6, 3, 8, S); rect(g, fx + 1, sy - 8, 3, 2, K); break;
+            case 'grab':    rect(g, fx, sy - 1, 8, 3, S); rect(g, fx + 8, sy - 2, 3, 4, K); break;
+            default:        rect(g, fx, sy, 3, 7, S); rect(g, fx, sy + 7, 3, 2, K);
+        }
+    }
+
+    function drawBackArm(g, P, mode, x, sy) {
+        const S = P.mainD, K = P.skinD;
+        switch (mode) {
+            case 'guard': rect(g, x + 3, sy + 2, 7, 3, S); rect(g, x + 10, sy + 1, 3, 3, K); break;
+            case 'out':   rect(g, x - 5, sy, 6, 3, S); rect(g, x - 7, sy, 2, 3, K); break;
+            case 'back':  rect(g, x - 2, sy + 1, 4, 4, S); rect(g, x - 3, sy + 2, 2, 3, K); break;
+            case 'up':    rect(g, x + 1, sy - 11, 3, 12, S); rect(g, x + 1, sy - 14, 3, 3, K); break;
+            default:      rect(g, x, sy, 3, 7, S); rect(g, x, sy + 7, 3, 2, K);
+        }
+    }
+
+    function drawFigure(g, ch, P, p) {
+        const bx = p.lean || 0, by = p.bob || 0, wide = ch.id === 'KABOOM';
+        const tx = (wide ? 9 : 10) + bx, tw = wide ? 14 : 12, ty = 18 + by, sy = 19 + by;
+        const backX = (wide ? 7 : 8) + bx;
+        const lizard = ch.id === 'LIZARDO' && p.form !== 'human';
+        // 蜥蜴人：袖子撕掉了，手臂是綠色皮膚；尾巴畫在最後面
+        const armP = lizard ? { ...P, main: P.skin, mainD: P.skinD } : P;
+        if (lizard) {
+            const w = p.frame || 0;
+            rect(g, 5 + bx, 27 + by, 6, 3, P.skin); rect(g, 2 + bx, 29 + by + w, 4, 2, P.skinD); rect(g, 1 + bx, 31 + by + w, 2, 1, P.skinD);
+        }
+        if (p.back !== 'guard') drawBackArm(g, armP, p.back, backX, sy);
+        drawLegs(g, P, p.legs || 'stand');
+        if (lizard) {
+            // 撕破的短褲，褲腳參差不齊
+            rect(g, 9, 30, 14, 3, P.cloth); rect(g, 10, 33, 2, 1, P.cloth); rect(g, 15, 33, 2, 1, P.cloth); rect(g, 20, 33, 2, 1, P.cloth);
+        }
+        drawTorso(g, ch, P, tx, ty, tw, p.form);
+        if (p.back === 'guard') drawBackArm(g, armP, 'guard', backX, sy);
+        drawHead(g, ch, P, 11 + bx + (p.headX || 0), 8 + by, p.face, p.frame || 0, p.form);
+        drawFrontArm(g, armP, p.front, tx + tw - 2, sy);
+    }
+
+    // 畫好的姿勢會快取起來，並自動加上 1px 外框
+    const spriteCache = new Map();
+    function silhouette(src, col) {
+        const [cv, g] = makeCanvas(SW, SH);
+        g.drawImage(src, 0, 0); g.globalCompositeOperation = 'source-in';
+        g.fillStyle = col; g.fillRect(0, 0, SW, SH);
+        return cv;
+    }
+    function getSprite(ch, alt, p, white) {
+        const key = ch.id + (alt ? '+' : '') + (white ? 'W' : '') + JSON.stringify(p);
+        let spr = spriteCache.get(key);
+        if (!spr) {
+            let pal = alt ? { ...ch.pal, ...ch.alt } : ch.pal;
+            if (p.form === 'human' && ch.humanPal) pal = { ...pal, ...ch.humanPal };
+            const [base, bg] = makeCanvas(SW, SH);
+            drawFigure(bg, ch, pal, p);
+            const dark = silhouette(base, OUTLINE);
+            const [out, og] = makeCanvas(SW, SH);
+            [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => og.drawImage(dark, dx, dy));
+            og.drawImage(white ? silhouette(base, '#ffffff') : base, 0, 0);
+            spriteCache.set(key, spr = out);
+        }
+        return spr;
+    }
+
+    const HURT = { legs: 'stand', front: 'down', back: 'out', lean: -2, headX: -1, face: 'hurt' };
+    const HURT_LIE = { legs: 'stand', front: 'down', back: 'down', face: 'hurt' };
+    const LAND = { legs: 'wide', front: 'down', back: 'down', bob: 2 };
+
+    function poseFor(f) {
+        const t = f.stateFrame, a = animFrame, w = (a >> 3) % 2, air = f.airborne;
+        const guard = { legs: air ? 'tuck' : 'stand', front: 'guard', back: 'guard', frame: w };
+        switch (f.state) {
+            case 'idle': return { p: { ...guard, bob: (a >> 4) % 2 } };
+            case 'prejump': return { p: { ...LAND, front: 'guard', back: 'guard' } };
+            case 'run': { const s = (a >> 3) % 4; return { p: { legs: 'walk' + s, front: 'guard', back: 'guard', bob: s % 2, frame: w } }; }
+            case 'jump': return { p: { legs: 'tuck', front: 'guard', back: 'down', frame: w } };
+            case 'land': return { p: LAND };
+            case 'punch': return { p: (t >= 3 && (t <= 9 || air)) ? { legs: air ? 'tuck' : 'stand', front: 'punch', back: 'back', lean: 1, face: 'shout', frame: w } : { ...guard, lean: 1 } };
+            case 'kick': return { p: (t >= 5 && (t <= 13 || air)) ? { legs: 'kick', front: 'guard', back: 'down', lean: -1, frame: w } : { ...guard, lean: -1 } };
+            case 'block': return { p: f.crouchBlock ? { legs: 'crouch', front: 'block', back: 'guard', bob: 4, lean: -1, frame: w } : { legs: 'stand', front: 'block', back: 'guard', lean: -1, frame: w } };
+            case 'crouch': return { p: { legs: 'crouch', front: 'guard', back: 'guard', bob: 4, frame: w } };
+            case 'cpunch': return { p: (t >= 2 && t <= 8) ? { legs: 'crouch', front: 'punch', back: 'back', bob: 4, lean: 1, face: 'shout', frame: w } : { legs: 'crouch', front: 'guard', back: 'guard', bob: 4, frame: w } };
+            case 'sweep': return { p: (t >= 5 && t <= 15) ? { legs: 'sweep', front: 'down', back: 'down', bob: 6, lean: -2, frame: w } : { legs: 'crouch', front: 'guard', back: 'guard', bob: 4, frame: w } };
+            case 'hit': return { p: { ...HURT, legs: air ? 'tuck' : 'stand' } };
+            case 'thrown': return { p: HURT, rot: t * 0.35 };
+            case 'down': return t < 30 ? { p: HURT_LIE, lie: true } : { p: LAND };
+            case 'ko': return air ? { p: HURT, rot: -Math.min(t / 20, 1) * Math.PI / 2 } : { p: HURT_LIE, lie: true };
+            case 'throw': return { p: t < 12 ? { legs: 'wide', front: 'grab', back: 'back', lean: 1, frame: w } : { legs: 'wide', front: 'up', back: 'down', face: 'shout', frame: w } };
+            case 'fireball': return { p: t < 10 ? { legs: 'wide', front: 'guard', back: 'guard', bob: 1, lean: -1, frame: w } : { legs: 'wide', front: 'palm', back: 'guard', bob: 1, lean: 1, face: 'shout', frame: w } };
+            case 'fireball2': return { p: t < 14 ? { legs: 'wide', front: 'guard', back: 'guard', bob: 2, lean: -2, frame: w } : { legs: 'wide', front: 'palm', back: 'guard', bob: 1, lean: 2, face: 'shout', frame: w } };
+            // 上段拳：先高舉蓄力，再往下劈
+            case 'overhead': return { p: t < 17 ? { legs: 'wide', front: 'up', back: 'back', lean: -1, frame: w } : t <= 24 ? { legs: 'wide', front: 'punchLo', back: 'back', lean: 2, bob: 1, face: 'shout', frame: w } : { ...guard, lean: 1 } };
+            // 縮成一團旋轉
+            case 'roll': return t < 6 ? { p: { ...LAND, front: 'guard', back: 'guard', bob: 3 } } : { p: { legs: 'tuck', front: 'guard', back: 'guard', bob: 4, frame: w }, rot: t * 0.7 };
+            case 'vroll': return { p: { legs: 'tuck', front: 'guard', back: 'guard', bob: 4, frame: w }, rot: t * 0.7 };
+            // 飛翔腳：身體往前斜、兩腳交替踢
+            case 'divekick': return { p: { legs: (t >> 1) % 2 ? 'kick' : 'tuck', front: 'guard', back: 'out', lean: -1, face: 'shout', frame: w }, rot: 0.5, kicks: true };
+            // 甩尾泥巴旋風：原地轉圈（左右翻面），尾巴和手甩開
+            case 'mudspin': return { p: { legs: 'wide', front: 'out', back: 'out', bob: 2, face: 'shout', frame: (t >> 1) % 2 }, flip: t >= 6 && ((t >> 2) % 2) === 1, mud: t >= 8 && t <= 44 };
+            case 'backdash': return { p: { legs: 'tuck', front: 'guard', back: 'guard', lean: -2, frame: w } };
+            case 'dash': return { p: { legs: 'walk' + ((t >> 2) % 4), front: 'guard', back: 'guard', lean: 2, frame: w } };
+            case 'moneyBoom': return { p: t < 7 ? { legs: 'wide', front: 'up', back: 'down', frame: w } : { legs: 'wide', front: 'punch', back: 'back', lean: 1, face: 'shout', frame: w } };
+            case 'uppercut': return { p: (!air && t < 3) ? { legs: 'wide', front: 'guard', back: 'guard', bob: 2, frame: w } : { legs: 'dangle', front: f.vel.y < 2 ? 'up' : 'guard', back: 'down', face: 'shout', frame: w } };
+            case 'spinkick': return { p: { legs: 'kick', front: 'out', back: 'out', frame: w }, flip: ((t >> 2) % 2) === 1, dy: -3 };
+            case 'wallKick': return { p: { legs: 'kick', front: 'out', back: 'down', face: 'shout', frame: w }, rot: -Math.min(t / 34, 1) * Math.PI * 2 };
+            case 'headbutt': return t < 5 ? { p: { ...LAND, front: 'guard', back: 'guard' } } : { p: { legs: 'stand', front: 'up', back: 'up', face: 'shout', frame: w }, rot: Math.PI / 2 };
+            case 'hundredHand': return t > 42 ? { p: { ...LAND, face: 'hurt' } } : { p: { legs: 'wide', front: ['punch', 'punchHi', 'punchLo'][(t >> 1) % 3], back: 'guard', bob: 1, face: 'shout', frame: w }, hands: true };
+            case 'win': return { p: { legs: 'stand', front: 'up', back: 'down', face: 'shout', bob: (a >> 4) % 2, frame: w } };
+        }
+        return { p: guard };
+    }
+
+    // ================= 特效 =================
     class Particle {
-        constructor({x, y, color, velocity, life = 1, size = 3}) {
-            this.x = x; this.y = y; this.color = color; this.velocity = velocity; this.alpha = life; this.size = size;
+        constructor(x, y, vx, vy, col, life, size = 1, grav = 0) {
+            Object.assign(this, { x, y, vx, vy, col, life, max: life, size, grav });
         }
-        draw() {
-            c.save(); c.globalAlpha = this.alpha; c.fillStyle = this.color;
-            c.beginPath(); c.arc(this.x, this.y, this.size, 0, Math.PI*2); c.fill(); c.restore();
-        }
-        update() { this.draw(); this.x += this.velocity.x; this.y += this.velocity.y; this.alpha -= 0.05; }
+        update() { this.x += this.vx; this.y += this.vy; this.vy += this.grav; this.life--; }
+        draw() { c.globalAlpha = Math.min(1, (this.life / this.max) * 1.5); rect(c, this.x, this.y, this.size, this.size, this.col); c.globalAlpha = 1; }
+    }
+    const addParticle = (...a) => particles.push(new Particle(...a));
+    function spawnDust(worldX, n = 5) {
+        for (let i = 0; i < n; i++) addParticle(px(worldX) + rnd(6), px(GROUND_Y) - 1, rnd(0.8), -Math.random() * 0.5, '#d5c4a1', 16 + Math.random() * 8);
     }
 
-    class Fighter {
-        constructor({ position, velocity, charData, isP1 = true }) {
-            this.position = { ...position }; this.startPosition = { ...position };
-            this.velocity = velocity;
-            this.width = 60; this.height = 120;
-            this.charData = charData;
-            this.name = charData.name;
-            this.maxHealth = charData.stats.health; this.health = this.maxHealth;
-            this.speed = charData.stats.speed; this.jumpForce = charData.stats.jump;
-            this.isP1 = isP1;
-            this.inputBuffer = new InputBuffer();
-            this.animState = 'idle'; 
-            this.isAttacking = false; this.isSpecialMove = false; 
-            this.isHit = false; this.isHoldingBack = false; this.isBeingThrown = false; 
-            this.facingLeft = !isP1;
-            this.framesElapsed = 0;
-            this.projectiles = [];
-            this.isProjectilePending = false; 
-        }
-        
-        reset() {
-            this.position = { ...this.startPosition }; this.velocity = { x: 0, y: 0 };
-            this.health = this.maxHealth; this.animState = 'idle';
-            this.isAttacking = false; this.isSpecialMove = false; this.isHit = false;
-            this.isHoldingBack = false; this.isBeingThrown = false;
-            this.facingLeft = !this.isP1; this.projectiles = []; 
-            this.isProjectilePending = false;
-            this.inputBuffer = new InputBuffer();
-        }
-
+    // 擊中火花：放射狀的像素線
+    class Spark {
+        constructor(x, y, col, big) { this.x = px(x); this.y = px(y); this.col = col; this.big = big; this.t = 0; }
+        update() { this.t++; }
+        get dead() { return this.t > 9; }
         draw() {
-            c.fillStyle = "rgba(0,0,0,0.5)"; c.beginPath(); c.ellipse(this.position.x + this.width/2, GROUND_Y, 40, 10, 0, 0, Math.PI*2); c.fill();
-            c.save();
-            if (this.facingLeft) { c.translate(this.position.x + this.width, this.position.y); c.scale(-1, 1); } 
-            else { c.translate(this.position.x, this.position.y); }
-            if (this.isHit && !this.isBeingThrown && this.animState !== 'block') c.translate((Math.random()-0.5)*10, (Math.random()-0.5)*10);
-            
-            this.drawPixelArt();
-            c.restore();
-            this.projectiles.forEach(p => p.draw());
+            const t = this.t, n = this.big ? 8 : 6;
+            if (t < 3) disc(c, this.x, this.y, (this.big ? 4 : 3) - t, '#ffffff');
+            for (let k = 0; k < n; k++) {
+                const ang = (k / n) * Math.PI * 2 + (this.big ? 0 : 0.4);
+                const r0 = 1 + t * 1.3, r1 = r0 + (this.big ? 4 : 3) - t * 0.3;
+                for (let r = r0; r < r1; r++) rect(c, this.x + Math.cos(ang) * r, this.y + Math.sin(ang) * r, 1, 1, this.col);
+            }
+        }
+    }
+
+    // ================= 角色 =================
+    class Fighter {
+        constructor({ charData, isP1, alt = false }) {
+            this.ch = charData; this.name = charData.name; this.isP1 = isP1; this.alt = alt;
+            this.pal = alt ? { ...charData.pal, ...charData.alt } : charData.pal;
+            this.w = 56; this.h = 130;
+            this.maxHealth = charData.stats.health;
+            this.speed = charData.stats.speed; this.jumpForce = charData.stats.jump;
+            // 每個角色自己的招式表：共用 MOVES，再套上角色專屬的修改
+            this.moves = {};
+            for (const k in MOVES) this.moves[k] = { ...MOVES[k], ...((charData.moves || {})[k] || {}) };
+            // 會變身的角色每場比賽以人類形態登場（只在第一回合開場變身一次）
+            this.form = charData.transforms ? 'human' : 'normal';
+            this.reset();
         }
 
-        drawPixelArt() {
-            const h = this.height; const w = this.width;
-            let breath = this.animState === 'idle' ? Math.sin(Date.now() / 200) * 2 : 0;
-            const color = this.charData.color; const skin = this.charData.skin; const acc = this.charData.headband; 
+        reset() {
+            this.pos = { x: (this.isP1 ? 300 : 724) - this.w / 2, y: GROUND_Y - this.h };
+            this.vel = { x: 0, y: 0 };
+            this.health = this.maxHealth;
+            this.facingLeft = !this.isP1;
+            this.airborne = false; this.airUsed = false;
+            this.flash = 0; this.stun = 0; this.jumpVx = 0;
+            this.holdingBack = false;
+            this.backHold = 0; this.backGrace = 0; this.downHold = 0; this.downGrace = 0;
+            this.bufP = 0; this.bufK = 0; this.chainCount = 0; this.kTaps = [];
+            this.combo = 0; this.juggle = 0;
+            this.buffer = new InputBuffer();
+            this.setState('idle');
+        }
 
-            if (this.isBeingThrown) {
-                c.save(); c.translate(w/2, h/2); c.rotate(Date.now()/20); c.translate(-w/2, -h/2);
-                c.fillStyle = color; c.fillRect(5, h-90, 50, 50); c.fillStyle = skin; c.fillRect(15, h-115, 30, 28);
-                c.restore(); return;
+        setState(s) {
+            this.state = s; this.stateFrame = 0; this.hitCount = 0; this.lastHitFrame = -99;
+            if (NORMALS.has(s)) Sound.play('whiff');
+            else if (SPECIAL_SFX[s]) Sound.play(SPECIAL_SFX[s]);
+        }
+        go(s) { if (this.state !== s) this.setState(s); }
+        get grounded() { return !this.airborne; }
+        center() { return this.pos.x + this.w / 2; }
+        dirSign() { return this.facingLeft ? -1 : 1; }
+        get crouching() { return ['crouch', 'cpunch', 'sweep'].includes(this.state) || (this.state === 'block' && this.crouchBlock); }
+        // 蹲下時受擊範圍變矮
+        hurtbox() { const top = this.crouching ? 35 : this.state === 'roll' ? 60 : 0; return { x: this.pos.x, y: this.pos.y + top, w: this.w, h: this.h - top }; }
+        // 連按腳的時間點（給「連按 3 下腳」的甩尾泥巴旋風判斷用）
+        tapKick() { this.kTaps.push(frameCount); if (this.kTaps.length > 4) this.kTaps.shift(); }
+        hitbox([bx, by, bw, bh]) {
+            return { x: this.facingLeft ? this.pos.x - bx - bw : this.pos.x + this.w + bx, y: this.pos.y + by, w: bw, h: bh };
+        }
+        hittable() {
+            if (['down', 'ko', 'thrown'].includes(this.state)) return false;
+            if (this.state === 'hit' && this.airborne && this.juggle >= 3) return false; // 空中追打上限
+            const m = this.moves[this.state];
+            return !(m && m.inv && this.stateFrame <= m.inv);
+        }
+        // 站著擋不了下段（掃腳），蹲著擋不了跳入攻擊
+        canBlock(m) {
+            if (!(this.grounded && this.holdingBack && ['idle', 'run', 'block', 'prejump', 'crouch'].includes(this.state))) return false;
+            if (m.low && !this.holdingDown) return false;
+            if (m.overhead && this.holdingDown) return false;
+            return true;
+        }
+        backCharged() { return this.backHold >= CHARGE || this.backGrace > 0; }
+        downCharged() { return this.downHold >= CHARGE || this.downGrace > 0; }
+
+        latch(ctrl) {
+            this.buffer.push(ctrl.dir, frameCount);
+            if (ctrl.punch) this.bufP = BUF + 1;
+            if (ctrl.kick) { this.bufK = BUF + 1; this.tapKick(); }
+        }
+
+        control(ctrl, foe) {
+            const parts = ctrl.dir.split('_');
+            const has = k => parts.includes(k);
+            const fwd = this.facingLeft ? 'LEFT' : 'RIGHT', bk = this.facingLeft ? 'RIGHT' : 'LEFT';
+            this.buffer.push(ctrl.dir, frameCount);
+            this.holdingBack = has(bk);
+            this.holdingDown = has('DOWN');
+            // 集氣：放開後還有 16 幀的寬限（打擊停頓不算），連段中才來得及取消
+            if (has(bk)) { this.backHold++; if (this.backHold >= CHARGE) this.backGrace = 16; }
+            else { this.backHold = 0; if (this.backGrace > 0) this.backGrace--; }
+            if (has('DOWN')) { this.downHold++; if (this.downHold >= CHARGE) this.downGrace = 16; }
+            else { this.downHold = 0; if (this.downGrace > 0) this.downGrace--; }
+
+            // 按鍵緩衝：提早 10 幀內按下的拳腳會保留到可以出招的那一刻（含打擊停頓期間）
+            if (ctrl.punch) this.bufP = BUF; else if (this.bufP > 0) this.bufP--;
+            if (ctrl.kick) { this.bufK = BUF; this.tapKick(); } else if (this.bufK > 0) this.bufK--;
+            const P = this.bufP > 0, K = this.bufK > 0, st = this.state;
+            const used = () => { this.bufP = this.bufK = 0; };
+
+            // 拳腳沒有完全同時按（差 3 幀內，不論先後）→ 轉成投技
+            const lateThrow = (st === 'punch' && ctrl.kick && ctrl.punchHeld) || (st === 'kick' && ctrl.punch && ctrl.kickHeld);
+            if (lateThrow && this.chainCount === 0 && this.stateFrame <= 3 && this.grounded) {
+                if (this.tryThrow(foe)) { used(); return; }
             }
-
-            if (this.animState === 'hundredHand') {
-                c.fillStyle = color; c.fillRect(5, h-90, 60, 60); 
-                c.fillStyle = skin; c.fillRect(15, h-120, 30, 30); 
-                c.fillStyle = skin; for(let i=0; i<3; i++) c.fillRect(50 + Math.random()*40, h-90 + Math.random()*40, 40, 15);
+            // 指令寬容：普通技出招後 4 幀內才完成必殺技指令（例如先按 K 再按 ↑），直接改成必殺技
+            if (['punch', 'kick', 'cpunch', 'sweep'].includes(st) && this.chainCount === 0 && this.stateFrame <= 4 && this.grounded) {
+                const isP = st === 'punch' || st === 'cpunch';
+                if (this.trySpecial(isP && (P || ctrl.punchHeld), !isP && (K || ctrl.kickHeld), has, fwd)) { used(); return; }
+            }
+            if (st === 'jump') {
+                // TURBO：飛翔腳（跳躍中 ↓↙←＋腳，斜斜往下俯衝連踢）
+                if (!this.airUsed && this.ch.diveKick && ((K && this.buffer.match(['DOWN', 'BACK'], this.facingLeft, frameCount)) || ctrl.force === 'divekick')) {
+                    this.airUsed = true; used(); this.doSpecial('divekick'); return;
+                }
+                if (!this.airUsed && (P || K)) { this.airUsed = true; this.setState(P ? 'punch' : 'kick'); used(); }
                 return;
             }
-
-            // 特殊攻擊
-            if (this.animState === 'headbutt' || this.animState === 'sonicBoomCast') {
-                c.save(); 
-                if (this.animState === 'headbutt') { 
-                    c.fillStyle = '#ecf0f1'; c.fillRect(0, h-85, 70, 50); 
-                    c.fillStyle = '#c0392b'; c.beginPath(); c.moveTo(70, h-85); c.lineTo(100, h-60); c.lineTo(70, h-35); c.fill(); 
-                    c.fillStyle = '#2c3e50'; c.fillRect(-15, h-80, 15, 10); c.fillRect(-15, h-50, 15, 10); 
-                    c.fillStyle = '#f1c40f'; c.beginPath(); c.arc(35, h-60, 15, 0, Math.PI*2); c.fill();
-                    c.fillStyle = '#000'; 
-                    c.beginPath(); c.moveTo(35, h-60); c.arc(35, h-60, 15, 0, Math.PI/3); c.fill();
-                    c.beginPath(); c.moveTo(35, h-60); c.arc(35, h-60, 15, 2*Math.PI/3, Math.PI); c.fill();
-                    c.beginPath(); c.moveTo(35, h-60); c.arc(35, h-60, 15, 4*Math.PI/3, 5*Math.PI/3); c.fill();
-                    c.beginPath(); c.arc(35, h-60, 4, 0, Math.PI*2); c.fill();
-                    c.fillStyle = '#e67e22'; c.beginPath(); c.moveTo(-15, h-70); c.lineTo(-40 - Math.random()*10, h-60); c.lineTo(-15, h-50); c.fill();
-                } else {
-                    c.fillStyle = color; c.fillRect(5, h-90, 50, 50); 
-                    c.fillStyle = skin; c.fillRect(15, h-115, 30, 28); 
-                    c.fillStyle = acc; c.fillRect(15, h-125, 35, 15); 
-                }
-                c.restore(); return;
-            }
-
-            if (this.animState === 'flashKick') {
-                c.save(); c.translate(w/2, h/2); c.rotate(-Math.PI/2); c.translate(-w/2, -h/2);
-                c.fillStyle = color; c.fillRect(10, h-100, 40, 60);
-                c.fillStyle = '#f1c40f'; c.globalAlpha = 0.5; c.beginPath(); c.arc(w/2, h/2, 80, 0, Math.PI*2); c.fill(); c.globalAlpha = 1;
-                c.restore(); return;
-            }
-
-            if (this.animState === 'shoryuken') {
-                c.fillStyle = color; c.fillRect(10, h - 100, 40, 70); 
-                c.fillStyle = skin; c.fillRect(40, h - 130, 20, 40); 
-                c.fillStyle = color; c.fillRect(40, h - 110, 20, 20); 
-                c.fillStyle = skin; c.fillRect(15, h - 115, 30, 25); 
-                c.fillStyle = acc; c.fillRect(15, h - 120, 30, 8); 
-                c.fillStyle = color; c.fillRect(20, h - 40, 20, 30); 
-                
-                if (this.charData.id === 'HUANG') {
-                    c.fillStyle = '#333'; c.fillRect(25, h-95, 10, 45); 
-                    c.fillStyle = '#2ecc71'; c.globalAlpha = 0.3; c.fillRect(5, h-90, 50, 60); c.globalAlpha = 1;
+            // 連段：普通技打中（或被擋）後可取消成必殺技，拳可以連打或接腳
+            const m = this.moves[st];
+            if (m && m.cancel && this.hitCount > 0 && this.grounded && this.stateFrame >= m.cancel[0] && this.stateFrame <= m.cancel[1]) {
+                if (ctrl.force && this.doSpecial(ctrl.force)) return;
+                if ((P || K) && this.trySpecial(P, K, has, fwd)) { used(); return; }
+                if (m.chain && this.chainCount < (this.ch.chainMax || 2)) {
+                    const down = has('DOWN');
+                    const next = (P && m.chain.includes('punch')) ? (down ? 'cpunch' : 'punch')
+                               : (K && m.chain.includes('kick')) ? (down ? 'sweep' : 'kick') : null;
+                    if (next) { this.chainCount++; used(); this.setState(next); this.vel.x = 0; return; }
                 }
                 return;
             }
-
-            if (this.animState === 'tatsumaki') {
-                c.save(); c.translate(w/2, h/2); c.rotate(Date.now() / 40); c.translate(-w/2, -h/2);
-                c.fillStyle = skin; c.fillRect(0, h/2 - 10, 90, 20); 
-                c.fillStyle = color; c.fillRect(0, h/2 - 10, 20, 20); 
-                c.fillRect(10, 20, 40, 60); 
-                c.fillStyle = acc; c.fillRect(15, 0, 30, 20); 
-                
-                if (this.charData.id === 'HUANG') {
-                    c.strokeStyle = '#2ecc71'; c.lineWidth = 3; c.beginPath(); c.arc(w/2, h/2, 50, 0, Math.PI*2); c.stroke();
-                }
-                c.restore(); return;
+            if (st === 'dash') {
+                // KOF 式跑步：→→ 之後按住 → 會一直跑，放開的那一刻開始滑一小段停下
+                const held = has(fwd) && !has('DOWN');
+                if (this.dashHeld && !held && this.stateFrame > 12) this.stateFrame = 12;
+                this.dashHeld = held;
             }
+            if (!['idle', 'run', 'prejump', 'crouch', 'dash'].includes(st)) return;
 
-            c.fillStyle = color; 
-            if (this.animState === 'jump') { c.fillRect(10, h-60, 20, 40); c.fillRect(30, h-50, 20, 40); }
-            else { c.fillRect(10, h-50, 20, 50); c.fillRect(30, h-50, 20, 50); }
-            
-            c.fillRect(5, h-90+breath, 50, 50);
-            
-            if (this.charData.id === 'DONALD') { 
-                c.fillStyle = '#fff'; c.beginPath(); c.moveTo(25, h-90+breath); c.lineTo(35, h-90+breath); c.lineTo(30, h-70+breath); c.fill(); 
-                c.fillStyle = '#e74c3c'; c.fillRect(28, h-90+breath, 4, 35); 
-            } else if (this.charData.id === 'HUANG') {
-                c.fillStyle = '#333'; c.fillRect(25, h-90+breath, 10, 50); 
+            if (ctrl.force && this.doSpecial(ctrl.force)) return;
+            if ((P || K) && this.trySpecial(P, K, has, fwd)) { used(); return; }
+            if (st === 'prejump') return;
+            if (((P && ctrl.kickHeld) || (K && ctrl.punchHeld)) && this.tryThrow(foe)) { used(); return; }
+            if (P || K) {
+                const down = has('DOWN');
+                // JOWUAMAN：→P 是上段拳
+                const normal = P ? (down ? 'cpunch' : (this.ch.overhead && has(fwd) ? 'overhead' : 'punch')) : (down ? 'sweep' : 'kick');
+                this.chainCount = 0; this.setState(normal);
+                this.vel.x = 0; used(); return;
             }
+            // 全員：快速點兩下前 → 衝刺；快速點兩下後 → 後跳（只在剛按下的那一幀判斷，按住不放不會一直觸發）
+            const last = this.buffer.buf[this.buffer.buf.length - 1];
+            const fresh = last && last.frame === frameCount && !has('DOWN') && !has('UP');
+            if (fresh && has(fwd) && st !== 'dash' && this.buffer.match(['FWD', 'NEUTRAL', 'FWD'], this.facingLeft, frameCount, 14)) { this.doSpecial('dash'); return; }
+            if (fresh && has(bk) && this.buffer.match(['BACK', 'NEUTRAL', 'BACK'], this.facingLeft, frameCount, 14)) { this.doSpecial('backdash'); return; }
 
-            const headY = h - 115 + breath;
-            c.fillStyle = skin; c.fillRect(15, headY, 30, 28);
-            
-            if (this.charData.id === 'JOWUAMAN') {
-                c.fillStyle = acc; c.fillRect(15, headY, 30, 8); 
-                c.beginPath(); c.moveTo(15, headY+4); c.lineTo(-10, headY+4+Math.sin(Date.now()/100)*5); c.stroke();
-            } else if (this.charData.id === 'DONALD') {
-                c.fillStyle = acc; c.fillRect(12, headY-10, 36, 15); c.fillRect(35, headY-5, 15, 20); 
-            } else if (this.charData.id === 'KIM') {
-                c.fillStyle = acc; c.fillRect(13, headY-5, 34, 10); c.fillRect(13, headY-10, 34, 5); 
-            } else if (this.charData.id === 'HUANG') {
-                c.fillStyle = acc; c.fillRect(15, headY-5, 30, 10); 
+            if (has('UP')) {
+                // 跑步中跳：帶著衝刺的速度，跳得比一般跳躍遠（往後跳就是普通後跳）
+                const runJump = st === 'dash' && !has(bk);
+                this.setState('prejump');
+                this.jumpVx = runJump ? this.dirSign() * Math.max(this.speed * 1.5, (this.ch.dashSpeed || 9) * 0.85)
+                            : has('RIGHT') ? this.speed : has('LEFT') ? -this.speed : 0;
+                if (!runJump) this.vel.x = 0;
+                return;
             }
+            if (has('DOWN')) { this.vel.x = 0; this.go('crouch'); return; }
+            if (st === 'dash') return;
+            if (ctrl.stay) { this.go('idle'); return; }
+            if (has(fwd)) { this.vel.x = (fwd === 'RIGHT' ? 1 : -1) * this.speed; this.go('run'); }
+            else if (has(bk)) { this.vel.x = (bk === 'RIGHT' ? 1 : -1) * this.speed * 0.75; this.go('run'); }
+            else this.go('idle');
+        }
 
-            c.fillStyle = skin;
-            if (this.animState === 'punch') c.fillRect(40, h-80+breath, 40, 15);
-            else if (this.animState === 'hadouken') c.fillRect(30, h-75, 40, 20);
-            else c.fillRect(35, h-70+breath, 15, 25);
-            
-            if (this.animState === 'kick') { c.fillStyle = color; c.fillRect(40, h-60, 50, 18); }
+        trySpecial(P, K, has, fwd) {
+            const b = this.buffer, f = this.facingLeft, fr = frameCount;
+            // 集氣招的「→」或「↑」：現在按著，或 16 幀內按過都算
+            const recently = d => has(d === 'FWD' ? fwd : d) || b.match([d], f, fr, 16);
+            switch (this.ch.type) {
+                case 'allround':
+                    if (P && b.match(['FWD', 'DOWN', 'FWD'], f, fr, 24)) return this.doSpecial('uppercut');
+                    if (K && b.match(['DOWN', 'BACK'], f, fr)) return this.doSpecial('spinkick');
+                    // 半圈 ←↙↓↘→ 要排在 ↓↘→ 前面判斷（後者是前者的一部分）
+                    if (P && this.ch.redBall && b.match(['BACK', 'DOWN', 'FWD'], f, fr, 24)) return this.doSpecial('fireball2');
+                    if (P && b.match(['DOWN', 'FWD'], f, fr)) return this.doSpecial('fireball');
+                    break;
+                case 'charge':
+                    if (K && this.downCharged() && recently('UP')) return this.doSpecial('wallKick');
+                    if (P && this.backCharged() && recently('FWD')) return this.doSpecial('moneyBoom');
+                    break;
+                case 'beast':
+                    if (K && this.downCharged() && recently('UP')) return this.doSpecial('vroll');
+                    if (P && this.backCharged() && recently('FWD')) return this.doSpecial('roll');
+                    // 0.5 秒內連按 3 下腳 → 甩尾泥巴旋風
+                    if (K && this.kTaps.length >= 3 && fr - this.kTaps[this.kTaps.length - 3] <= 30) { this.kTaps = []; return this.doSpecial('mudspin'); }
+                    break;
+                case 'sumo':
+                    if (P && this.backCharged() && recently('FWD')) return this.doSpecial('headbutt');
+                    if (P && b.match(['DOWN', 'FWD'], f, fr)) return this.doSpecial('hundredHand');
+                    break;
+            }
+            return false;
+        }
+
+        doSpecial(name) {
+            // 畫面上已經有自己的飛行道具就不能再發（改出普通拳）
+            if (['fireball', 'fireball2', 'moneyBoom'].includes(name) && projectiles.some(p => p.owner === this)) return false;
+            this.setState(name);
+            this.buffer.clear();
+            this.backHold = this.backGrace = this.downHold = this.downGrace = 0;
+            const d = this.dirSign();
+            this.vel.x = 0;
+            if (name === 'uppercut' || name === 'vroll') { const m = this.moves[name]; this.vel.y = m.vy; this.vel.x = m.vx * d; }
+            if (name === 'backdash') { this.vel.x = -8 * d; this.vel.y = -6; spawnDust(this.center(), 3); }
+            if (name === 'wallKick') { this.vel.y = -16; this.vel.x = -2 * d; }
+            return true;
+        }
+
+        tryThrow(foe) {
+            if (!this.grounded || !foe.grounded || !foe.hittable()) return false;
+            if (Math.abs(this.center() - foe.center()) > 95) return false;
+            if (['hit', 'block', 'throw'].includes(foe.state)) return false;
+            this.setState('throw'); this.vel.x = 0;
+            foe.getThrown(this);
+            return true;
+        }
+
+        getThrown(by) {
+            const d = by.dirSign();
+            this.setState('thrown');
+            this.health -= 14; this.flash = 3;
+            this.pos.x = by.center() + d * 20 - this.w / 2;
+            this.vel.x = d * 9; this.vel.y = -11;
+            hitstop = 6; shake = 5;
+            if (this.health <= 0) koFighter(this, d);
+        }
+
+        spawnProjectile() {
+            const d = this.dirSign();
+            const type = this.state === 'moneyBoom' ? 'money' : this.state === 'fireball2' ? 'jball2' : this.ch.proj;
+            const pd = PROJ_DATA[type];
+            if (!pd) return; // 沒有飛行道具的角色
+            Sound.play(PROJ_SFX[type]);
+            const p = new Projectile(this, type, this.center() + d * 44, this.pos.y + 46, d * pd.speed, pd.dmg);
+            p.hits = pd.hits; p.knockdown = !!pd.knockdown;
+            projectiles.push(p);
         }
 
         update() {
-            this.draw(); this.position.x += this.velocity.x; this.position.y += this.velocity.y;
-            
-            if (this.position.y + this.height + this.velocity.y >= GROUND_Y) {
-                this.velocity.y = 0; this.position.y = GROUND_Y - this.height;
-                if (['jump', 'shoryuken', 'flashKick'].includes(this.animState) || this.isBeingThrown) {
-                    if(this.isBeingThrown) { this.isBeingThrown = false; this.isHit = false; }
-                    this.animState = 'idle'; this.isSpecialMove = false; this.velocity.x = 0;
+            this.stateFrame++;
+            if (this.flash > 0) this.flash--;
+            const st = this.state, t = this.stateFrame, d = this.dirSign(), m = this.moves[st];
+
+            if (st === 'spinkick') {
+                const air = this.airborne;
+                this.vel.x = (t > 4 && t < m.act[1]) ? (air ? 4 : m.speed) * d : 0;
+                // 空中旋風腿：斜斜往下轉，落地就結束，可以從空中打到站著的對手
+                if (air) this.vel.y = 6;
+            }
+            if (st === 'dash') this.vel.x = (t <= 12 || this.dashHeld) ? (this.ch.dashSpeed || 9) * d : this.vel.x * 0.6;
+            if (st === 'roll') this.vel.x = (t >= 6 && t <= 34) ? 12 * d : this.vel.x * 0.7;
+            // 飛翔腳：陡一點的斜線往下；踢中之後不再往前飄，才會落在對手前面
+            if (st === 'divekick') { this.vel.x = (this.hitCount > 0 ? 2 : 3) * d; this.vel.y = 9; }
+            if (st === 'headbutt') this.vel.x = (t >= 5 && t <= 26) ? 13 * d : this.vel.x * 0.7;
+            // 飛行道具在出招第 N 幀才生成；若中途被打斷就不會發出
+            if (m && m.spawn === t) this.spawnProjectile();
+            if (st === 'prejump' && t >= 4) {
+                this.vel.y = this.jumpForce; this.vel.x = this.jumpVx;
+                this.setState('jump'); spawnDust(this.center(), 4); Sound.play('jump');
+            }
+            if (this.grounded && (this.state === 'idle' || this.state === 'crouch')) this.vel.x = 0;
+            if (this.grounded && FRICTION_STATES.has(this.state)) this.vel.x *= 0.82;
+
+            this.pos.x += this.vel.x; this.pos.y += this.vel.y;
+            if (this.pos.y + this.h >= GROUND_Y) {
+                this.pos.y = GROUND_Y - this.h;
+                const wasAir = this.airborne;
+                this.airborne = false; this.vel.y = 0;
+                if (wasAir) this.onLand();
+            } else { this.airborne = true; this.vel.y += GRAVITY; }
+            this.pos.x = Math.max(0, Math.min(WORLD_W - this.w, this.pos.x));
+
+            const m2 = this.moves[this.state];
+            if (m2 && m2.dur && this.stateFrame >= m2.dur && !(this.airborne && m2.airBox) && !(this.state === 'dash' && this.dashHeld)) this.setState(this.airborne ? 'jump' : 'idle');
+            if (((this.state === 'hit' && this.grounded) || this.state === 'block') && this.stateFrame >= this.stun) this.setState('idle');
+            if (this.state === 'down' && this.stateFrame >= 40) this.setState('idle');
+            this.emitEffects();
+        }
+
+        onLand() {
+            this.airUsed = false; this.juggle = 0;
+            const st = this.state;
+            if (st === 'jump' || st === 'punch' || st === 'kick') { this.setState('idle'); spawnDust(this.center(), 4); Sound.play('land'); }
+            else if (st === 'uppercut' || st === 'wallKick' || st === 'spinkick' || st === 'vroll' || st === 'divekick' || st === 'backdash') { this.setState('land'); Sound.play('land'); }
+            else if (st === 'hit' || st === 'thrown') { this.setState('down'); spawnDust(this.center(), 8); shake = Math.max(shake, 4); Sound.play('thud'); }
+            else if (st === 'ko') { this.vel.x *= 0.5; spawnDust(this.center(), 10); shake = Math.max(shake, 6); Sound.play('thud'); }
+        }
+
+        emitEffects() {
+            const st = this.state, t = this.stateFrame, d = this.dirSign();
+            const cx = px(this.center()), fy = px(this.pos.y + this.h), aura = this.ch.aura;
+            if (st === 'uppercut' && this.vel.y < 0) {
+                addParticle(cx + d * 3 + rnd(2), fy - 36 + rnd(2), -d * 0.2, 0.6, aura, 14);
+                // TURBO 的火焰昇龍：整條身體冒綠火（GPU 過熱）
+                if (this.moves.uppercut.hits > 1) for (let i = 0; i < 2; i++) addParticle(cx + rnd(6), fy - 10 - Math.random() * 28, rnd(0.4), -0.8, ['#58d68d', '#f4d03f', '#2ecc71'][i + (t % 2)], 16, 2);
+            }
+            if (st === 'dash' && t % 3 === 0) spawnDust(this.center() - d * 20, 1);
+            if (st === 'spinkick' && t > 4 && t < this.moves.spinkick.act[1]) { const a = t * 0.7; addParticle(cx + Math.cos(a) * 12, fy - 22 + Math.sin(a) * 3, 0, -0.2, aura, 12); }
+            if (st === 'wallKick' && t < 34) {
+                const rot = -Math.min(t / 34, 1) * Math.PI * 2;
+                const fx = 15 * Math.cos(rot) - 5 * Math.sin(rot), fyy = 15 * Math.sin(rot) + 5 * Math.cos(rot);
+                addParticle(cx + fx * d, fy - 17 + fyy, 0, 0, '#f9e79f', 14, 2);
+            }
+            if (st === 'headbutt' && t >= 5 && t <= 26) addParticle(cx - d * 16 + rnd(2), fy - 17 + rnd(3), -d * 1.2, 0, ['#f39c12', '#e74c3c', '#f7dc6f'][t % 3], 12, 2);
+            if (st === 'hundredHand' && t % 4 === 0) addParticle(cx + d * (18 + rnd(4)), fy - 22 + rnd(5), d * 0.6, 0, '#ffffff', 6);
+            // 甩出去的泥點：往外飛、受重力掉到地上
+            if (st === 'mudspin' && t >= 8 && t <= 44 && t % 2 === 0) {
+                const a = t * 0.45 + Math.random() * 6.28;
+                addParticle(cx + Math.cos(a) * 16, fy - 16 + Math.sin(a) * 4, Math.cos(a) * 1.8, -1 - Math.random(), MUD[t % MUD.length], 26, 2, 0.12);
+            }
+        }
+
+        draw() {
+            const pose = poseFor(this);
+            if (this.form === 'human') pose.p = { ...pose.p, form: 'human' };
+            // 變身中、放電中會一閃一閃
+            const blink = this.transforming && frameCount % 4 < 2;
+            const spr = getSprite(this.ch, this.alt, pose.p, this.flash > 0 || blink);
+            const cx = px(this.center()), fy = px(this.pos.y + this.h);
+            // 影子跟著高度縮小
+            const s = Math.max(0.35, 1 - (GROUND_Y - (this.pos.y + this.h)) / 360);
+            c.globalAlpha = 0.35 * s + 0.1;
+            ellipse(c, cx, px(GROUND_Y), Math.round(10 * s), Math.max(1, Math.round(2 * s)), '#000');
+            c.globalAlpha = 1;
+
+            c.save();
+            const flip = this.facingLeft !== !!pose.flip;
+            const jiggle = ((this.state === 'hit' && this.stateFrame < 8) || this.transforming) ? ((frameCount & 1) ? 1 : -1) : 0;
+            if (pose.lie) {
+                // 躺下時身體往背後延伸約 34px，靠牆時往內挪，避免被切到畫面外
+                const lx = flip ? Math.min(cx, VW - 36) : Math.max(cx, 36);
+                c.translate(lx, fy - 8); if (flip) c.scale(-1, 1);
+                c.rotate(-Math.PI / 2); c.drawImage(spr, -16, -40);
+            } else if (pose.rot) {
+                c.translate(cx, fy - 17); if (flip) c.scale(-1, 1);
+                c.rotate(pose.rot); c.drawImage(spr, -16, -23);
+                if (pose.kicks) {
+                    // 連踢的殘影腳（半透明，位置隨幀數變化）
+                    const t = this.stateFrame; c.globalAlpha = 0.55;
+                    for (let i = 0; i < 3; i++) rect(c, 11 + (t * 3 + i * 4) % 8, 1 + (t * 5 + i * 3) % 9, 4, 3, this.pal.shoe);
+                    c.globalAlpha = 1;
                 }
-            } else this.velocity.y += GRAVITY;
-
-            if (this.position.x < 0) this.position.x = 0;
-            if (this.position.x + this.width > canvas.width) this.position.x = canvas.width - this.width;
-
-            if (this.animState === 'tatsumaki') {
-                if (this.position.y + this.height < GROUND_Y) this.velocity.y = 12; 
-                else { this.velocity.y = 0; this.position.y = GROUND_Y - this.height; }
-            }
-            
-            if (this.animState === 'headbutt') { this.velocity.y = 0; }
-
-            if (this.isAttacking || this.isSpecialMove) {
-                this.framesElapsed++;
-                let limit = 20;
-                if (['punch','kick'].includes(this.animState)) limit = 10;
-                if (['shoryuken', 'tatsumaki', 'flashKick', 'headbutt', 'hundredHand'].includes(this.animState)) limit = 40; 
-                if (this.animState === 'sonicBoomCast') limit = 15;
-                if (this.animState === 'throw') limit = 15; 
-
-                if (this.framesElapsed > limit) {
-                    this.isAttacking = false; this.isSpecialMove = false;
-                    this.animState = 'idle'; this.framesElapsed = 0; this.velocity.x = 0;
+            } else {
+                c.translate(cx + jiggle, fy + (pose.dy || 0)); if (flip) c.scale(-1, 1);
+                c.drawImage(spr, -16, -40);
+                if (pose.mud) {
+                    // 泥巴繞著身體甩成一圈
+                    const t = this.stateFrame;
+                    for (let i = 0; i < 10; i++) {
+                        const a = t * 0.45 + i * (Math.PI * 2 / 10);
+                        const x = Math.cos(a) * 17, y = -16 + Math.sin(a) * 5 + (i % 3) * 2;
+                        rect(c, x - 1, y - 1, 3, 2, MUD[i % MUD.length]);
+                    }
+                }
+                if (pose.hands) {
+                    // 百裂手的殘影拳頭（用幀數決定位置，不會亂閃）
+                    const t = this.stateFrame; c.globalAlpha = 0.7;
+                    for (let i = 0; i < 3; i++) rect(c, 12 + (t * 3 + i * 5) % 8, -27 + (t * 5 + i * 7) % 13, 4, 3, this.pal.skin);
+                    c.globalAlpha = 1;
                 }
             }
-            this.projectiles.forEach((p, i) => {
-                p.update();
-                if (p.x < -100 || p.x > canvas.width + 100) this.projectiles.splice(i, 1);
-            });
-        }
-
-        handleInput(direction, buttons, enemyRef) { 
-            if (gameState !== 'playing') return; 
-            this.inputBuffer.update(direction);
-            
-            // === 防禦機制修正 ===
-            this.isHoldingBack = (!this.facingLeft && direction.includes('LEFT')) || (this.facingLeft && direction.includes('RIGHT'));
-
-            if (this.isSpecialMove || this.isHit || this.isBeingThrown) return;
-
-            if (buttons.punch && buttons.kick && this.position.y + this.height >= GROUND_Y) {
-                if (Math.abs(this.position.x - enemyRef.position.x) < 80) { this.performThrow(enemyRef); return; }
-            }
-
-            const id = this.charData.id;
-            
-            if (id === 'DONALD') {
-                if (buttons.kick && this.inputBuffer.checkCommand(['DOWN', 'UP'], this.facingLeft)) { this.performFlashKick(); return; }
-                if (buttons.punch && this.inputBuffer.checkCommand(['LEFT', 'RIGHT'], this.facingLeft)) { this.performSonicBoom(); return; }
-            }
-            else if (id === 'KIM') {
-                if (buttons.punch && this.inputBuffer.checkCommand(['DOWN', 'RIGHT'], this.facingLeft)) { this.performHundredHand(); return; }
-                if (buttons.punch && this.inputBuffer.checkCommand(['LEFT', 'RIGHT'], this.facingLeft)) { this.performHeadbutt(); return; }
-            }
-            else if (id === 'HUANG' || id === 'JOWUAMAN') {
-                if (buttons.punch && this.inputBuffer.checkCommand(['RIGHT', 'DOWN', 'RIGHT'], this.facingLeft)) { this.performShoryuken(); return; }
-                if (buttons.kick && this.inputBuffer.checkCommand(['DOWN', 'LEFT'], this.facingLeft)) { this.performTatsumaki(); return; }
-                if (buttons.punch && this.inputBuffer.checkCommand(['DOWN', 'RIGHT'], this.facingLeft)) { this.performHadouken(); return; }
-            }
-
-            if (buttons.punch) { this.animState = 'punch'; this.isAttacking = true; this.framesElapsed = 0; }
-            else if (buttons.kick) { this.animState = 'kick'; this.isAttacking = true; this.framesElapsed = 0; }
-            
-            if (direction.includes('LEFT')) { this.velocity.x = -this.speed; this.animState = 'run'; }
-            else if (direction.includes('RIGHT')) { this.velocity.x = this.speed; this.animState = 'run'; }
-            else { this.velocity.x = 0; if (this.animState === 'run') this.animState = 'idle'; }
-            
-            if (direction.includes('UP') && this.position.y + this.height >= GROUND_Y) {
-                this.velocity.y = this.jumpForce; this.animState = 'jump';
-            }
-        }
-
-        performThrow(target) {
-            this.animState = 'throw'; this.isSpecialMove = true; this.framesElapsed = 0; this.velocity.x = 0;
-            target.getThrown(this.facingLeft, this.position.x);
-        }
-        getThrown(throwerFacingLeft, throwerX) {
-            this.isBeingThrown = true; this.isHit = true; this.isHoldingBack = false; 
-            this.health -= 15; 
-            this.velocity.y = -12; this.velocity.x = throwerFacingLeft ? -28 : 28; 
-            this.position.x = throwerFacingLeft ? throwerX - 60 : throwerX + 60;
-            updateHealthUI();
-        }
-
-        performHadouken() {
-            if (this.projectiles.length >= 1 || this.isProjectilePending) return; 
-            this.isProjectilePending = true;
-            this.animState = 'hadouken'; this.isSpecialMove = true; this.framesElapsed = 0; this.velocity.x = 0;
-            setTimeout(() => {
-                const dir = this.facingLeft ? -1 : 1;
-                // Determine projectile type
-                let pType = 'hadouken';
-                let pColor = '#3498db';
-                
-                if (this.charData.id === 'HUANG') {
-                    pType = 'gpu'; pColor = '#2ecc71';
-                } else if (this.charData.id === 'JOWUAMAN') {
-                    pType = 'j_logo'; pColor = '#fff';
-                }
-
-                this.projectiles.push(new Projectile({
-                    x: this.position.x + (this.facingLeft ? -20 : this.width), y: this.position.y + 40, 
-                    velocity: { x: dir * 12, y: 0 }, color: pColor, type: pType, isP1: this.isP1
-                }));
-                this.isProjectilePending = false;
-            }, 200); 
-        }
-        performShoryuken() {
-            this.animState = 'shoryuken'; this.isSpecialMove = true; this.framesElapsed = 0;
-            this.velocity.y = -18; this.velocity.x = this.facingLeft ? -3 : 3;
-        }
-        performTatsumaki() {
-            this.animState = 'tatsumaki'; this.isSpecialMove = true; this.framesElapsed = 0;
-            this.velocity.x = this.facingLeft ? -8 : 8;
-        }
-
-        performSonicBoom() {
-            if (this.projectiles.length >= 1 || this.isProjectilePending) return;
-            this.isProjectilePending = true;
-            this.animState = 'sonicBoomCast'; this.isSpecialMove = true; this.framesElapsed = 0; this.velocity.x = 0;
-            setTimeout(() => {
-                const dir = this.facingLeft ? -1 : 1;
-                this.projectiles.push(new Projectile({
-                    x: this.position.x + (this.facingLeft ? -20 : this.width), y: this.position.y + 30, 
-                    velocity: { x: dir * 15, y: 0 }, color: '#2ecc71', type: 'money', isP1: this.isP1
-                }));
-                this.isProjectilePending = false;
-            }, 100);
-        }
-        performFlashKick() {
-            this.animState = 'flashKick'; this.isSpecialMove = true; this.framesElapsed = 0;
-            this.velocity.y = -22; this.velocity.x = this.facingLeft ? -4 : 4; 
-        }
-
-        performHeadbutt() {
-            this.animState = 'headbutt'; this.isSpecialMove = true; this.framesElapsed = 0;
-            this.velocity.y = 0; 
-            this.velocity.x = this.facingLeft ? -15 : 15; 
-        }
-        performHundredHand() {
-            this.animState = 'hundredHand'; this.isSpecialMove = true; this.framesElapsed = 0;
-            this.velocity.x = 0; 
-        }
-        
-        takeDamage(amount, isSpecial = false) {
-            if (this.isHoldingBack && this.position.y + this.height >= GROUND_Y && !this.isAttacking) {
-                let actualDamage = isSpecial ? 1 : 0;
-                this.health -= actualDamage;
-                this.velocity.x = this.facingLeft ? 10 : -10; 
-                this.isHit = true; this.animState = 'block'; 
-                setTimeout(() => { this.isHit = false; if(this.animState === 'block') this.animState = 'idle'; }, 200); 
-                return 'blocked'; 
-            } 
-            this.health -= amount;
-            this.isHit = true; this.isSpecialMove = false; this.animState = 'hit';
-            this.velocity.y = -5; this.velocity.x = this.facingLeft ? 5 : -5;
-            setTimeout(() => { this.isHit = false; this.animState = 'idle'; }, 300);
-            return 'hit';
+            c.restore();
         }
     }
 
     class Projectile {
-        constructor({x, y, velocity, color, type, isP1}) {
-            this.x = x; this.y = y; this.velocity = velocity; this.color = color; 
-            this.type = type; this.isP1 = isP1;
-            this.radius = 20;
-            this.anim = 0;
+        constructor(owner, type, x, y, vx, dmg) {
+            Object.assign(this, { owner, type, x, y, vx, dmg, t: 0, dead: false, hits: 1, cool: 0, knockdown: false });
+        }
+        update() {
+            // 多段飛行道具打中後會在原地停一下，讓下一段也打得到
+            if (this.hold > 0) this.hold--; else this.x += this.vx;
+            this.t++;
+            if (this.cool > 0) this.cool--;
+            if (this.x < -80 || this.x > WORLD_W + 80) this.dead = true;
         }
         draw() {
-            c.save(); c.translate(this.x, this.y); this.anim += 0.5;
-            
+            const cx = px(this.x), cy = px(this.y), d = Math.sign(this.vx), t = this.t;
             if (this.type === 'money') {
-                c.rotate(this.anim); 
-                c.fillStyle = '#2ecc71'; c.fillRect(-15, -10, 30, 20); 
-                c.fillStyle = '#fff'; c.font = "15px Arial"; c.fillText("$", -5, 5);
+                const w = [12, 8, 3, 8][(t >> 2) % 4];
+                rect(c, cx - (w >> 1), cy - 3, w, 7, '#1d8348');
+                if (w > 2) rect(c, cx - (w >> 1) + 1, cy - 2, w - 2, 5, '#58d68d');
+                if (w === 12) glyph(c, GLYPH_S, cx - 1, cy - 2, '#145a32');
+                return;
+            }
+            const trail = this.type === 'gpu' ? '#58d68d' : this.type === 'jball2' ? '#e74c3c' : '#5dade2';
+            for (let k = 1; k <= 3; k++) { c.globalAlpha = 0.5 - k * 0.12; disc(c, cx - d * k * 3, cy, 4 - k + (this.type === 'jball2' ? 1 : 0), trail); }
+            c.globalAlpha = 1;
+            if (this.type === 'jball2') {
+                // 紅色 J-BALL：比較大，帶火焰
+                c.globalAlpha = 0.5; disc(c, cx, cy, 8 + ((t >> 2) % 2), '#e74c3c'); c.globalAlpha = 1;
+                disc(c, cx, cy, 5, '#f39c12');
+                for (let k = 0; k < 4; k++) rect(c, cx - d * (6 + k * 2), cy - 2 + ((t + k) % 3), 2, 2, k % 2 ? '#f5b041' : '#e74c3c');
+                [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => glyph(c, GLYPH_J, cx - 2 + dx, cy - 2 + dy, '#7b241c'));
+                glyph(c, GLYPH_J, cx - 2, cy - 2, '#fff6d5');
             } else if (this.type === 'gpu') {
-                c.rotate(this.anim);
-                c.fillStyle = '#27ae60'; c.fillRect(-20, -10, 40, 20); 
-                c.fillStyle = '#f1c40f'; c.fillRect(10, -8, 5, 16); 
-                c.fillStyle = '#333'; c.beginPath(); c.arc(-5, 0, 8, 0, Math.PI*2); c.fill(); 
-            } else if (this.type === 'j_logo') {
-                // JOWUAMAN's J Projectile
-                c.fillStyle = '#fff'; 
-                c.shadowBlur = 10; c.shadowColor = '#3498db'; // Glowing effect
-                c.font = "bold 40px Arial"; 
-                c.textAlign = "center";
-                c.textBaseline = "middle";
-                c.fillText("J", 0, 0);
-                c.shadowBlur = 0;
-            } else {
-                c.fillStyle = "#fff"; c.beginPath(); c.arc(0,0, 15, 0, Math.PI*2); c.fill();
-                c.fillStyle = this.color; c.globalAlpha = 0.6; c.beginPath(); c.arc(0,0, 25, 0, Math.PI*2); c.fill();
-            }
-            c.restore();
-        }
-        update() { this.draw(); this.x += this.velocity.x; }
-    }
-
-    let player, enemy;
-    const keysP1 = { w: false, a: false, s: false, d: false, j: false, n: false };
-    const keysP2 = { arrowup: false, arrowdown: false, arrowleft: false, arrowright: false, '1': false, '2': false };
-
-    function initTitleScreen() {
-        document.getElementById('title-screen').style.display = 'flex';
-        document.getElementById('char-select-screen').style.display = 'none';
-        document.getElementById('hud').style.display = 'none';
-        gameState = 'title';
-    }
-
-    function initSelectScreen() {
-        const grid = document.getElementById('char-grid'); grid.innerHTML = '';
-        CHARACTERS.forEach((char, index) => {
-            const card = document.createElement('div');
-            card.className = `char-card ${index === p1CharIndex ? 'selected' : ''}`;
-            card.innerHTML = `
-                ${index === p1CharIndex ? '<div class="p1-cursor">P1</div>' : ''}
-                <div class="char-preview" style="background:${char.color}"><div style="position:absolute;top:0;left:0;width:100%;height:6px;background:${char.headband}"></div></div>
-                <div class="char-name">${char.name}</div>
-            `;
-            grid.appendChild(card);
-        });
-        
-        const tbcCard = document.createElement('div');
-        tbcCard.className = 'char-card locked';
-        tbcCard.innerHTML = `<div class="char-preview" style="background:#333; display:flex; justify-content:center; align-items:center; color:#555; font-size:30px;">?</div><div class="char-name">TO BE<br>CONTINUED</div>`;
-        grid.appendChild(tbcCard);
-
-        document.getElementById('title-screen').style.display = 'none';
-        document.getElementById('char-select-screen').style.display = 'flex';
-        document.getElementById('hud').style.display = 'none';
-        document.getElementById('message-display').style.display = 'none'; 
-        document.getElementById('move-hint').innerText = CHARACTERS[p1CharIndex].desc;
-        gameState = 'select';
-    }
-
-    function updateSelectCursor() {
-        document.querySelectorAll('.char-card:not(.locked)').forEach((el, idx) => {
-            if (idx === p1CharIndex) {
-                el.classList.add('selected');
-                if(!el.querySelector('.p1-cursor')) el.insertAdjacentHTML('afterbegin', '<div class="p1-cursor">P1</div>');
-            } else {
-                el.classList.remove('selected');
-                const cursor = el.querySelector('.p1-cursor'); if(cursor) cursor.remove();
-            }
-        });
-        document.getElementById('move-hint').innerText = CHARACTERS[p1CharIndex].desc;
-    }
-
-    function startGame() {
-        if (p1SelectedChar.id === 'DONALD' || p2SelectedChar.id === 'DONALD') currentStage = STAGES[2]; 
-        else if (p1SelectedChar.id === 'HUANG' || p2SelectedChar.id === 'HUANG') currentStage = STAGES[1]; 
-        else if (p1SelectedChar.id === 'KIM' || p2SelectedChar.id === 'KIM') currentStage = STAGES[3];
-        else currentStage = STAGES[0];
-
-        if (isAIEnabled) {
-            let available = CHARACTERS.filter(c => c.id !== p1SelectedChar.id);
-            p2SelectedChar = available[Math.floor(Math.random() * available.length)];
-        } else {
-            p2SelectedChar = CHARACTERS[(p1CharIndex + 1) % CHARACTERS.length];
-        }
-
-        player = new Fighter({ position: {x: 100, y: 0}, velocity: {x: 0, y: 0}, charData: p1SelectedChar, isP1: true });
-        enemy = new Fighter({ position: {x: 800, y: 0}, velocity: {x: 0, y: 0}, charData: p2SelectedChar, isP1: false });
-
-        document.getElementById('p1Name').innerText = p1SelectedChar.name.split(' ')[0];
-        document.getElementById('p2Name').innerText = p2SelectedChar.name.split(' ')[0];
-        document.getElementById('char-select-screen').style.display = 'none';
-        document.getElementById('hud').style.display = 'flex';
-        document.getElementById('timer').style.display = 'block';
-        
-        gameState = 'playing';
-        nextRound();
-    }
-
-    let lastSelectTime = 0;
-    function handleSelectInput(dir, confirm) {
-        const now = Date.now(); if (now - lastSelectTime < 200) return;
-        if (dir === 'LEFT') { p1CharIndex = (p1CharIndex - 1 + CHARACTERS.length) % CHARACTERS.length; updateSelectCursor(); lastSelectTime = now; }
-        else if (dir === 'RIGHT') { p1CharIndex = (p1CharIndex + 1) % CHARACTERS.length; updateSelectCursor(); lastSelectTime = now; }
-        if (confirm) { p1SelectedChar = CHARACTERS[p1CharIndex]; startGame(); }
-    }
-
-    function togglePause() {
-        if (gameState !== 'playing' && gameState !== 'paused') return;
-        isPaused = !isPaused;
-        const menu = document.getElementById('pause-menu');
-        
-        if (isPaused) {
-            gameState = 'paused';
-            menu.style.display = 'flex';
-            pauseMenuIndex = 0; 
-            updatePauseMenuUI();
-        } else {
-            gameState = 'playing';
-            menu.style.display = 'none';
-        }
-    }
-
-    function updatePauseMenuUI() {
-        const opts = ['opt-resume', 'opt-quit'];
-        opts.forEach((id, idx) => {
-            const el = document.getElementById(id);
-            if (idx === pauseMenuIndex) el.classList.add('active');
-            else el.classList.remove('active');
-        });
-    }
-
-    window.addEventListener('keydown', (e) => {
-        const k = e.key.toLowerCase();
-        
-        if (gameState === 'title') {
-            initSelectScreen(); return;
-        }
-
-        if (k === 'escape' && (gameState === 'playing' || gameState === 'paused')) {
-            togglePause(); return;
-        }
-
-        if (gameState === 'paused') {
-            if (k === 'w' || k === 'arrowup') {
-                pauseMenuIndex = (pauseMenuIndex - 1 + 2) % 2;
-                updatePauseMenuUI();
-            }
-            if (k === 's' || k === 'arrowdown') {
-                pauseMenuIndex = (pauseMenuIndex + 1) % 2;
-                updatePauseMenuUI();
-            }
-            if (k === 'j' || k === 'enter' || k === ' ') {
-                if (pauseMenuIndex === 0) togglePause();
-                else { togglePause(); resetMatch(); }
-            }
-            return;
-        }
-        
-        if (gameState === 'select') {
-            if (k==='a'||k==='arrowleft') handleSelectInput('LEFT');
-            if (k==='d'||k==='arrowright') handleSelectInput('RIGHT');
-            if (k==='j'||k==='enter') handleSelectInput(null, true);
-            return;
-        }
-
-        if (gameState === 'round_over' || gameState === 'match_over') {
-             if (e.repeat) return;
-             if (Date.now() - roundEndTimestamp < 1000) return; 
-             if (gameState === 'round_over') nextRound();
-             else resetMatch();
-             return;
-        }
-
-        if (gameState !== 'playing') return;
-
-        if (keysP1.hasOwnProperty(k)) keysP1[k] = true;
-        if (keysP2.hasOwnProperty(k)) { keysP2[k] = true; disableAI(); }
-    });
-    
-    window.addEventListener('keyup', (e) => {
-        const k = e.key.toLowerCase();
-        if (keysP1.hasOwnProperty(k)) keysP1[k] = false;
-        if (keysP2.hasOwnProperty(k)) keysP2[k] = false;
-    });
-
-    function getDirectionP1() {
-        if(keysP1.w)return'UP'; if(keysP1.s)return'DOWN'; 
-        if(keysP1.a)return keysP1.w?'UP_LEFT':keysP1.s?'DOWN_LEFT':'LEFT';
-        if(keysP1.d)return keysP1.w?'UP_RIGHT':keysP1.s?'DOWN_RIGHT':'RIGHT';
-        return 'NEUTRAL';
-    }
-    function getDirectionP2() {
-        if(keysP2.arrowup)return'UP'; if(keysP2.arrowdown)return'DOWN';
-        if(keysP2.arrowleft)return keysP2.arrowup?'UP_LEFT':keysP2.arrowdown?'DOWN_LEFT':'LEFT';
-        if(keysP2.arrowright)return keysP2.arrowup?'UP_RIGHT':keysP2.arrowdown?'DOWN_RIGHT':'RIGHT';
-        return 'NEUTRAL';
-    }
-    function getPadDir(gp) {
-        const x=gp.axes[0], y=gp.axes[1], t=0.4;
-        let d=''; if(y<-t||gp.buttons[12].pressed)d='UP'; else if(y>t||gp.buttons[13].pressed)d='DOWN';
-        if(x<-t||gp.buttons[14].pressed)d=d?d+'_LEFT':'LEFT'; else if(x>t||gp.buttons[15].pressed)d=d?d+'_RIGHT':'RIGHT';
-        return d||'NEUTRAL';
-    }
-    function disableAI() { if (isAIEnabled) { isAIEnabled=false; document.getElementById('gp2-status').innerText = 'P2: Key/Pad'; } }
-    function getPads() { return navigator.getGamepads ? Array.from(navigator.getGamepads()).filter(g=>g) : []; }
-
-    function drawBackground() {
-        if (gameState === 'title') {
-            c.fillStyle = '#111'; c.fillRect(0,0,canvas.width,canvas.height);
-            return;
-        }
-
-        const s = currentStage;
-        const grad = c.createLinearGradient(0,0,0,canvas.height); grad.addColorStop(0, s.skyTop); grad.addColorStop(1, s.skyBot);
-        c.fillStyle = grad; c.fillRect(0,0, canvas.width, canvas.height);
-        
-        if (s.id === 'RUSHMORE') {
-            c.fillStyle = "#7f8c8d"; 
-            c.beginPath(); c.moveTo(50, GROUND_Y); c.lineTo(50, GROUND_Y-250);
-            c.arc(150, GROUND_Y-250, 40, Math.PI, 0); c.arc(250, GROUND_Y-260, 40, Math.PI, 0); 
-            c.arc(350, GROUND_Y-250, 40, Math.PI, 0); c.arc(450, GROUND_Y-260, 40, Math.PI, 0); 
-            c.lineTo(500, GROUND_Y-250); c.lineTo(550, GROUND_Y-250); 
-            c.arc(600, GROUND_Y-250, 45, Math.PI, 0); // Donald Head
-            c.lineTo(650, GROUND_Y-250); c.lineTo(700, GROUND_Y); c.fill();
-            c.fillStyle = "#f1c40f"; c.fillRect(560, GROUND_Y-300, 80, 20); // Donald Hair
-        } else if (s.id === 'SILICON') {
-            c.fillStyle = "#95a5a6"; c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 400, 100, 0, Math.PI, 0); c.fill();
-            c.fillStyle = "#ecf0f1"; c.beginPath(); c.ellipse(canvas.width/2, GROUND_Y-100, 350, 80, 0, Math.PI, 0); c.fill();
-            c.fillStyle = "rgba(255,255,255,0.3)"; c.beginPath(); c.arc(200, 150, 30, 0, Math.PI*2); c.fill(); 
-            c.fillRect(600, 100, 40, 40); 
-        } else if (s.id === 'PYONGYANG') {
-            c.fillStyle = "#7f8c8d"; c.fillRect(0, GROUND_Y, canvas.width, canvas.height-GROUND_Y);
-            c.fillStyle = "#2c3e50"; c.fillRect(100, GROUND_Y-250, 150, 250); c.fillRect(750, GROUND_Y-250, 150, 250); 
-            c.fillStyle = "#f1c40f"; for(let i=0; i<3; i++) { c.fillRect(120+i*40, GROUND_Y-200, 20, 20); c.fillRect(770+i*40, GROUND_Y-200, 20, 20); }
-            const centerX = canvas.width / 2;
-            c.fillStyle = "#8d6e63"; c.fillRect(centerX - 60, GROUND_Y - 100, 120, 100);
-            c.fillStyle = "#cd7f32"; c.fillRect(centerX - 30, GROUND_Y - 250, 60, 150); c.beginPath(); c.arc(centerX, GROUND_Y - 250, 25, 0, Math.PI*2); c.fill(); 
-            c.fillRect(centerX + 30, GROUND_Y - 220, 40, 15); 
-            c.fillStyle = "#27ae60"; for(let i=0; i<3; i++) {
-                c.fillRect(20 + i*100, GROUND_Y-50, 80, 40); c.fillStyle = "#1e272e"; c.fillRect(60 + i*100, GROUND_Y-45, 60, 5); c.fillStyle = "#27ae60";
-                c.fillRect(700 + i*100, GROUND_Y-50, 80, 40); c.fillStyle = "#1e272e"; c.fillRect(680 + i*100, GROUND_Y-45, 60, 5); c.fillStyle = "#27ae60";
-            }
-            c.fillStyle = "#c0392b"; c.beginPath(); c.moveTo(centerX-150, GROUND_Y-350); c.lineTo(centerX-100, GROUND_Y-320); c.lineTo(centerX-150, GROUND_Y-290); c.fill(); c.fillRect(centerX-155, GROUND_Y-350, 5, 350); 
-        }
-
-        c.fillStyle = s.floor; c.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
-        c.strokeStyle = "rgba(0,0,0,0.3)"; c.lineWidth = 4; c.beginPath();
-        for(let i=-200; i<canvas.width+200; i+=100) { c.moveTo(i, GROUND_Y); c.lineTo(i + (i-canvas.width/2)*2, canvas.height); }
-        c.stroke();
-    }
-
-    function animate() {
-        window.requestAnimationFrame(animate);
-        const pads = getPads(); const gp1 = pads[0]; const gp2 = pads[1];
-
-        if (gameState === 'title') {
-            if (gp1 && (gp1.buttons.some(b=>b.pressed))) initSelectScreen();
-            if (keysP1.j || keysP1.n || keysP1.w || keysP1.s || keysP1.a || keysP1.d) initSelectScreen(); 
-            return;
-        }
-
-        if (Date.now() - lastPauseInputTime > 300) {
-            if (gp1 && gp1.buttons[9].pressed) { togglePause(); lastPauseInputTime = Date.now(); }
-        }
-
-        if (gameState === 'paused') {
-            if (gp1 && Date.now() - lastPauseNavTime > 200) {
-                const y = gp1.axes[1];
-                if (y < -0.5 || (gp1.buttons[12] && gp1.buttons[12].pressed)) { 
-                    pauseMenuIndex = (pauseMenuIndex - 1 + 2) % 2; updatePauseMenuUI(); lastPauseNavTime = Date.now();
-                } else if (y > 0.5 || (gp1.buttons[13] && gp1.buttons[13].pressed)) { 
-                    pauseMenuIndex = (pauseMenuIndex + 1) % 2; updatePauseMenuUI(); lastPauseNavTime = Date.now();
+                rect(c, cx - 6, cy - 3, 12, 7, '#145a32'); rect(c, cx - 5, cy - 2, 10, 5, '#1e8449');
+                rect(c, cx - 4, cy + 3, 8, 1, '#f4d03f');
+                for (const fx of [cx - 3, cx + 2]) {
+                    rect(c, fx - 1, cy - 1, 3, 3, '#111');
+                    if ((t >> 1) % 2) rect(c, fx - 1, cy, 3, 1, '#7f8c8d'); else rect(c, fx, cy - 1, 1, 3, '#7f8c8d');
                 }
+            } else if (this.type === 'jball') {
+                c.globalAlpha = 0.45; disc(c, cx, cy, 6 + ((t >> 2) % 2), '#5dade2'); c.globalAlpha = 1;
+                [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => glyph(c, GLYPH_J, cx - 2 + dx, cy - 2 + dy, '#1f5f8b'));
+                glyph(c, GLYPH_J, cx - 2, cy - 2, '#ffffff');
+            } else {
+                const r = 5 + ((t >> 2) % 2);
+                disc(c, cx, cy, r, '#2e86c1'); disc(c, cx, cy, r - 2, '#85c1e9'); disc(c, cx + d, cy, 2, '#ffffff');
             }
-            if (gp1 && Date.now() - lastPauseInputTime > 300) {
-                 if (gp1.buttons[0].pressed || gp1.buttons[9].pressed) {
-                     if (pauseMenuIndex === 0) togglePause(); else { togglePause(); resetMatch(); }
-                     lastPauseInputTime = Date.now();
-                 }
-            }
-            return;
         }
+    }
 
-        if (gameState === 'select') {
-            drawBackground();
-            if (gp1) {
-                const x = gp1.axes[0]; if(x<-0.5)handleSelectInput('LEFT'); if(x>0.5)handleSelectInput('RIGHT');
-                if(gp1.buttons[0].pressed || gp1.buttons[1].pressed) handleSelectInput(null,true);
-            }
-            return;
-        }
+    // ================= 場景 =================
+    const FW = 288; // 背景比畫面寬 32px，用來做視差
+    function skyBands(g, top, bot, n, h, w) {
+        for (let i = 0; i < n; i++) rect(g, 0, Math.floor(i * h / n), w, Math.ceil(h / n) + 1, lerpHex(top, bot, i / (n - 1)));
+    }
+    function drawFloor(g, base, line, hl) {
+        rect(g, 0, 120, VW, 24, base);
+        rect(g, 0, 120, VW, 1, hl);
+        for (const y of [123, 127, 132, 138]) rect(g, 0, y, VW, 1, line);
+        for (let y = 121; y < VH; y++) for (let k = -8; k <= 8; k++) rect(g, 128 + k * (14 + (y - 120) * 1.6), y, 1, 1, line);
+    }
+    function tri(g, cx, top, h, col) { for (let r = 0; r < h; r++) rect(g, cx - (r >> 1), top + r, (r >> 1) * 2 + 1, 1, col); }
+    function cloud(g, x, y) {
+        disc(g, x, y, 4, '#fff'); disc(g, x + 5, y - 2, 5, '#fff'); disc(g, x + 11, y, 4, '#fff');
+        rect(g, x, y, 12, 4, '#fff'); rect(g, x - 1, y + 3, 15, 1, '#dfeaf3');
+    }
 
-        if (gameState === 'round_over' || gameState === 'match_over') {
-            drawBackground();
-            player.draw(); enemy.draw();
-            if (Date.now() - roundEndTimestamp > 1000) {
-                if ((gp1 && gp1.buttons.some(b=>b.pressed)) || (gp2 && gp2.buttons.some(b=>b.pressed))) {
-                    if (gameState === 'round_over') nextRound();
-                    else resetMatch();
+    const STAGES = {
+        DOJO: {
+            build(f, m, fl) {
+                const top = '#1b2a49', bot = '#f0935a';
+                skyBands(f, top, bot, 10, 120, FW);
+                disc(f, 200, 80, 20, '#ffe08a'); disc(f, 200, 80, 16, '#ffd166');
+                for (let i = 0; i < 4; i++) { const y = 86 + i * 5; rect(f, 176, y, 50, 1 + (i >> 1), lerpHex(top, bot, Math.floor(y / 12) / 9)); }
+                for (let x = 0; x < FW; x++) {
+                    const h1 = 34 + Math.round(10 * Math.sin(x * 0.045) + 6 * Math.sin(x * 0.11 + 1)); rect(f, x, 120 - h1, 1, h1, '#6b3550');
+                    const h2 = 18 + Math.round(6 * Math.sin(x * 0.07 + 2) + 4 * Math.sin(x * 0.19)); rect(f, x, 120 - h2, 1, h2, '#3e2140');
                 }
+                rect(m, 64, 80, 160, 40, '#8b5a2b'); rect(m, 64, 112, 160, 8, '#5e3b1c');
+                for (let i = 0; i < 6; i++) {
+                    const x = 74 + i * 24;
+                    rect(m, x, 86, 18, 22, '#f3e3c3'); rect(m, x + 8, 86, 1, 22, '#c9b48a'); rect(m, x, 96, 18, 1, '#c9b48a');
+                }
+                for (let i = 0; i < 7; i++) rect(m, 70 + i * 24, 80, 4, 40, '#4a2c14');
+                rect(m, 58, 76, 172, 4, '#4a2c14');
+                for (let i = 0; i < 16; i++) { const w = 140 + i * 3; rect(m, 144 - w / 2, 60 + i, w, 1, i % 4 === 3 ? '#24150c' : '#3d2616'); }
+                rect(m, 48, 72, 3, 3, '#3d2616'); rect(m, 237, 72, 3, 3, '#3d2616');
+                rect(m, 104, 56, 80, 4, '#24150c');
+                rect(m, 130, 64, 28, 8, '#7b241c'); rect(m, 131, 65, 26, 6, '#c0392b'); rect(m, 134, 67, 20, 2, '#f4d03f');
+                drawFloor(fl, '#7a5233', '#5a3a22', '#a47148');
+            },
+            anim(g, t, sm) {
+                for (const lx of [58, 230]) {
+                    const o = Math.round(Math.sin(t * 0.05 + lx) * 1.5), x = lx + sm;
+                    rect(g, x, 76, 1, 6, '#222');
+                    rect(g, x - 3 + o, 82, 7, 10, '#c0392b'); rect(g, x - 2 + o, 83, 5, 8, '#e74c3c');
+                    rect(g, x - 3 + o, 82, 7, 1, '#2b1a10'); rect(g, x - 3 + o, 91, 7, 1, '#2b1a10');
+                    rect(g, x - 1 + o, 85, 2, 3, '#f9e79f');
+                }
+                for (let i = 0; i < 8; i++) rect(g, (i * 53 + t * 0.35) % VW, (i * 37 + t * (0.4 + i * 0.03)) % 120, 1, 1, '#f5b7b1');
             }
-            return;
-        }
-
-        drawBackground();
-        let p1Dir = gp1 ? getPadDir(gp1) : getDirectionP1();
-        let p1Btns = { punch: keysP1.j || (gp1 && (gp1.buttons[2].pressed||gp1.buttons[3].pressed)), kick: keysP1.n || (gp1 && (gp1.buttons[0].pressed||gp1.buttons[1].pressed)) };
-        if(gp1) document.getElementById('gp1-status').innerText = 'P1: Pad';
-
-        let p2Dir = gp2 ? getPadDir(gp2) : getDirectionP2();
-        let p2Btns = { punch: keysP2['1'] || (gp2 && (gp2.buttons[2].pressed||gp2.buttons[3].pressed)), kick: keysP2['2'] || (gp2 && (gp2.buttons[0].pressed||gp2.buttons[1].pressed)) };
-        if(gp2) { disableAI(); document.getElementById('gp2-status').innerText = 'P2: Pad'; }
-
-        if (gameState === 'playing') {
-            if (!player.isBeingThrown && !enemy.isBeingThrown) { 
-                player.facingLeft = player.position.x > enemy.position.x;
-                enemy.facingLeft = !player.facingLeft;
+        },
+        SILICON: {
+            build(f, m, fl) {
+                skyBands(f, '#3a8fd9', '#cfe8fb', 10, 120, FW);
+                for (let i = 0; i < 15; i++) {
+                    const bw = 10 + (i * 7) % 9, bh = 26 + (i * 23) % 38, x = i * 20 - 4;
+                    rect(f, x, 120 - bh, bw, bh, '#a9bccd');
+                    for (let y = 124 - bh; y < 116; y += 4) for (let xx = x + 2; xx < x + bw - 1; xx += 3) rect(f, xx, y, 1, 1, '#c9d6e2');
+                }
+                const tower = (x, y, w) => {
+                    rect(m, x, y, w, 120 - y, '#2c3e50');
+                    for (let yy = y + 3; yy < 116; yy += 5) for (let xx = x + 2; xx < x + w - 3; xx += 5) rect(m, xx, yy, 4, 3, '#5dade2');
+                    m.globalAlpha = 0.25; for (let k = 0; k < 14; k++) rect(m, x + 4 + k, y + 10 + k * 2, 1, 6, '#ffffff'); m.globalAlpha = 1;
+                };
+                tower(34, 34, 42); tower(206, 24, 50); rect(m, 206, 30, 50, 3, '#00bcd4');
+                rect(m, 92, 86, 104, 34, '#dfe6ec'); rect(m, 90, 84, 108, 3, '#95a5a6');
+                for (let r = 0; r < 3; r++) rect(m, 94, 90 + r * 9, 100, 4, '#5dade2');
+                for (let i = 0; i < 14; i++) disc(m, 8 + i * 21, 116, 4, i % 2 ? '#27ae60' : '#229954');
+                drawFloor(fl, '#c8d0d6', '#a3adb5', '#eef2f4');
+            },
+            anim(g, t, sm) {
+                for (let i = 0; i < 4; i++) cloud(g, ((i * 90 + t * 0.12 * (1 + i % 2)) % 330) - 40, 14 + i * 10);
+                for (let i = 0; i < 12; i++) rect(g, 98 + i * 8 + sm, 99, 4, 2, (((t >> 4) + i * 3) % 4) === 0 ? '#76ff03' : '#1e8449');
+                if ((t >> 5) % 2) { rect(g, 230 + sm, 21, 2, 2, '#ff5252'); rect(g, 54 + sm, 31, 2, 2, '#ff5252'); }
             }
-            player.handleInput(p1Dir, p1Btns, enemy); player.update();
-
-            if (isAIEnabled) {
-                enemy.update();
-                
-                // === AI Logic with Blocking ===
-                if (enemy.health > 0 && !enemy.isBeingThrown && !enemy.isHit && !enemy.isSpecialMove && !enemy.isAttacking) {
-                    const dist = Math.abs(player.position.x - enemy.position.x);
-                    
-                    // Simple AI Blocking Logic: Random chance to block when player attacks
-                    if (player.isAttacking && Math.random() < 0.4) { // 40% chance to block
-                        enemy.isHoldingBack = true;
-                        enemy.velocity.x = 0; // Stop moving to block
-                    } else {
-                        enemy.isHoldingBack = false;
-                        
-                        // Attack Logic
-                        if (enemy.charData.id === 'KIM') { 
-                            if (dist > 100) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
-                            if (dist < 120 && Math.random()<0.05) enemy.performHundredHand();
-                            else if (dist > 200 && Math.random()<0.03) enemy.performHeadbutt();
-                        } else if (enemy.charData.id === 'DONALD') { 
-                            if (dist < 200) enemy.velocity.x = enemy.facingLeft ? enemy.speed : -enemy.speed; 
-                            if (Math.random()<0.03) enemy.performSonicBoom();
-                            if (dist < 80 && Math.random()<0.05) enemy.performFlashKick();
-                        } else { 
-                            if (dist > 200) enemy.velocity.x = enemy.facingLeft ? -enemy.speed : enemy.speed;
-                            if (Math.random()<0.02) enemy.performHadouken();
-                        }
+        },
+        GOLDMOUNT: {
+            build(f, m, fl) {
+                skyBands(f, '#2f80c9', '#d6eaf8', 10, 120, FW);
+                for (let x = 0; x < FW; x++) { const h = 26 + Math.round(8 * Math.sin(x * 0.03) + 4 * Math.sin(x * 0.09)); rect(f, x, 120 - h, 1, h, '#9fb8c9'); }
+                for (let x = 0; x < FW; x++) {
+                    const dx = x - 144, h = Math.round(84 - dx * dx / 240 + 3 * Math.sin(x * 0.2));
+                    if (h > 0) rect(m, x, 120 - h, 1, h, x > 170 ? '#89979b' : '#95a5a6');
+                }
+                // 山上刻著巨大的金色 $ 符號（先畫陰影再畫本體）
+                const dollar = (ox, oy, col) => {
+                    rect(m, 130 + ox, 46 + oy, 28, 6, col); rect(m, 130 + ox, 46 + oy, 7, 18, col);
+                    rect(m, 130 + ox, 60 + oy, 28, 6, col); rect(m, 151 + ox, 60 + oy, 7, 20, col);
+                    rect(m, 130 + ox, 74 + oy, 28, 6, col); rect(m, 141 + ox, 40 + oy, 6, 46, col);
+                };
+                dollar(2, 2, '#7d6608'); dollar(0, 0, '#f1c40f');
+                rect(m, 132, 47, 10, 1, '#f9e79f'); rect(m, 132, 61, 10, 1, '#f9e79f');
+                // 礦脈和金塊
+                for (const [x, y] of [[96, 80], [110, 96], [180, 88], [196, 100], [120, 70], [170, 66]]) { rect(m, x, y, 4, 2, '#f1c40f'); rect(m, x + 1, y, 1, 1, '#f9e79f'); }
+                for (let i = 0; i < 15; i++) {
+                    const x = i * 20 + 4 + (i % 2) * 6, top = 102 + (i % 3) * 2;
+                    tri(m, x, top, 118 - top, '#1e5631'); rect(m, x, 118, 1, 2, '#4a3520');
+                }
+                drawFloor(fl, '#8c9599', '#6f777b', '#b0b8bc');
+            },
+            anim(g, t) {
+                for (let i = 0; i < 3; i++) cloud(g, ((i * 110 + t * 0.1) % 340) - 40, 12 + i * 12);
+                const bx = ((t * 0.6) % 330) - 30, by = 26 + Math.round(Math.sin(t * 0.05) * 3), up = (t >> 3) % 2;
+                rect(g, bx, by, 3, 2, '#3b2a1a'); rect(g, bx - 3, by - up, 3, 1, '#3b2a1a'); rect(g, bx + 3, by - up, 3, 1, '#3b2a1a');
+            }
+        },
+        // LIZARDO 的主場：紫色合成器浪潮天空、霓虹網格地板、漂浮的 VR 眼鏡
+        CYBERSPACE: {
+            build(f, m, fl) {
+                const top = '#0b0620', bot = '#5b21b6';
+                skyBands(f, top, bot, 10, 120, FW);
+                for (let i = 0; i < 40; i++) rect(f, (i * 73) % FW, (i * 37) % 70, 1, 1, '#e0d7ff');
+                disc(f, 144, 80, 22, '#ff4fa3'); disc(f, 144, 80, 18, '#ff8a5c');
+                for (let i = 0; i < 5; i++) { const y = 82 + i * 4; rect(f, 120, y, 48, 1 + (i >> 1), lerpHex(top, bot, Math.floor(y / 12) / 9)); }
+                for (let x = 0; x < FW; x++) {
+                    const h = 22 + Math.round(10 * Math.abs(Math.sin(x * 0.04)) + 6 * Math.sin(x * 0.11));
+                    rect(f, x, 120 - h, 1, h, '#1b0b3a'); rect(f, x, 120 - h, 1, 1, '#00e5ff');
+                }
+                for (const sx of [40, 228]) {
+                    rect(m, sx, 60, 20, 60, '#1e1450');
+                    for (let y = 64; y < 116; y += 6) rect(m, sx + 3, y, 14, 2, (y / 6) % 2 ? '#00e5ff' : '#7c3aed');
+                }
+                drawFloor(fl, '#140a33', '#ff2bd6', '#ff7ae6');
+            },
+            anim(g, t, sm) {
+                for (const [gx, gy, ph] of [[90, 38, 0], [190, 28, 2]]) {
+                    const y = gy + Math.round(Math.sin(t * 0.04 + ph) * 3), x = gx + sm;
+                    rect(g, x, y, 18, 8, '#e5e7eb'); rect(g, x + 2, y + 2, 6, 4, '#111827'); rect(g, x + 10, y + 2, 6, 4, '#111827');
+                    rect(g, x + 3, y + 3, 2, 1, '#00e5ff'); rect(g, x + 11, y + 3, 2, 1, '#00e5ff');
+                    rect(g, x - 2, y + 3, 2, 2, '#9ca3af'); rect(g, x + 18, y + 3, 2, 2, '#9ca3af');
+                }
+                for (let i = 0; i < 8; i++) if (((t >> 3) + i * 5) % 7 === 0) rect(g, (i < 4 ? 44 : 232) + sm + (i % 2) * 8, 66 + (i % 4) * 12, 2, 2, '#ff2bd6');
+            }
+        },
+        PARADE: {
+            build(f, m, fl) {
+                skyBands(f, '#1b1f3a', '#c0392b', 10, 120, FW);
+                for (let i = 0; i < 16; i++) {
+                    const bw = 12 + (i * 5) % 8, bh = 28 + (i * 17) % 34, x = i * 18 - 2;
+                    rect(f, x, 120 - bh, bw, bh, '#1c2333');
+                    for (let y = 123 - bh; y < 117; y += 4) for (let xx = x + 2; xx < x + bw - 2; xx += 3) if ((xx * 3 + y * 7 + i) % 5 < 2) rect(f, xx, y, 1, 2, '#f4d03f');
+                }
+                // 中間：發射台上的大火箭（左邊是發射塔架）
+                rect(m, 112, 30, 4, 90, '#7f8c8d');
+                for (let y = 34; y < 112; y += 10) rect(m, 112, y, 18, 1, '#95a5a6');
+                for (let i = 0; i < 12; i++) { const w = 2 + i * 1.2; rect(m, 144 - w / 2, 24 + i, w, 1, '#c0392b'); }
+                rect(m, 136, 36, 16, 76, '#ecf0f1'); rect(m, 146, 36, 6, 76, '#bdc3c7');
+                rect(m, 136, 60, 16, 3, '#556b2f'); rect(m, 136, 90, 16, 3, '#556b2f');
+                disc(m, 144, 48, 3, '#5dade2');
+                rect(m, 130, 98, 6, 14, '#c0392b'); rect(m, 152, 98, 6, 14, '#c0392b');
+                rect(m, 128, 112, 32, 8, '#aab0b4'); rect(m, 124, 116, 40, 4, '#8e959a');
+                // 兩側閱兵大樓，掛橘色布條（黑色炸彈圖案）
+                for (const hx of [40, 188]) {
+                    rect(m, hx, 82, 60, 38, '#34495e'); rect(m, hx - 4, 78, 68, 4, '#2c3e50');
+                    for (let i = 0; i < 8; i++) rect(m, hx + 3 + i * 7, 84, 3, 34, '#5d6d7e');
+                    rect(m, hx + 25, 86, 10, 18, '#e67e22'); disc(m, hx + 30, 96, 3, '#1c1c1c'); rect(m, hx + 31, 91, 1, 2, '#f1c40f');
+                }
+                drawFloor(fl, '#5d6d7e', '#4a5866', '#85929e');
+            },
+            anim(g, t, sm) {
+                // 火箭底部冒出的蒸氣
+                g.globalAlpha = 0.6;
+                for (let i = 0; i < 4; i++) disc(g, 130 + i * 9 + sm, 112 - ((t * 0.3 + i * 7) % 14), 2, '#ecf0f1');
+                g.globalAlpha = 1;
+                // 虛構國旗：橄欖綠＋金色
+                for (const fx of [20, 250]) {
+                    const x = fx + sm;
+                    rect(g, x, 34, 1, 86, '#bdc3c7');
+                    for (let col = 0; col < 16; col++) {
+                        const dy = Math.round(Math.sin(t * 0.12 - col * 0.5) * 1.2), xx = x + 1 + col;
+                        rect(g, xx, 35 + dy, 1, 4, '#556b2f'); rect(g, xx, 39 + dy, 1, 3, '#f1c40f'); rect(g, xx, 42 + dy, 1, 4, '#556b2f');
                     }
                 }
-            } else {
-                enemy.handleInput(p2Dir, p2Btns, player); enemy.update();
-            }
-            checkCollisions();
-        } else {
-            player.draw(); enemy.draw();
-        }
-        particles.forEach((p, i) => { if (p.alpha <= 0) particles.splice(i, 1); else p.update(); });
-        if (gameState === 'playing' && (enemy.health <= 0 || player.health <= 0 || timer === 0)) determineRoundWinner();
-    }
-
-    function getAttackRect(fighter) {
-        let box = { position: { x: fighter.position.x, y: fighter.position.y }, width: fighter.width, height: fighter.height };
-        if (fighter.animState === 'hundredHand') { box.width += 60; if (fighter.facingLeft) box.position.x -= 60; }
-        else if (fighter.animState === 'flashKick') { box.width += 80; box.position.x -= 40; box.position.y -= 20; box.height += 20; }
-        return box;
-    }
-
-    function checkCollisions() {
-        const hit = (r1, r2) => (r1.position.x < r2.position.x + r2.width && r1.position.x + r1.width > r2.position.x && r1.position.y < r2.position.y + r2.height && r1.position.y + r1.height > r2.position.y);
-        
-        // P1 Attacks
-        if (player.isAttacking && player.framesElapsed===5 && hit(player,enemy)) applyHit(enemy, 8);
-        if ((player.animState==='shoryuken'||player.animState==='flashKick') && hit(player,enemy) && !enemy.isHit) applyHit(enemy, 15, true);
-        if (player.animState==='flashKick' && hit(getAttackRect(player),enemy) && !enemy.isHit) applyHit(enemy, 15, true);
-        if (player.animState==='headbutt' && hit(player,enemy) && !enemy.isHit) applyHit(enemy, 12, true);
-        if ((player.animState==='tatsumaki'||player.animState==='hundredHand') && hit(player,enemy) && player.framesElapsed%10===0) applyHit(enemy, 5, true);
-        
-        if (player.animState==='hundredHand' && hit(getAttackRect(player),enemy) && player.framesElapsed%10===0) {
-             applyHit(enemy, 5, true);
-             enemy.velocity.x = player.facingLeft ? -20 : 20; // Pushback fix
-        }
-        
-        // P2 Attacks
-        if (enemy.isAttacking && enemy.framesElapsed===5 && hit(enemy,player)) applyHit(player, 8);
-        if ((enemy.animState==='shoryuken'||enemy.animState==='flashKick') && hit(enemy,player) && !player.isHit) applyHit(player, 15, true);
-        if (enemy.animState==='flashKick' && hit(getAttackRect(enemy),player) && !player.isHit) applyHit(player, 15, true);
-        if (enemy.animState==='headbutt' && hit(enemy,player) && !player.isHit) applyHit(player, 12, true);
-        if ((enemy.animState==='tatsumaki'||enemy.animState==='hundredHand') && hit(enemy,player) && enemy.framesElapsed%10===0) applyHit(player, 5, true);
-        
-        if (enemy.animState==='hundredHand' && hit(getAttackRect(enemy),player) && enemy.framesElapsed%10===0) {
-             applyHit(player, 5, true);
-             player.velocity.x = enemy.facingLeft ? -20 : 20; // Pushback fix
-        }
-
-        // Projectile Collision (抵銷系統)
-        for (let i = player.projectiles.length - 1; i >= 0; i--) {
-            let p1 = player.projectiles[i];
-            for (let j = enemy.projectiles.length - 1; j >= 0; j--) {
-                let p2 = enemy.projectiles[j];
-                let dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-                if (dist < p1.radius + p2.radius) {
-                    createParticles((p1.x+p2.x)/2, (p1.y+p2.y)/2, '#fff');
-                    player.projectiles.splice(i, 1);
-                    enemy.projectiles.splice(j, 1);
-                    break; // p1 is gone, next p1
+                // 觀禮群眾揮著黃色彩帶
+                for (let i = 0; i < 60; i++) {
+                    const x = i * 5 - 6 + sm, bob = ((t >> 3) + i) % 2;
+                    rect(g, x, 113 - bob, 3, 3, '#2c3e50'); rect(g, x - 1, 116 - bob, 5, 4, '#1c2833');
+                    if (i % 3 === 0) rect(g, x, 110 - bob, 2, 2, '#f1c40f');
                 }
             }
         }
+    };
 
-        player.projectiles.forEach((p,i)=>{
-            if(hit({position:{x:p.x-p.radius,y:p.y-p.radius},width:p.radius*2,height:p.radius*2}, enemy)) { applyHit(enemy,10,true,p.x,p.y); player.projectiles.splice(i,1); }
+    function buildStage(id) {
+        const def = STAGES[id];
+        const [far, fg] = makeCanvas(FW, VH), [mid, mg] = makeCanvas(FW, VH), [floor, flg] = makeCanvas(VW, VH);
+        def.build(fg, mg, flg);
+        return { far, mid, floor, anim: def.anim };
+    }
+
+    function drawStage() {
+        if (!stage) return;
+        const mid = player && enemy ? (player.center() + enemy.center()) / 2 : 512;
+        const shift = Math.round(-(mid - 512) / 512 * 10);
+        const sm = -16 + shift, sf = -16 + Math.round(shift / 3);
+        c.drawImage(stage.far, sf, 0);
+        c.drawImage(stage.mid, sm, 0);
+        stage.anim(c, animFrame, sm, sf);
+        c.drawImage(stage.floor, 0, 0);
+    }
+
+    // ================= 戰鬥判定 =================
+    const overlap = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+
+    // 這一幀有判定的攻擊框（沒有就回傳 null）；碰撞判定與判定框顯示共用
+    function activeHitbox(a) {
+        const m = a.moves[a.state];
+        if (!m || !m.box) return null;
+        const f = a.stateFrame;
+        // 跳躍中的拳腳一直有判定到落地（跳入攻擊）
+        const air = a.airborne && !!m.airBox;
+        if (f < m.act[0] || (!air && f > m.act[1]) || a.hitCount >= (m.hits || 1)) return null;
+        return a.hitbox(air ? m.airBox : m.box);
+    }
+
+    function drawBoxes() {
+        const outline = (b, col) => {
+            const x = px(b.x), y = px(b.y), w = Math.max(1, px(b.w)), h = Math.max(1, px(b.h));
+            rect(c, x, y, w, 1, col); rect(c, x, y + h - 1, w, 1, col);
+            rect(c, x, y, 1, h, col); rect(c, x + w - 1, y, 1, h, col);
+        };
+        for (const f of [player, enemy]) {
+            outline(f.hurtbox(), f.hittable() ? '#2ecc71' : '#95a5a6'); // 綠＝可被打、灰＝無敵
+            const hb = activeHitbox(f);
+            if (hb) outline(hb, '#ff3b3b');
+        }
+        for (const p of projectiles) outline({ x: p.x - 18, y: p.y - 18, w: 36, h: 36 }, '#ff3b3b');
+    }
+
+    function checkAttack(a, d) {
+        const m = a.moves[a.state];
+        const hb = activeHitbox(a);
+        if (!hb) return;
+        const f = a.stateFrame;
+        if (m.every && f - a.lastHitFrame < m.every) return;
+        if (!d.hittable()) return;
+        const hu = d.hurtbox();
+        if (!overlap(hb, hu)) return;
+        a.hitCount++; a.lastHitFrame = f;
+        const sx = (Math.max(hb.x, hu.x) + Math.min(hb.x + hb.w, hu.x + hu.w)) / 2;
+        const sy = (Math.max(hb.y, hu.y) + Math.min(hb.y + hb.h, hu.y + hu.h)) / 2;
+        // 跳入攻擊硬直較長，落地後可以接地面連段；多段技的最後一下擊倒
+        let hm = m;
+        if (a.airborne && m.airBox) hm = { ...m, hs: m.hs + 8, kb: 2, overhead: true };
+        else if (m.finisher && a.hitCount === m.hits) hm = { ...m, launch: true, kb: 6 };
+        // 普通技的角色傷害倍率（JOWUAMAN 較重、TURBO 較輕）
+        if (NORMALS.has(a.state) && a.ch.dmgMult) hm = { ...hm, dmg: Math.round(hm.dmg * a.ch.dmgMult) };
+        // 擊退方向一律是「遠離攻擊者」（打到背後或越過頭的對手也不會被往回拉）
+        applyHit(d, hm, Math.sign(d.center() - a.center()) || a.dirSign(), sx, sy);
+        // 被泥巴打中：身上濺到泥點
+        if (a.state === 'mudspin') for (let i = 0; i < 4; i++) addParticle(px(sx) + rnd(3), px(sy) + rnd(4), rnd(1.2), -Math.random() * 1.5, MUD[i], 20, 2, 0.1);
+        // 火焰昇龍：把對手一起帶上去，3 段才打得完
+        if (a.state === 'uppercut' && m.hits > 1 && d.state === 'hit') { d.vel.x = a.vel.x; d.vel.y = Math.min(d.vel.y, a.vel.y + 1); }
+        if (a.state === 'headbutt' || m.bounce) { a.setState('jump'); a.vel.x = -5 * a.dirSign(); a.vel.y = -7; a.airUsed = true; }
+    }
+
+    function applyHit(def, m, away, sx, sy) {
+        if (def.canBlock(m)) {
+            def.health -= m.sp ? Math.max(1, Math.round(m.dmg * 0.15)) : 0;
+            def.crouchBlock = def.holdingDown;
+            def.setState('block'); def.stun = m.bs || 12; def.vel.x = away * 5;
+            sparks.push(new Spark(sx, sy, '#7fd3ff', false));
+            hitstop = 4;
+            Sound.play('block');
+        } else {
+            // 還在硬直中又被打 = 連段；每多一段傷害打 85 折，最低 4 成
+            def.combo = def.state === 'hit' ? def.combo + 1 : 1;
+            if (def.airborne) def.juggle++;
+            const dmg = Math.max(1, Math.round(m.dmg * Math.max(0.4, 1 - 0.15 * (def.combo - 1))));
+            def.health -= dmg;
+            def.comboDmg = (def.combo === 1 ? 0 : def.comboDmg) + dmg;
+            if (def.combo >= 2) showCombo(def === enemy ? 'p1' : 'p2', def.combo);
+            if (gameMode === 'training' && def === enemy) {
+                trainStat.last = `${def.combo} HIT${def.combo > 1 ? 'S' : ''} ${def.comboDmg} DMG`;
+                trainStat.best = Math.max(trainStat.best, def.combo);
+            }
+            def.flash = 3;
+            const air = def.airborne || m.launch;
+            def.setState('hit'); def.stun = m.hs; def.vel.x = away * m.kb;
+            if (air) def.vel.y = m.launch ? -9 : -6;
+            else if (m.trip) def.vel.y = -4; // 掃腳：絆倒（落地後倒地）
+            sparks.push(new Spark(sx, sy, m.sp ? '#ffd23f' : '#ffffff', m.sp));
+            for (let i = 0; i < 4; i++) addParticle(px(sx), px(sy), rnd(1.5), rnd(1.5), m.sp ? '#ffd23f' : '#ffffff', 10);
+            hitstop = m.sp ? 8 : 6;
+            shake = Math.max(shake, m.sp ? 6 : 3);
+            Sound.play(m.sp || m.dmg >= 8 ? 'heavy' : 'hit');
+        }
+        if (gameMode === 'training' && def === enemy) advTrack = { t: 0, aFree: null, dFree: null };
+        if (def.health <= 0) koFighter(def, away);
+    }
+
+    function koFighter(f, away) {
+        if (gameMode === 'training') { f.health = 1; return; } // 練習模式不會被 KO
+        f.health = 0;
+        f.setState('ko'); f.vel.x = away * 5; f.vel.y = -9; f.flash = 4;
+        if (!roundEnding) {
+            roundEnding = true; endTimer = 0;
+            slowmo = 45; hitstop = 14; shake = 10;
+            showMessage('K.O.', '');
+            Sound.play('ko'); Sound.say('K.O.');
+        }
+    }
+
+    // 推擠框：地面上兩人不能互相穿過
+    function pushApart(a, b) {
+        if (a.airborne || b.airborne) return;
+        const skip = ['thrown', 'ko', 'down'];
+        if (skip.includes(a.state) || skip.includes(b.state)) return;
+        const minDist = (a.w + b.w) / 2 - 8;
+        const dx = b.center() - a.center();
+        const ov = minDist - Math.abs(dx);
+        if (ov <= 0) return;
+        const s = dx !== 0 ? Math.sign(dx) : (a.facingLeft ? -1 : 1);
+        a.pos.x -= s * ov / 2; b.pos.x += s * ov / 2;
+        const clamp = f => { f.pos.x = Math.max(0, Math.min(WORLD_W - f.w, f.pos.x)); };
+        clamp(a); clamp(b);
+        const ov2 = minDist - Math.abs(b.center() - a.center());
+        if (ov2 > 0) {
+            const aAtWall = a.pos.x <= 0 || a.pos.x >= WORLD_W - a.w;
+            if (aAtWall) b.pos.x += s * ov2; else a.pos.x -= s * ov2;
+            clamp(a); clamp(b);
+        }
+    }
+
+    function faceEachOther() {
+        for (const [f, o] of [[player, enemy], [enemy, player]]) {
+            if (f.grounded && ['idle', 'run', 'block', 'land', 'prejump', 'crouch'].includes(f.state)) f.facingLeft = f.center() > o.center();
+        }
+    }
+
+    function updateProjectiles(live) {
+        projectiles.forEach(p => p.update());
+        // 互相抵消：各扣一段，兩段的紅色 J-BALL 撞掉一顆普通氣功後還會繼續飛
+        const loseHit = p => { p.hits--; if (p.hits <= 0) p.dead = true; else p.cool = 12; };
+        for (const a of projectiles) for (const b of projectiles) {
+            if (a !== b && a.owner !== b.owner && !a.dead && !b.dead && !a.cool && !b.cool && Math.abs(a.x - b.x) < 36 && Math.abs(a.y - b.y) < 30) {
+                loseHit(a); loseHit(b);
+                sparks.push(new Spark((a.x + b.x) / 2, (a.y + b.y) / 2, '#ffffff', true));
+                Sound.play('clash');
+            }
+        }
+        if (live) for (const p of projectiles) {
+            if (p.dead || p.cool) continue;
+            const tgt = p.owner === player ? enemy : player;
+            // JOWUAMAN 的旋風腿可以穿過飛行道具
+            if (!tgt.hittable() || tgt.moves[tgt.state]?.projInv) continue;
+            if (overlap({ x: p.x - 18, y: p.y - 18, w: 36, h: 36 }, tgt.hurtbox())) {
+                loseHit(p);
+                const lastHit = p.dead;
+                if (!lastHit) p.hold = 10;
+                applyHit(tgt, { dmg: p.dmg, sp: true, hs: 18, kb: lastHit ? 5 : 1, launch: lastHit && p.knockdown }, Math.sign(p.vx), p.x, p.y);
+            }
+        }
+        projectiles = projectiles.filter(p => !p.dead);
+    }
+
+    // ================= AI =================
+    const ai = { next: 0, move: 'stay', threat: false, block: false, combo: null };
+    function aiThink(me, foe) {
+        const ctrl = { dir: 'NEUTRAL', punch: false, kick: false, punchHeld: false, kickHeld: false, force: null };
+        const fwd = me.facingLeft ? 'LEFT' : 'RIGHT', back = me.facingLeft ? 'RIGHT' : 'LEFT';
+        const dist = Math.abs(me.center() - foe.center());
+        // 普通技打中 → 決定一次要不要接連段（連打拳或取消成必殺技）
+        const mm = me.moves[me.state];
+        if (mm && mm.cancel && me.hitCount > 0) {
+            if (!ai.combo) {
+                const r = Math.random();
+                // 速攻型連打機率高，連段也比較長
+                const chainP = me.ch.style === 'rusher' ? 0.55 : 0.35;
+                ai.combo = r < chainP && me.state === 'punch' && me.chainCount < (me.ch.chainMax || 2) ? 'chain' : r < 0.75 ? 'special' : 'none';
+            }
+            if (ai.combo === 'chain') ctrl.punch = true;
+            else if (ai.combo === 'special' && me.stateFrame >= mm.cancel[0] + 2) {
+                const allround = me.ch.style === 'rusher' ? (dist < 120 ? 'uppercut' : 'spinkick') : (dist < 110 ? 'uppercut' : 'fireball');
+                ctrl.force = { allround, charge: 'moneyBoom', sumo: 'hundredHand', beast: dist < 100 ? 'mudspin' : 'roll' }[me.ch.type];
+            }
+            return ctrl;
+        }
+        ai.combo = null;
+        const fm = foe.moves[foe.state];
+        const threat = !!(fm && fm.dmg && dist < 200) ||
+            projectiles.some(p => p.owner === foe && (me.center() - p.x) * p.vx > 0 && Math.abs(me.center() - p.x) < 260);
+        // 威脅出現時擲一次骰決定要不要擋，而不是每幀亂擲
+        // 威脅出現時決定一次：55% 防禦、15% 後跳躲開、其他照常行動
+        if (threat && !ai.threat) { const r0 = Math.random(); ai.block = r0 < 0.55; ai.hop = !ai.block && r0 < 0.7; }
+        ai.threat = threat;
+        // 掃腳要蹲著擋，其他站著擋（跳入攻擊蹲著擋不住）
+        if (threat && ai.block) { ctrl.dir = foe.state === 'sweep' ? 'DOWN_' + back : back; return ctrl; }
+        // 後跳最多每 4 秒一次，避免一直跳
+        if (threat && ai.hop && dist < 150 && frameCount >= (ai.nextHop || 0)) { ai.hop = false; ai.nextHop = frameCount + 240; ctrl.force = 'backdash'; return ctrl; }
+
+        if (frameCount >= ai.next) {
+            ai.next = frameCount + 12 + Math.floor(Math.random() * 30);
+            const r = Math.random(), type = me.ch.type;
+            if (type === 'charge') ai.move = dist < 260 ? (r < 0.7 ? 'back' : 'stay') : dist > 420 ? 'fwd' : (r < 0.6 ? 'back' : 'stay');
+            else if (type === 'sumo') ai.move = dist > 110 ? (r < 0.8 ? 'fwd' : 'stay') : (r < 0.3 ? 'back' : 'stay');
+            // 龍型保持中距離；肯型一直往前壓
+            else if (me.ch.style === 'zoner') ai.move = dist < 220 ? (r < 0.55 ? 'back' : 'stay') : dist > 400 ? (r < 0.7 ? 'fwd' : 'stay') : (r < 0.7 ? 'stay' : r < 0.85 ? 'fwd' : 'back');
+            else if (me.ch.style === 'rusher') ai.move = dist > 110 ? (r < 0.85 ? 'fwd' : 'stay') : (r < 0.7 ? 'stay' : 'back');
+            else ai.move = dist > 260 ? (r < 0.7 ? 'fwd' : 'stay') : dist > 120 ? (r < 0.45 ? 'fwd' : r < 0.75 ? 'stay' : 'back') : (r < 0.5 ? 'stay' : 'back');
+            if (dist > 160 && dist < 320 && Math.random() < 0.12) ai.move = 'jump';
+        }
+        ctrl.dir = ai.move === 'fwd' ? fwd : ai.move === 'back' ? back : ai.move === 'jump' ? 'UP_' + fwd : 'NEUTRAL';
+        if (ai.move === 'jump') ai.move = 'stay';
+
+        const r = Math.random(), antiAir = foe.airborne && dist < 180;
+        switch (me.ch.type) {
+            case 'allround':
+                if (me.ch.style === 'rusher') {
+                    // 跳在空中、對手在前下方時用飛翔腳俯衝
+                    if (me.airborne && me.ch.diveKick && me.vel.y > -4 && (foe.center() - me.center()) * me.dirSign() > 0 && dist < 260 && r < 0.25) ctrl.force = 'divekick';
+                    else if (antiAir && r < 0.05) ctrl.force = 'uppercut';
+                    else if (dist > 260 && r < 0.03) ctrl.force = 'dash';
+                    else if (dist < 170 && r < 0.012) ctrl.force = 'spinkick';
+                    else if (dist > 320 && r < 0.005) ctrl.force = 'fireball';
+                } else {
+                    // 龍型：對空很準、常丟氣功、對手蹲著時用上段拳
+                    if (antiAir && r < 0.12) ctrl.force = 'uppercut';
+                    else if (dist > 220 && r < 0.016) ctrl.force = 'fireball';
+                    else if (dist > 260 && r < 0.004) ctrl.force = 'fireball2';
+                    else if (dist < 110 && foe.crouching && r < 0.02) ctrl.force = 'overhead';
+                    else if (dist < 130 && r < 0.005) ctrl.force = 'spinkick';
+                }
+                break;
+            case 'charge':
+                if ((antiAir || dist < 90) && r < 0.06) ctrl.force = 'wallKick';
+                else if (dist > 200 && r < 0.012) ctrl.force = 'moneyBoom';
+                break;
+            case 'sumo':
+                if (dist < 120 && r < 0.012) ctrl.force = 'hundredHand';
+                else if (dist > 220 && r < 0.01) ctrl.force = 'headbutt';
+                break;
+            case 'beast':
+                // 野獸型：遠距離滾過來、對空往上滾、貼身放電
+                if (antiAir && r < 0.08) ctrl.force = 'vroll';
+                else if (dist > 200 && r < 0.015) ctrl.force = 'roll';
+                else if (dist < 110 && r < 0.015) ctrl.force = 'mudspin';
+                break;
+        }
+        // 進攻型角色距離遠時偶爾衝刺拉近
+        if (!ctrl.force && dist > 320 && me.ch.style !== 'zoner' && me.ch.type !== 'charge' && Math.random() < 0.006) ctrl.force = 'dash';
+        if (!ctrl.force && dist < 120) {
+            if (dist < 85 && r > 0.992) { ctrl.punch = true; ctrl.kickHeld = true; }
+            else if (r > 0.985) { ctrl.dir = 'DOWN'; ctrl.kick = true; } // 掃腳
+            else if (r > 0.95) { if (dist > 90) ctrl.kick = true; else ctrl.punch = true; }
+        }
+        return ctrl;
+    }
+
+    // ================= UI =================
+    const hudCache = {};
+    let lastTimerShown = 99;
+    function setStyle(el, prop, val) { const k = el.id + prop; if (hudCache[k] !== val) { hudCache[k] = val; el.style[prop] = val; } }
+    function setText(el, val) { const k = el.id + '#text'; if (hudCache[k] !== val) { hudCache[k] = val; el.textContent = val; } }
+
+    function updateHUD() {
+        if (!player) return;
+        [[player, 'p1'], [enemy, 'p2']].forEach(([f, id]) => {
+            const pct = Math.max(0, f.health / f.maxHealth * 100) + '%';
+            setStyle($(id + 'Health'), 'width', pct); setStyle($(id + 'Damage'), 'width', pct);
+            $(id + 'Health').classList.toggle('low', f.health > 0 && f.health / f.maxHealth < 0.25);
         });
-        enemy.projectiles.forEach((p,i)=>{
-            if(hit({position:{x:p.x-p.radius,y:p.y-p.radius},width:p.radius*2,height:p.radius*2}, player)) { applyHit(player,10,true,p.x,p.y); enemy.projectiles.splice(i,1); }
+        const tm = Math.max(0, 99 - Math.floor(timeFrames / 60));
+        // 最後 10 秒每秒嗶一聲
+        if (tm !== lastTimerShown && tm <= 10 && tm > 0 && gameMode !== 'training' && gameState === 'playing' && !roundEnding) Sound.play('tick');
+        lastTimerShown = tm;
+        setText($('timer'), gameMode === 'training' ? '--' : String(tm));
+        $('timer').classList.toggle('low', tm <= 10 && gameState === 'playing' && !roundEnding);
+        setText($('gp1-status'), 'P1: ' + (pads[0] ? 'PAD' : 'KEY'));
+        setText($('gp2-status'), 'P2: ' + (gameMode === 'training' ? 'DUMMY' : isAIEnabled ? 'AI' : pads[1] ? 'PAD' : 'KEY'));
+    }
+    function updateDots() {
+        [['p1', p1Wins], ['p2', p2Wins]].forEach(([id, w]) => Array.from($(id + '-dots').children).forEach((d, i) => d.classList.toggle('active', i < w)));
+    }
+    function showMessage(main, sub) {
+        $('message-display').style.display = 'block';
+        document.querySelector('#message-display .main-msg').textContent = main;
+        const s = document.querySelector('#message-display .sub-text');
+        s.textContent = sub; s.style.display = sub ? 'block' : 'none';
+    }
+    function hideMessage() { $('message-display').style.display = 'none'; }
+    function showCombo(side, n) {
+        const el = $('combo-' + side);
+        el.innerHTML = `${n}<span>HITS</span>`;
+        el.style.display = 'block';
+        el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+        comboTimer[side] = 80;
+    }
+    function hideCombos() { for (const k of ['p1', 'p2']) { comboTimer[k] = 0; $('combo-' + k).style.display = 'none'; } }
+
+    function showScreen(name) {
+        $('title-screen').style.display = name === 'title' ? 'flex' : 'none';
+        $('char-select-screen').style.display = name === 'select' ? 'flex' : 'none';
+        $('vs-screen').style.display = name === 'vs' ? 'flex' : 'none';
+        const fight = name === 'fight', training = fight && gameMode === 'training';
+        $('hud').style.display = fight ? 'flex' : 'none';
+        $('training-panel').style.display = training ? 'block' : 'none';
+        document.querySelectorAll('.round-dots').forEach(el => { el.style.visibility = training ? 'hidden' : 'visible'; });
+        $('timer').style.display = fight ? 'block' : 'none';
+        $('pause-menu').style.display = 'none';
+        $('move-hint').style.display = (fight || name === 'select') ? 'block' : 'none';
+        hideCombos();
+        if (!fight) hideMessage();
+    }
+
+    function drawPreview(cv, ch, alt, p, mirror) {
+        const g = cv.getContext('2d'); g.imageSmoothingEnabled = false;
+        g.clearRect(0, 0, SW, SH);
+        g.save();
+        if (mirror) { g.translate(SW, 0); g.scale(-1, 1); g.translate(-8, 0); }
+        // 會變身的角色在選角和 VS 畫面都以人類形態出現，開打才揭曉
+        if (ch.transforms) p = { ...p, form: 'human' };
+        g.drawImage(getSprite(ch, alt, p, false), 4, 0);
+        g.restore();
+    }
+
+    // ================= 遊戲流程 =================
+    function updateSoundUI() { $('sound-status').textContent = `SOUND: ${Sound.muted ? 'OFF' : 'ON'} [M]`; }
+
+    function goTitle() {
+        gameState = 'title';
+        Sound.duck(false);
+        updateSoundUI();
+        isAIEnabled = true;
+        player = enemy = null;
+        projectiles = []; particles = []; sparks = [];
+        stage = buildStage('DOJO');
+        showScreen('title');
+        Sound.music('title');
+    }
+
+    const MODE_IDS = ['mode-1p', 'mode-2p', 'mode-train'];
+    function updateModeUI() { MODE_IDS.forEach((id, i) => $(id).classList.toggle('active', i === modeIndex)); }
+    function startMode(m) { gameMode = m; goSelect(); }
+    MODE_IDS.forEach((id, i) => $(id).addEventListener('click', () => { modeIndex = i; startMode(MODES[i]); }));
+
+    function goSelect() {
+        gameState = 'select';
+        sel = { p1: sel.p1, p2: (sel.p1 + 1) % CHARACTERS.length, p2Joined: gameMode === '2p', p1Ready: false, p2Ready: false };
+        const grid = $('char-grid');
+        if (!grid.children.length) {
+            CHARACTERS.forEach(ch => {
+                const card = document.createElement('div');
+                card.className = 'char-card';
+                card.innerHTML = `<div class="cursor-row"><span class="m1">P1</span><span class="m2">P2</span></div><canvas width="${SW}" height="${SH}"></canvas><div class="char-name">${ch.name}</div>`;
+                grid.appendChild(card);
+            });
+            const tbc = document.createElement('div');
+            tbc.className = 'char-card locked';
+            tbc.innerHTML = `<div class="tbc">?</div><div class="char-name">TO BE<br>CONTINUED</div>`;
+            grid.appendChild(tbc);
+        }
+        showScreen('select');
+        renderSelect();
+    }
+
+    function renderSelect() {
+        const cards = $('char-grid').querySelectorAll('.char-card:not(.locked)');
+        const bob = (animFrame >> 4) % 2;
+        cards.forEach((card, i) => {
+            const on1 = i === sel.p1, on2 = sel.p2Joined && i === sel.p2;
+            card.classList.toggle('p1sel', on1);
+            card.classList.toggle('p2sel', on2);
+            card.querySelector('.m1').textContent = sel.p1Ready ? 'P1 OK' : 'P1';
+            const p2Label = gameMode === 'training' ? 'DUMMY' : 'P2';
+            card.querySelector('.m2').textContent = sel.p2Ready ? p2Label + ' OK' : p2Label;
+            const ready = (on1 && sel.p1Ready) || (on2 && sel.p2Ready);
+            const p = ready ? { legs: 'stand', front: 'up', back: 'down', face: 'shout', bob, frame: 0 }
+                : (on1 || on2) ? { legs: 'stand', front: 'guard', back: 'guard', bob, frame: (animFrame >> 3) % 2 }
+                : { legs: 'stand', front: 'guard', back: 'guard', frame: 0 };
+            drawPreview(card.querySelector('canvas'), CHARACTERS[i], false, p, false);
         });
+        $('move-hint').textContent = CHARACTERS[sel.p1].desc;
+        $('select-status').innerHTML = gameMode === '1p'
+            ? 'A / D OR ← / → TO MOVE, J OR ENTER TO CONFIRM<br>OPPONENT: CPU (RANDOM)'
+            : gameMode === 'training'
+            ? (sel.p1Ready ? 'TRAINING: NOW CHOOSE THE DUMMY<br>← / → TO MOVE, J OR ENTER TO CONFIRM'
+                           : 'TRAINING: CHOOSE YOUR FIGHTER<br>← / → TO MOVE, J OR ENTER TO CONFIRM')
+            : `P1: A / D TO MOVE, J TO CONFIRM${sel.p1Ready ? ' - READY!' : ''}<br>` +
+              `P2: ← / → TO MOVE, 1 TO CONFIRM${sel.p2Ready ? ' - READY!' : ''}`;
+        // 雙人時若 P1 先確認，提示 P2
+        if (sel.p1Ready && sel.p2Joined && !sel.p2Ready) $('select-status').innerHTML += '<br>WAITING FOR P2...';
     }
 
-    function applyHit(t, d, sp=false, x=0, y=0) {
-        if(t.takeDamage(d,sp)==='blocked') createParticles(x||t.position.x, y||t.position.y, '#3498db');
-        else createParticles(x||t.position.x, y||t.position.y, '#e74c3c');
-        updateHealthUI();
+    function tickSelect(in1, in2) {
+        const N = CHARACTERS.length;
+        let changed = (animFrame % 8) === 0;
+        const move = (inp, key) => {
+            const d = inp.dirPressed;
+            if (d && d.includes('LEFT')) { sel[key] = (sel[key] + N - 1) % N; changed = true; Sound.play('cursor'); }
+            else if (d && d.includes('RIGHT')) { sel[key] = (sel[key] + 1) % N; changed = true; Sound.play('cursor'); }
+        };
+        const ready = (k) => { sel[k] = true; changed = true; Sound.play('confirm'); };
+        if (!sel.p1Ready) {
+            move(in1, 'p1');
+            if (in1.confirm) {
+                ready('p1Ready');
+                if (gameMode === 'training') { sel.p2Joined = true; sel.p2 = (sel.p1 + 1) % N; }
+            }
+        } else if (gameMode === 'training' && !sel.p2Ready) {
+            // 練習模式：P1 接著選木樁的角色
+            move(in1, 'p2');
+            if (in1.confirm) ready('p2Ready');
+        }
+        if (gameMode === '2p' && !sel.p2Ready) {
+            move(in2, 'p2');
+            if (in2.confirm || in2.punch) ready('p2Ready');
+        }
+        if (changed) renderSelect();
+        if (sel.p1Ready && (!sel.p2Joined || sel.p2Ready)) startVS();
     }
-    function createParticles(x, y, c) { for(let i=0; i<5; i++) particles.push(new Particle({x,y,color:c,velocity:{x:(Math.random()-0.5)*10,y:(Math.random()-0.5)*10}})); }
-    function updateHealthUI() {
-        document.querySelector('#p1Health').style.width = Math.max(0, (player.health/player.maxHealth)*100) + '%';
-        document.querySelector('#p2Health').style.width = Math.max(0, (enemy.health/enemy.maxHealth)*100) + '%';
-        document.querySelector('#p1Damage').style.width = Math.max(0, (player.health/player.maxHealth)*100) + '%';
-        document.querySelector('#p2Damage').style.width = Math.max(0, (enemy.health/enemy.maxHealth)*100) + '%';
-    }
-    function determineRoundWinner() {
-        clearTimeout(timerId);
-        roundEndTimestamp = Date.now(); 
-        document.getElementById('message-display').style.display='block';
-        let txt = "K.O.";
-        if(player.health > enemy.health) { p1Wins++; updateDots('p1',p1Wins); }
-        else if(enemy.health > player.health) { p2Wins++; updateDots('p2',p2Wins); }
-        else txt = "DRAW";
-        document.querySelector('.main-msg').innerText = txt;
-        
-        if(p1Wins>=2 || p2Wins>=2) { gameState = 'match_over'; document.querySelector('.sub-text').innerText = p1Wins>=2 ? "P1 WINS!" : "P2 WINS!"; }
-        else { gameState = 'round_over'; document.querySelector('.sub-text').innerText = "NEXT ROUND"; }
-    }
-    function nextRound() {
-        player.reset(); enemy.reset(); updateHealthUI(); particles=[]; timer=99;
-        document.getElementById('message-display').style.display='none';
-        gameState='playing'; decreaseTimer();
-    }
-    function resetMatch() {
-        p1Wins=0; p2Wins=0; isAIEnabled=true; isPaused=false;
-        document.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
-        document.getElementById('message-display').style.display='none'; 
-        document.getElementById('pause-menu').style.display='none';
-        document.getElementById('char-select-screen').style.display='none';
-        
-        initTitleScreen(); // Reset to Title
-    }
-    function updateDots(id, w) { for(let i=0;i<w;i++) document.getElementById(id+'-dots').children[i]?.classList.add('active'); }
-    function decreaseTimer() { if(timer>0 && gameState==='playing') { timerId=setTimeout(decreaseTimer,1000); timer--; document.getElementById('timer').innerText=timer; } else if(timer===0) determineRoundWinner(); }
 
-    initTitleScreen(); animate();
+    function startVS() {
+        const p1Char = CHARACTERS[sel.p1];
+        let p2Char;
+        isAIEnabled = gameMode === '1p';
+        if (isAIEnabled) {
+            const others = CHARACTERS.filter(ch => ch.id !== p1Char.id);
+            p2Char = others[Math.floor(Math.random() * others.length)];
+        } else p2Char = CHARACTERS[sel.p2];
+        const mirror = p2Char.id === p1Char.id;
+
+        player = new Fighter({ charData: p1Char, isP1: true });
+        enemy = new Fighter({ charData: p2Char, isP1: false, alt: mirror });
+        stage = buildStage(p2Char.stage); // 選完 P2 之後才決定場景（對手的主場）
+        Sound.music(p2Char.stage);
+
+        p1Wins = 0; p2Wins = 0; roundNum = 0;
+        updateDots();
+        $('p1Name').textContent = p1Char.name;
+        $('p2Name').textContent = p2Char.name;
+        $('vs-n1').textContent = p1Char.name;
+        $('vs-n2').textContent = p2Char.name;
+        const win = { legs: 'stand', front: 'up', back: 'down', face: 'shout', frame: 0 };
+        drawPreview($('vs-c1'), p1Char, false, win, false);
+        drawPreview($('vs-c2'), p2Char, mirror, win, true);
+        $('move-hint').textContent = `${p1Char.name}: ${p1Char.desc}`;
+        if (gameMode === 'training') { advTrack = null; Object.assign(trainStat, { last: '-', best: 0, adv: '-' }); startRound(); return; }
+        showScreen('vs');
+        gameState = 'vs'; stateTimer = 0;
+    }
+
+    function startRound() {
+        roundNum++;
+        player.reset(); enemy.reset();
+        projectiles = []; particles = []; sparks = [];
+        timeFrames = 0; roundEnding = false; endTimer = 0;
+        hitstop = 0; slowmo = 0; shake = 0;
+        Object.assign(ai, { next: 0, move: 'stay', threat: false, block: false, combo: null });
+        showScreen('fight');
+        const label = gameMode === 'training' ? 'TRAINING' : p1Wins === 1 && p2Wins === 1 ? 'FINAL ROUND' : 'ROUND ' + roundNum;
+        showMessage(label, '');
+        Sound.music(enemy.ch.stage); // 打完一場再開時音樂會重新開始
+        Sound.play('round');
+        if (gameMode !== 'training') Sound.say(label.charAt(0) + label.slice(1).toLowerCase());
+        gameState = 'intro'; stateTimer = 0;
+        updateHUD(); updateDots();
+    }
+
+    function timeUp() {
+        roundEnding = true; endTimer = 0;
+        showMessage('TIME UP', '');
+        Sound.play('round'); Sound.say('Time!');
+    }
+
+    function finishRound() {
+        const winner = player.health > enemy.health ? player : enemy.health > player.health ? enemy : null;
+        if (winner === player) p1Wins++;
+        else if (winner === enemy) p2Wins++;
+        updateDots();
+        if (winner && winner.state !== 'ko') { winner.setState('win'); winner.vel.x = 0; }
+        stateTimer = 0;
+        const tag = winner === player ? 'P1' : 'P2';
+        // PERFECT：用 K.O. 取勝而且自己一滴血都沒掉（時間到不算）
+        const perfect = winner && winner.health >= winner.maxHealth && (player.health <= 0 || enemy.health <= 0);
+        if (p1Wins >= 2 || p2Wins >= 2) {
+            gameState = 'match_over';
+            showMessage(`${tag} WINS!`, `${winner.name} - PRESS ANY KEY`);
+            Sound.stopMusic();
+            // 1P 模式輸給電腦播失敗音樂
+            Sound.play(gameMode === '1p' && winner === enemy ? 'lose' : 'win');
+            Sound.say(perfect ? `Perfect! ${winner.name} wins!` : `${winner.name} wins!`);
+        } else {
+            gameState = 'round_over';
+            showMessage(winner ? `${tag} WINS` : 'DRAW', perfect ? 'PERFECT!' : 'NEXT ROUND');
+            if (perfect) Sound.say('Perfect!');
+            else if (!winner) Sound.say('Draw game');
+        }
+    }
+
+    function openPause() {
+        pausedFrom = gameState; gameState = 'paused';
+        pauseIndex = 0; updatePauseMenuUI();
+        $('pause-menu').style.display = 'flex';
+        Sound.play('pause'); Sound.duck(true);
+    }
+    function closePause() { gameState = pausedFrom; $('pause-menu').style.display = 'none'; Sound.play('confirm'); Sound.duck(false); }
+    function updatePauseMenuUI() { ['opt-resume', 'opt-quit'].forEach((id, i) => $(id).classList.toggle('active', i === pauseIndex)); }
+    function confirmPause() { if (pauseIndex === 0) closePause(); else goTitle(); }
+    $('opt-resume').addEventListener('click', () => { pauseIndex = 0; confirmPause(); });
+    $('opt-quit').addEventListener('click', () => { pauseIndex = 1; confirmPause(); });
+
+    function tickPause(in1, in2) {
+        const d = in1.dirPressed || in2.dirPressed;
+        if (d && (d.includes('UP') || d.includes('DOWN'))) { pauseIndex = 1 - pauseIndex; updatePauseMenuUI(); Sound.play('cursor'); }
+        if (justPressed.Escape || in1.start || in2.start) { closePause(); return; }
+        if (in1.confirm || in2.confirm) confirmPause();
+    }
+
+    // LIZARDO 開場變身：發抖閃綠光 → 西裝炸開、皮鞋飛掉 → 蜥蜴人吼一聲
+    function tickTransform(f, t) {
+        const cx = px(f.center()), fy = px(f.pos.y + f.h);
+        if (t === 20) Sound.play('growl');
+        f.transforming = t >= 20 && t < 48;
+        if (f.transforming && t % 2 === 0) addParticle(cx + rnd(8), fy - 5 - Math.random() * 30, rnd(0.3), -0.6, '#7dcea0', 14);
+        if (t === 48) {
+            f.transforming = false; f.form = 'lizard';
+            f.setState('win');
+            // 西裝碎片（灰色西裝、白襯衫、紅領帶）往四周噴
+            for (let i = 0; i < 18; i++) addParticle(cx + rnd(6), fy - 10 - Math.random() * 24, rnd(2.2), -1 - Math.random() * 2, ['#5d6d7e', '#3e4a56', '#ffffff', '#c0392b'][i % 4], 45, 2, 0.12);
+            // 兩隻皮鞋飛出去
+            for (const s of [-1, 1]) addParticle(cx + s * 4, fy - 2, s * 1.6, -2.6, '#5a3418', 55, 3, 0.15);
+            shake = 8;
+            Sound.play('roar');
+        }
+    }
+
+    // ================= 練習模式 =================
+    function dummyThink(me, foe) {
+        const mode = DUMMY_MODES[dummyMode];
+        if (mode === 'CPU') return aiThink(me, foe);
+        const back = me.facingLeft ? 'RIGHT' : 'LEFT';
+        // BLOCK：看對手出什麼自動選站擋或蹲擋；stay：按住後退只防禦、不往後走
+        const guard = foe.state === 'sweep' ? 'DOWN_' + back : back;
+        return { dir: mode === 'BLOCK' ? guard : mode === 'JUMP' ? 'UP' : 'NEUTRAL', stay: true,
+                 punch: false, kick: false, punchHeld: false, kickHeld: false, force: null };
+    }
+
+    function resetTrainingPositions() {
+        for (const f of [player, enemy]) { f.reset(); }
+        player.pos.x = 380; enemy.pos.x = 560;
+        projectiles = []; advTrack = null;
+    }
+
+    function tickTraining() {
+        // 沒在挨打一小段時間後血量補滿
+        for (const f of [player, enemy]) {
+            f.calm = ['idle', 'run', 'jump', 'prejump'].includes(f.state) ? (f.calm || 0) + 1 : 0;
+            if (f.calm === 40) f.health = f.maxHealth;
+        }
+        // 幀數優勢：最後一下打中（或被擋）後，誰先能動、差幾幀
+        if (advTrack) {
+            const t = advTrack, free = f => ['idle', 'run'].includes(f.state);
+            t.t++;
+            if (t.aFree === null && free(player)) t.aFree = t.t;
+            if (t.dFree === null && free(enemy)) t.dFree = t.t;
+            if (enemy.state === 'down') { trainStat.adv = 'KNOCKDOWN'; advTrack = null; }
+            else if (t.aFree !== null && t.dFree !== null) {
+                const adv = t.dFree - t.aFree;
+                trainStat.adv = (adv > 0 ? '+' : '') + adv;
+                advTrack = null;
+            } else if (t.t > 240) advTrack = null;
+        }
+        updateTrainingPanel();
+    }
+
+    function updateTrainingPanel() {
+        const adv = trainStat.adv, advCls = adv.startsWith('+') || adv === 'KNOCKDOWN' ? 'good' : adv.startsWith('-') && adv !== '-' ? 'bad' : '';
+        const html =
+            `DUMMY: <span class="k">${DUMMY_MODES[dummyMode]}</span> [T] &nbsp; RESET [R] &nbsp; HITBOX: <span class="k">${showBoxes ? 'ON' : 'OFF'}</span> [H]<br>` +
+            `LAST COMBO: <span class="k">${trainStat.last}</span> &nbsp; BEST: <span class="k">${trainStat.best} HITS</span> &nbsp; ADV: <span class="${advCls}">${adv}</span><br>` +
+            `<span class="dim">TRY: ${player.ch.combos.join(' &nbsp;/&nbsp; ')}</span>`;
+        setHTML($('training-panel'), html);
+    }
+    function setHTML(el, val) { const k = el.id + '#html'; if (hudCache[k] !== val) { hudCache[k] = val; el.innerHTML = val; } }
+
+    function tickFight(in1, in2, any) {
+        if ((justPressed.Escape || in1.start || in2.start) && (gameState === 'intro' || gameState === 'playing')) { openPause(); return; }
+
+        if (gameState === 'intro') {
+            stateTimer++;
+            if (stateTimer === 60) {
+                showMessage(gameMode === 'training' ? 'GO!' : 'FIGHT!', '');
+                Sound.play('fight');
+                if (gameMode !== 'training') Sound.say('Fight!');
+            }
+            for (const f of [player, enemy]) if (f.form === 'human' || f.transforming) tickTransform(f, stateTimer);
+            if (stateTimer >= 90) {
+                for (const f of [player, enemy]) if (f.state === 'win') f.setState('idle');
+                hideMessage(); gameState = 'playing';
+            }
+        } else if (gameState === 'round_over') {
+            stateTimer++;
+            if (stateTimer > 150 || (stateTimer > 40 && any)) { startRound(); return; }
+        } else if (gameState === 'match_over') {
+            stateTimer++;
+            if (stateTimer > 60 && any) { goTitle(); return; }
+        }
+
+        for (const k of ['p1', 'p2']) if (comboTimer[k] > 0 && --comboTimer[k] === 0) $('combo-' + k).style.display = 'none';
+
+        // 練習模式快捷鍵：T 切換木樁行為、R 重置位置、H 顯示判定框
+        if (gameMode === 'training') {
+            if (justPressed.KeyT || padHit(0, 8)) dummyMode = (dummyMode + 1) % DUMMY_MODES.length;
+            if (justPressed.KeyH) showBoxes = !showBoxes;
+            if (justPressed.KeyR) resetTrainingPositions();
+        }
+
+        // 打擊停頓期間也要記下按鍵與搖桿方向，連段的下一鍵通常就是在這時按的
+        if (hitstop > 0 && gameState === 'playing' && !roundEnding) {
+            player.latch(in1);
+            if (!isAIEnabled) enemy.latch(in2);
+        }
+
+        // 打擊停頓 / KO 慢動作
+        if (hitstop > 0) { hitstop--; return; }
+        if (slowmo > 0) { slowmo--; if (slowmo % 3 !== 0) return; }
+        animFrame++;
+        shake *= 0.85;
+
+        const fighting = gameState === 'playing' && !roundEnding;
+        if (fighting) {
+            player.control(in1, enemy);
+            enemy.control(gameMode === 'training' ? dummyThink(enemy, player) : isAIEnabled ? aiThink(enemy, player) : in2, player);
+        } else {
+            for (const f of [player, enemy]) if (f.state === 'run') f.setState('idle');
+        }
+        faceEachOther();
+        player.update(); enemy.update();
+        pushApart(player, enemy);
+        updateProjectiles(fighting);
+        if (fighting) { checkAttack(player, enemy); checkAttack(enemy, player); }
+
+        particles.forEach(p => p.update()); particles = particles.filter(p => p.life > 0);
+        sparks.forEach(s => s.update()); sparks = sparks.filter(s => !s.dead);
+
+        if (gameMode === 'training') tickTraining();
+        else if (gameState === 'playing') {
+            if (!roundEnding) {
+                timeFrames++;
+                if (99 - Math.floor(timeFrames / 60) <= 0) timeUp();
+            } else if (++endTimer > 120 && player.grounded && enemy.grounded) finishRound();
+        }
+        updateHUD();
+    }
+
+    function tick() {
+        frameCount++;
+        pollPads();
+        const solo = gameMode !== '2p' && gameState !== 'title';
+        const in1 = solo ? readPlayer(0, [0, 1], [0, 1]) : readPlayer(0, [0], [0]);
+        const in2 = solo ? readPlayer(1, [], []) : readPlayer(1, [1], [1]);
+        const any = anyPressed();
+        switch (gameState) {
+            case 'title': {
+                animFrame++;
+                const d = in1.dirPressed || in2.dirPressed;
+                if (d && d.includes('UP')) { modeIndex = (modeIndex + MODES.length - 1) % MODES.length; updateModeUI(); Sound.play('cursor'); }
+                if (d && d.includes('DOWN')) { modeIndex = (modeIndex + 1) % MODES.length; updateModeUI(); Sound.play('cursor'); }
+                if (in1.confirm || in2.confirm) { Sound.play('confirm'); startMode(MODES[modeIndex]); }
+                break;
+            }
+            case 'select':
+                animFrame++;
+                tickSelect(in1, in2);
+                break;
+            case 'vs':
+                animFrame++;
+                stateTimer++;
+                if (stateTimer > 110 || (stateTimer > 30 && (in1.confirm || in2.confirm))) startRound();
+                break;
+            case 'paused':
+                tickPause(in1, in2);
+                break;
+            default:
+                tickFight(in1, in2, any);
+        }
+        endInputFrame();
+    }
+
+    function render() {
+        c.save();
+        c.fillStyle = '#000'; c.fillRect(0, 0, VW, VH);
+        if (shake > 0.5) c.translate(Math.round(rnd(shake / 2)), Math.round(rnd(shake / 2)));
+        drawStage();
+        if (player && enemy && gameState !== 'vs') {
+            // 正在出招的人畫在上層
+            const attacking = f => !!(f.moves[f.state] && f.moves[f.state].box);
+            const order = attacking(enemy) && !attacking(player) ? [player, enemy] : [enemy, player];
+            order.forEach(f => f.draw());
+            projectiles.forEach(p => p.draw());
+            particles.forEach(p => p.draw());
+            sparks.forEach(s => s.draw());
+            if (showBoxes && gameMode === 'training') drawBoxes();
+        }
+        c.restore();
+    }
+
+    // 固定時間步：不論螢幕刷新率，邏輯永遠 60 次/秒
+    let acc = 0, last = performance.now();
+    function loop(now) {
+        requestAnimationFrame(loop);
+        acc += Math.min(now - last, 250); last = now;
+        while (acc >= STEP) { tick(); acc -= STEP; }
+        render();
+    }
+
+    goTitle();
+    requestAnimationFrame(loop);
 </script>
 </body>
 </html>
